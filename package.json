@@ -2,7 +2,7 @@
   "name": "safety-explorer-suite",
   "version": "0.0.0",
   "description": "The Safety Explorer Suite provides a framework for rendering a set of charts related to Clinical Trial Safety Monitoring.",
-  "main": "./web/index.html",
+  "main": "build/safetyExplorerSuite.js",
   "scripts": {
     "format": "prettier --write 'src/**/*.js'",
     "build": "npm run format && rollup -c",

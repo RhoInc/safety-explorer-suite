@@ -1,0 +1,26 @@
+ul.nav-tabs {
+    list-style-type: none;
+    margin: 2%;
+    overflow: hidden;
+    background-color: #333333;
+}
+ul.nav-tabs li {
+    float: left;
+}
+ul.nav-tabs li.active {
+    background-color: #111111;
+}
+ul.nav-tabs li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+}
+ul.nav-tabs li a:hover {
+    background-color: #111111;
+}
+.safetyExplorerChart {
+    width: 96%;
+    margin: 2%;
+}
