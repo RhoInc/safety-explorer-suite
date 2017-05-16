@@ -9,12 +9,12 @@ export function init(explorer) {
     .enter()
     .append("li")
     .classed("active", function(d, i) {
-      i == 0;
-    })
-    .append("a")
-    .text(function(d) {
-      return d.label;
+      return i == 0;
     });
+
+  chartNavItems.append("a").text(function(d) {
+    return d.label;
+  });
 
   chartNavItems.on("click", function(d) {
     if (!d3.select(this).classed("active")) {

@@ -64,8 +64,10 @@ var safetyExplorerSuite = (function () {
     var chartNav = explorer.nav.wrap.append("ul").attr("class", "nav nav-tabs");
 
     var chartNavItems = chartNav.selectAll("li").data(explorer.charts.renderers).enter().append("li").classed("active", function (d, i) {
-      i == 0;
-    }).append("a").text(function (d) {
+      return i == 0;
+    });
+
+    chartNavItems.append("a").text(function (d) {
       return d.label;
     });
 
