@@ -70,7 +70,12 @@ var safetyExplorerSuite = (function () {
     });
 
     chartNavItems.on("click", function (d) {
-      console.log("Renderering " + d.main);
+      if (!d3.select(this).classed("active")) {
+        explorer.chartWrap.selectAll("*").remove();
+        chartNavItems.classed("active", false);
+        d3.select(this).classed("active", true);
+        d.render();
+      }
     });
   }
 
@@ -96,7 +101,7 @@ var safetyExplorerSuite = (function () {
     settings: {}
   }, {
     name: "safety-histogram",
-    label: "Results Over Time",
+    label: "Histogram",
     main: "safetyHistogram",
     sub: null,
     css: null,
@@ -104,7 +109,7 @@ var safetyExplorerSuite = (function () {
     settings: {}
   }, {
     name: "safety-outlier-explorer",
-    label: "Histogram",
+    label: "Outlier Explorer",
     main: "safetyOutlierExplorer",
     sub: null,
     css: null,
@@ -112,7 +117,7 @@ var safetyExplorerSuite = (function () {
     settings: {}
   }, {
     name: "safety-results-over-time",
-    label: "Outlier Explorer",
+    label: "Results Over Time",
     main: "safetyResultsOverTime",
     sub: null,
     css: null,

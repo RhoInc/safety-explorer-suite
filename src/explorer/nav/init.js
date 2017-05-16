@@ -18,6 +18,11 @@ export function init(explorer) {
     });
 
   chartNavItems.on("click", function(d) {
-    console.log("Renderering " + d.main);
+    if (!d3.select(this).classed("active")) {
+      explorer.chartWrap.selectAll("*").remove();
+      chartNavItems.classed("active", false);
+      d3.select(this).classed("active", true);
+      d.render();
+    }
   });
 }

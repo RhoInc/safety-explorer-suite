@@ -19,7 +19,7 @@ const renderers = [
   },
   {
     name: "safety-histogram",
-    label: "Results Over Time",
+    label: "Histogram",
     main: "safetyHistogram",
     sub: null,
     css: null,
@@ -28,7 +28,7 @@ const renderers = [
   },
   {
     name: "safety-outlier-explorer",
-    label: "Histogram",
+    label: "Outlier Explorer",
     main: "safetyOutlierExplorer",
     sub: null,
     css: null,
@@ -37,7 +37,7 @@ const renderers = [
   },
   {
     name: "safety-results-over-time",
-    label: "Outlier Explorer",
+    label: "Results Over Time",
     main: "safetyResultsOverTime",
     sub: null,
     css: null,
