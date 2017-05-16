@@ -8,8 +8,6 @@ export function init(explorer) {
     //add render method
     //     var mainFunction = cat.controls.mainFunction.node().value;
     renderer.render = function() {
-      console.log("rendering");
-      console.log(this);
       if (renderer.sub) {
         //var subFunction = cat.controls.subFunction.node().value;
         var myChart = window[renderer.main][renderer.sub](

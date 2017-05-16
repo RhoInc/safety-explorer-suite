@@ -13,10 +13,8 @@ var safetyExplorerSuite = (function () {
     var remaining = dataFiles.length;
     dataFiles.forEach(function (file) {
       d3.csv(file.path, function (csv) {
-        console.log("Loaded " + file.path);
         file.raw = csv;
         if (! --remaining) {
-          console.log("initializing charts");
           explorer.init(dataFiles);
         }
       });
@@ -31,8 +29,11 @@ var safetyExplorerSuite = (function () {
       loadFiles(this, dataArray);
     } else {
       //otherwise initialize the charts
-
       this.data = dataArray;
+
+      // prep settings & customize renderers
+      this.prepSettings(this);
+
       //create wrapper in specified div
       this.wrap = d3.select(this.element).append("div").attr("class", "web-codebook-explorer");
 
@@ -58,7 +59,6 @@ var safetyExplorerSuite = (function () {
   }
 
   function init$1(explorer) {
-    console.log(explorer);
     explorer.nav.wrap.selectAll("*").remove();
 
     var chartNav = explorer.nav.wrap.append("ul").attr("class", "nav nav-tabs");
@@ -92,7 +92,7 @@ var safetyExplorerSuite = (function () {
     data: "AEs",
     settings: {}
   }, {
-    name: "aetimelines",
+    name: "ae-timelines",
     label: "AE Timeline",
     main: "aeTimelines",
     sub: null,
@@ -143,8 +143,6 @@ var safetyExplorerSuite = (function () {
       //add render method
       //     var mainFunction = cat.controls.mainFunction.node().value;
       renderer.render = function () {
-        console.log("rendering");
-        console.log(this);
         if (renderer.sub) {
           //var subFunction = cat.controls.subFunction.node().value;
           var myChart = window[renderer.main][renderer.sub](explorer.element + " .chartWrap", renderer.settings);
@@ -164,6 +162,35 @@ var safetyExplorerSuite = (function () {
     init: init$2
   };
 
+  var defaultSettings = {
+    renderers: null,
+    custom_settings: null
+  };
+
+  function prepSettings(explorer) {
+    //set defaults and update the renderers accordingly
+    explorer.config.renderers = explorer.config.renderers || defaultSettings.renderers;
+    explorer.config.custom_settings = explorer.config.custom_settings || defaultSettings.custom_settings;
+
+    //only keep the selected renderers (or keep them all if none are specified)
+    if (explorer.config.renderers) {
+      explorer.charts.renderers = explorer.charts.renderers.filter(function (d) {
+        return explorer.config.renderers.indexOf(d.name) > -1;
+      });
+    }
+
+    //customize the settings (or use the default settings if nothing is specified)
+    if (explorer.config.custom_settings) {
+      explorer.config.custom_settings.forEach(function (custom_setting) {
+        var thisRenderer = explorer.charts.renderers.filter(function (renderer) {
+          return custom_setting.renderer_name == renderer.name;
+        })[0];
+
+        if (thisRenderer) thisRenderer.settings = custom_setting;
+      });
+    }
+  }
+
   function createExplorer() {
     var element = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "body";
     var config = arguments[1];
@@ -175,6 +202,7 @@ var safetyExplorerSuite = (function () {
       layout: layout,
       nav: nav,
       loadFiles: loadFiles,
+      prepSettings: prepSettings,
       charts: charts
     };
 

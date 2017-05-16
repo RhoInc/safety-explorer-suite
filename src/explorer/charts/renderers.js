@@ -9,7 +9,7 @@ const renderers = [
     settings: {}
   },
   {
-    name: "aetimelines",
+    name: "ae-timelines",
     label: "AE Timeline",
     main: "aeTimelines",
     sub: null,

@@ -10,8 +10,11 @@ export function init(dataArray, loadcsv = false) {
     loadFiles(this, dataArray);
   } else {
     //otherwise initialize the charts
-
     this.data = dataArray;
+
+    // prep settings & customize renderers
+    this.prepSettings(this);
+
     //create wrapper in specified div
     this.wrap = d3
       .select(this.element)

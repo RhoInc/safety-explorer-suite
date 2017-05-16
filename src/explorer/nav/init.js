@@ -1,5 +1,4 @@
 export function init(explorer) {
-  console.log(explorer);
   explorer.nav.wrap.selectAll("*").remove();
 
   var chartNav = explorer.nav.wrap.append("ul").attr("class", "nav nav-tabs");

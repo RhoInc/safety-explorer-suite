@@ -10,10 +10,8 @@ export function loadFiles(explorer, dataFiles) {
   var remaining = dataFiles.length;
   dataFiles.forEach(function(file) {
     d3.csv(file.path, function(csv) {
-      console.log("Loaded " + file.path);
       file.raw = csv;
       if (!--remaining) {
-        console.log("initializing charts");
         explorer.init(dataFiles);
       }
     });
