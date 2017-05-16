@@ -1,25 +1,50 @@
 var safetyExplorerSuite = (function () {
   'use strict';
 
-  /*------------------------------------------------------------------------------------------------\
-    Initialize explorer
-  \------------------------------------------------------------------------------------------------*/
+  //Simple convienence function to load multiple files in parallel.
+  // input files is an array of objects structured as follows:
+  // [
+  // {path:'myAEs.csv', type:"AE"},
+  // {path:'myLabs.csv', type:"Labs"}
+  //]
+  //
 
-  function init(data) {
-    var settings = this.config;
-    this.data = data;
+  function loadFiles(explorer, dataFiles) {
+    var remaining = dataFiles.length;
+    dataFiles.forEach(function (file) {
+      d3.csv(file.path, function (csv) {
+        console.log("Loaded " + file.path);
+        file.raw = csv;
+        if (! --remaining) {
+          console.log("initializing charts");
+          explorer.init(dataFiles);
+        }
+      });
+    });
+  }
 
-    //create wrapper in specified div
-    this.wrap = d3.select(this.element).append("div").attr("class", "web-codebook-explorer");
+  function init(dataArray) {
+    var loadcsv = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
 
-    //layout the divs
-    this.layout(this);
+    if (loadcsv) {
+      //load the csvs if requested
+      loadFiles(this, dataArray);
+    } else {
+      //otherwise initialize the charts
 
-    //draw nav
-    this.nav.init(this);
+      this.data = dataArray;
+      //create wrapper in specified div
+      this.wrap = d3.select(this.element).append("div").attr("class", "web-codebook-explorer");
 
-    //draw first codebook
-    //  this.config.charts[0].render()
+      //layout the divs
+      this.layout(this);
+
+      //draw nav
+      this.nav.init(this);
+
+      //draw first codebook
+      //  this.config.charts[0].render()
+    }
   }
 
   /*------------------------------------------------------------------------------------------------\
@@ -57,37 +82,43 @@ var safetyExplorerSuite = (function () {
     label: "AE Explorer",
     main: "aeTable",
     sub: "createChart",
-    css: "css/aeTable.css"
+    css: "css/aeTable.css",
+    data: "AEs"
   }, {
     name: "aetimelines",
     label: "AE Timeline",
     main: "aeTimelines",
     sub: null,
-    css: null
+    css: null,
+    data: "AEs"
   }, {
     name: "safety-histogram",
     label: "Results Over Time",
     main: "safetyHistogram",
     sub: null,
-    css: null
+    css: null,
+    data: "Labs"
   }, {
     name: "safety-outlier-explorer",
     label: "Histogram",
     main: "safetyOutlierExplorer",
     sub: null,
-    css: null
+    css: null,
+    data: "Labs"
   }, {
     name: "safety-results-over-time",
     label: "Outlier Explorer",
     main: "safetyResultsOverTime",
     sub: null,
-    css: null
+    css: null,
+    data: "Labs"
   }, {
     name: "safety-shift-plot",
     label: "Shift Plot",
     main: "safetyShiftPlot",
     sub: null,
-    css: null
+    css: null,
+    data: "Labs"
   }];
 
   var charts = {
@@ -104,6 +135,7 @@ var safetyExplorerSuite = (function () {
       init: init,
       layout: layout,
       nav: nav,
+      loadFiles: loadFiles,
       charts: charts
     };
 

@@ -2,22 +2,29 @@
   Initialize explorer
 \------------------------------------------------------------------------------------------------*/
 
-export function init(data) {
-  var settings = this.config;
-  this.data = data;
+import { loadFiles } from "./loadFiles";
 
-  //create wrapper in specified div
-  this.wrap = d3
-    .select(this.element)
-    .append("div")
-    .attr("class", "web-codebook-explorer");
+export function init(dataArray, loadcsv = false) {
+  if (loadcsv) {
+    //load the csvs if requested
+    loadFiles(this, dataArray);
+  } else {
+    //otherwise initialize the charts
 
-  //layout the divs
-  this.layout(this);
+    this.data = dataArray;
+    //create wrapper in specified div
+    this.wrap = d3
+      .select(this.element)
+      .append("div")
+      .attr("class", "web-codebook-explorer");
 
-  //draw nav
-  this.nav.init(this);
+    //layout the divs
+    this.layout(this);
 
-  //draw first codebook
-  //  this.config.charts[0].render()
+    //draw nav
+    this.nav.init(this);
+
+    //draw first codebook
+    //  this.config.charts[0].render()
+  }
 }
