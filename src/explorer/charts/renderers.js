@@ -5,7 +5,8 @@ const renderers = [
     main: "aeTable",
     sub: "createChart",
     css: "css/aeTable.css",
-    data: "AEs"
+    data: "AEs",
+    settings: {}
   },
   {
     name: "aetimelines",
@@ -13,7 +14,8 @@ const renderers = [
     main: "aeTimelines",
     sub: null,
     css: null,
-    data: "AEs"
+    data: "AEs",
+    settings: {}
   },
   {
     name: "safety-histogram",
@@ -21,7 +23,8 @@ const renderers = [
     main: "safetyHistogram",
     sub: null,
     css: null,
-    data: "Labs"
+    data: "Labs",
+    settings: {}
   },
   {
     name: "safety-outlier-explorer",
@@ -29,7 +32,8 @@ const renderers = [
     main: "safetyOutlierExplorer",
     sub: null,
     css: null,
-    data: "Labs"
+    data: "Labs",
+    settings: {}
   },
   {
     name: "safety-results-over-time",
@@ -37,7 +41,8 @@ const renderers = [
     main: "safetyResultsOverTime",
     sub: null,
     css: null,
-    data: "Labs"
+    data: "Labs",
+    settings: {}
   },
   {
     name: "safety-shift-plot",
@@ -45,7 +50,8 @@ const renderers = [
     main: "safetyShiftPlot",
     sub: null,
     css: null,
-    data: "Labs"
+    data: "Labs",
+    settings: {}
   }
 ];
 

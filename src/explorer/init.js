@@ -24,7 +24,8 @@ export function init(dataArray, loadcsv = false) {
     //draw nav
     this.nav.init(this);
 
-    //draw first codebook
-    //  this.config.charts[0].render()
+    //prep the renderers and draw first codebook
+    this.charts.init(this);
+    this.charts.renderers[0].render();
   }
 }

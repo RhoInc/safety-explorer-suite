@@ -42,8 +42,9 @@ var safetyExplorerSuite = (function () {
       //draw nav
       this.nav.init(this);
 
-      //draw first codebook
-      //  this.config.charts[0].render()
+      //prep the renderers and draw first codebook
+      this.charts.init(this);
+      this.charts.renderers[0].render();
     }
   }
 
@@ -83,46 +84,79 @@ var safetyExplorerSuite = (function () {
     main: "aeTable",
     sub: "createChart",
     css: "css/aeTable.css",
-    data: "AEs"
+    data: "AEs",
+    settings: {}
   }, {
     name: "aetimelines",
     label: "AE Timeline",
     main: "aeTimelines",
     sub: null,
     css: null,
-    data: "AEs"
+    data: "AEs",
+    settings: {}
   }, {
     name: "safety-histogram",
     label: "Results Over Time",
     main: "safetyHistogram",
     sub: null,
     css: null,
-    data: "Labs"
+    data: "Labs",
+    settings: {}
   }, {
     name: "safety-outlier-explorer",
     label: "Histogram",
     main: "safetyOutlierExplorer",
     sub: null,
     css: null,
-    data: "Labs"
+    data: "Labs",
+    settings: {}
   }, {
     name: "safety-results-over-time",
     label: "Outlier Explorer",
     main: "safetyResultsOverTime",
     sub: null,
     css: null,
-    data: "Labs"
+    data: "Labs",
+    settings: {}
   }, {
     name: "safety-shift-plot",
     label: "Shift Plot",
     main: "safetyShiftPlot",
     sub: null,
     css: null,
-    data: "Labs"
+    data: "Labs",
+    settings: {}
   }];
 
+  function init$2(explorer) {
+    explorer.charts.renderers.forEach(function (renderer) {
+      //link the data
+      renderer.dataFile = explorer.data.filter(function (d) {
+        return d.type == renderer.data;
+      })[0];
+
+      //add render method
+      //     var mainFunction = cat.controls.mainFunction.node().value;
+      renderer.render = function () {
+        console.log("rendering");
+        console.log(this);
+        if (renderer.sub) {
+          //var subFunction = cat.controls.subFunction.node().value;
+          var myChart = window[renderer.main][renderer.sub](explorer.element + " .chartWrap", renderer.settings);
+        } else {
+          var myChart = window[renderer.main](explorer.element + " .chartWrap", renderer.settings);
+        }
+        myChart.init(renderer.dataFile.raw);
+
+        //add destroy method
+        renderer.destroy = function () {};
+      };
+    });
+  }
+
   var charts = {
-    renderers: renderers
+    renderers: renderers,
+    init: init$2
   };
 
   function createExplorer() {
