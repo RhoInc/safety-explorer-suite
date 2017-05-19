@@ -15,6 +15,16 @@ i{
   width:80%;
   padding: 0 10% 0 10%;
 }
+
+td.links, th.links{
+  width:200px
+}
+
+table.examples td, table.examples th{
+  border:1px solid #ccc;
+  padding:.5em;
+}
+
 .italic {
     font-style: italic;
 }
