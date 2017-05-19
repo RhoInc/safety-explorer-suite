@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+        <script src='https://d3js.org/d3.v3.min.js'></script>
+        <link rel="stylesheet" type="text/css" href=index.css>
+        <link rel="stylesheet" type="text/css" href=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css>
+        <link rel="stylesheet" type="text/css" href=https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      </head>
+
+    <body>
+      <div class="wrap">
+
+      <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Safety Explorer Suite</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#overview">Overview</a></li>
+              <li><a href="#libraries">Libraries</a></li>
+              <li><a href="#usage">Usage</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="https://github.com/RhoInc/">Github</a></li>
+              <li><a href="https://www.rhoworld.com">Rho</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+      <div class="container">
+        <div class="main">
+          <h2 class="anchor" id="overview">Overview</h2>
+          <p>The Safety Explorer Suite consists 6 custom interactive graphics and 2 helper libraries. The 6 graphics libraries improve upon traditional static reports by adding simple user interface elements, including filters, dynamic searches, toggles for display options, and linked charts and listings. This page includes links to <a href="#examples">examples</a>, the <a href="#libraries">8 libraries</a> and detailed <a href="#usage"> usage instructions</a> providing an overview of how to get started with the tools.</p>
+
+          <h2 class="anchor" id="examples">Examples</h2>
+          Links to examples go here. 
+
+          <h2  class="anchor" id="libraries">Libraries</h2>
+          <!-- Adverse Event Explorer -->
+          <div class="media-list">
+            <div class="media-block">
+              <img src="./img/aeexplorer.png" width="200" height="150" alt="AE Explorer">
+              <div class="text-wrap">
+                <p>
+                  <span class="media-title">Adverse Event Explorer</span>
+                </p>
+                <p>Interactive graphic giving an overview of adverse event (AE) rates by group</p>
+                <p>
+                  <span class="italic">Code: </span>
+                  <a class="doc-link github" href="https://github.com/RhoInc/aeexplorer"><i class="fa fa-github fa-lg"></i>Repository</a>
+                  <a class="doc-link info-circle" href="https://github.com/RhoInc/aeexplorer/wiki"><i class="fa fa-info-circle fa-lg"></i>Documentation</a>
+                  <a class="doc-link info-circle" href="https://www.npmjs.com/package/aeexplorer"><i class="fa fa-file-o fa-lg"></i>npm</a>
+                </p>
+                <p>
+                  <span class="italic">Examples: </span>
+                  <a class="doc-link bar-ch" href="https://rhoinc.github.io/viz-library/examples/0008-safetyExplorer-default/ae-table/index.html"><i class="fa fa-bar-chart fa-lg"></i>Default Settings</a>
+                  <a class="doc-link bar-ch" href="https://rhoinc.github.io/viz-library/examples/0011-safetyExplorer-queries/ae-table/index.html"><i class="fa fa-bar-chart fa-lg"></i>Custom Settings</a>
+                </p>
+              </div>
+            </div>
+
+            <!-- Adverse Event Timeline -->
+            <div class="media-block">
+              <img src="./img/ae-timeline.png" width="200" height="150" alt="AE Timeline">
+              <div class="text-wrap">
+                <p>
+                  <span class="media-title">Adverse Event Timeline</span>
+                </p>
+                <p>Interactive graphic showing the timeline of participant AEs</p>
+                <p>
+                  <span class="italic">Code: </span>
+                  <a class="doc-link github" href="https://github.com/RhoInc/ae-timeline"><i class="fa fa-github fa-lg"></i>Repository</a>
+                  <a class="doc-link info-circle" href="https://github.com/RhoInc/ae-timeline/wiki"><i class="fa fa-info-circle fa-lg"></i>Documentation</a>
+                  <a class="doc-link info-circle" href="https://www.npmjs.com/package/ae-timeline"><i class="fa fa-file-o fa-lg"></i>npm</a>
+                </p>
+                <p>
+                  <span class="italic">Examples: </span>
+                  <a class="doc-link bar-ch" href="https://rhoinc.github.io/viz-library/examples/0008-safetyExplorer-default/ae-timeline/index.html"><i class="fa fa-bar-chart fa-lg"></i>Default Settings</a>
+                  <a class="doc-link bar-ch" href="https://rhoinc.github.io/viz-library/examples/0011-safetyExplorer-queries/ae-timeline/index.html"><i class="fa fa-bar-chart fa-lg"></i>Custom Settings</a>
+                </p>
+              </div>
+            </div>
+            <!-- safety outlier explorer -->
+            <div class="media-block">
+              <img src="./img/safety-outlier-explorer.png" width="200" height="150" alt="AE Explorer">
+              <div class="text-wrap">
+                <p>
+                  <span class="media-title">Safety Outlier Explorer</span>
+                </p>
+                <p>Interactive graphic showing patterns of participant-level longitudinal safety markers</p>
+                <p>
+                  <span class="italic">Code: </span>
+                  <a class="doc-link github" href="https://github.com/RhoInc/safety-outlier-explorer"><i class="fa fa-github fa-lg"></i>Repository</a>
+                  <a class="doc-link info-circle" href="https://github.com/RhoInc/safety-outlier-explorer/wiki"><i class="fa fa-info-circle fa-lg"></i>Documentation</a>
+                  <a class="doc-link info-circle" href="https://www.npmjs.com/package/safety-outlier-explorer"><i class="fa fa-file-o fa-lg"></i>npm</a>
+                </p>
+                <p>
+                  <span class="italic">Examples: </span>
+                  <a class="doc-link bar-ch" href="https://rhoinc.github.io/viz-library/examples/0008-safetyExplorer-default/safety-outlier-explorer/index.html"><i class="fa fa-bar-chart fa-lg"></i>Default Settings</a>
+                  <a class="doc-link bar-ch" href="https://rhoinc.github.io/viz-library/examples/0011-safetyExplorer-queries/safety-outlier-explorer/index.html"><i class="fa fa-bar-chart fa-lg"></i>Custom Settings</a>
+                </p>
+              </div>
+            </div>
+            <!-- safety results over time -->
+            <div class="media-block">
+              <img src="./img/safety-results-over-time.png" width="200" height="150" alt="AE Explorer">
+              <div class="text-wrap">
+                <p>
+                  <span class="media-title">Safety Results Over Time</span>
+                </p>
+                <p>Interactive graphic showing population trends in longitudinal safety results</p>
+                <p>
+                  <span class="italic">Code: </span>
+                  <a class="doc-link github" href="https://github.com/RhoInc/safety-results-over-time"><i class="fa fa-github fa-lg"></i>Repository</a>
+                  <a class="doc-link info-circle" href="https://github.com/RhoInc/safety-results-over-time/wiki"><i class="fa fa-info-circle fa-lg"></i>Documentation</a>
+                  <a class="doc-link info-circle" href="https://www.npmjs.com/package/safety-results-over-time"><i class="fa fa-file-o fa-lg"></i>npm</a>
+
+                </p>
+                <p>
+                  <span class="italic">Examples: </span>
+                  <a class="doc-link bar-ch" href="https://rhoinc.github.io/viz-library/examples/0008-safetyExplorer-default/safety-results-over-time/index.html"><i class="fa fa-bar-chart fa-lg"></i>Default Settings</a>
+                  <a class="doc-link bar-ch" href="https://rhoinc.github.io/viz-library/examples/0011-safetyExplorer-queries/safety-results-over-time/index.html"><i class="fa fa-bar-chart fa-lg"></i>Custom Settings</a>
+                </p>
+              </div>
+            </div>
+            <!-- safety histogram -->
+            <div class="media-block">
+              <img src="./img/safety-histogram.png" width="200" height="150" alt="AE Explorer">
+              <div class="text-wrap">
+                <p>
+                  <span class="media-title">Safety Histogram</span>
+                </p>
+                <p>Interactive graphic showing the distribution of safety markers</p>
+                <p>
+                  <span class="italic">Code: </span>
+                  <a class="doc-link github" href="https://github.com/RhoInc/safety-histogram"><i class="fa fa-github fa-lg"></i>Repository</a>
+                  <a class="doc-link info-circle" href="https://github.com/RhoInc/safety-histogram/wiki"><i class="fa fa-info-circle fa-lg"></i>Documentation</a>
+                  <a class="doc-link info-circle" href="https://www.npmjs.com/package/safety-histogram"><i class="fa fa-file-o fa-lg"></i>npm</a>
+                </p>
+                <p>
+                  <span class="italic">Examples: </span>
+                  <a class="doc-link bar-ch" href="https://rhoinc.github.io/viz-library/examples/0008-safetyExplorer-default/safety-histogram/index.html"><i class="fa fa-bar-chart fa-lg"></i>Default Settings</a>
+                  <a class="doc-link bar-ch" href="https://rhoinc.github.io/viz-library/examples/0011-safetyExplorer-queries/safety-histogram/index.html"><i class="fa fa-bar-chart fa-lg"></i>Custom Settings</a>
+                </p>
+              </div>
+            </div>
+
+            <!-- safety-shift-plot -->
+            <div class="media-block">
+              <img src="./img/safety-shift-plot.png" width="200" height="150" alt="AE Explorer">
+              <div class="text-wrap">
+                <p>
+                  <span class="media-title">Safety Shift Plot</span>
+                </p>
+                <p>Interactive graphic showing participant-level trends for longitudinal safety markers</p>
+                <p>
+                  <span class="italic">Code: </span>
+                  <a class="doc-link github" href="https://github.com/RhoInc/safety-shift-plot"><i class="fa fa-github fa-lg"></i>Repository</a>
+                  <a class="doc-link info-circle" href="https://github.com/RhoInc/safety-shift-plot/wiki"><i class="fa fa-info-circle fa-lg"></i>Documentation</a>
+                  <a class="doc-link info-circle" href="https://www.npmjs.com/package/safety-shift-plot"><i class="fa fa-file-o fa-lg"></i>npm</a>
+                </p>
+                <p>
+                  <span class="italic">Examples: </span>
+                  <a class="doc-link bar-ch" href="https://rhoinc.github.io/viz-library/examples/0008-safetyExplorer-default/safety-shift-plot/index.html"><i class="fa fa-bar-chart fa-lg"></i>Default Settings</a>
+                  <a class="doc-link bar-ch" href="https://rhoinc.github.io/viz-library/examples/0011-safetyExplorer-queries/safety-shift-plot/index.html"><i class="fa fa-bar-chart fa-lg"></i>Custom Settings</a>
+                </p>
+              </div>
+            </div>
+
+            <!-- Safety-explorer-suite -->
+            <div class="media-block">
+              <img src="./img/safety-explorer-suite.png" width="200" height="150" alt="AE Explorer">
+              <div class="text-wrap">
+                <p>
+                  <span class="media-title">Safety Explorer Suite</span>
+                </p>
+                <p>Helper library implementing all 6 graphics on a single page.</p>
+                <p>
+                  <span class="italic">Code: </span>
+                  <a class="doc-link github" href="https://github.com/RhoInc/safety-explorer-suite"><i class="fa fa-github fa-lg"></i>Repository</a>
+                  <a class="doc-link info-circle" href="https://github.com/RhoInc/safety-explorer-suite/wiki"><i class="fa fa-info-circle fa-lg"></i>Documentation</a>
+                  <a class="doc-link info-circle" href="https://www.npmjs.com/package/safety-explorer-suite"><i class="fa fa-file-o fa-lg"></i>npm</a>
+
+                </p>
+                <p>
+                  <span class="italic">Examples: </span>
+                  <a class="doc-link bar-ch" href="https://rhoinc.github.io/viz-library/examples/0015-safety-explorer-single-page/example.html"><i class="fa fa-bar-chart fa-lg"></i>Default Settings</a>
+                </p>
+              </div>
+            </div>
+
+            <!-- safetyexploreR -->
+            <div class="media-block">
+              <img src="./img/safetyexploreR.png" width="200" height="150" alt="AE Explorer">
+              <div class="text-wrap">
+                <p>
+                  <span class="media-title">safetyexploreR - R package</span>
+                </p>
+                <p>Interactive graphic giving an overview of adverse event (AE) rates by group</p>
+                <p>
+                  <span class="italic">Code: </span>
+                  <a class="doc-link github" href="https://github.com/RhoInc/safetyexploreR"><i class="fa fa-github fa-lg"></i>Repository</a>
+                  <a class="doc-link info-circle" href="https://github.com/RhoInc/safetyexploreR/wiki"><i class="fa fa-info-circle fa-lg"></i>Documentation</a>
+                </p>
+                <p>
+                  <span class="italic">Examples: </span>
+                  <a class="doc-link bar-ch" href="https://becca-krouse.shinyapps.io/aetableapp/"><i class="fa fa-bar-chart fa-lg"></i>AE Table (Shiny)</a>
+                  <a class="doc-link bar-ch" href="https://becca-krouse.shinyapps.io/aetableapp/"><i class="fa fa-bar-chart fa-lg"></i>Safety Explorer Suite (Shiny)</a>
+                </p>
+              </div>
+            </div>
+          </div>
+          <h2  class="anchor" id="usage">Usage</h2>
+          This is some text about how you use the tools.
+        </div>
+      </div>
+    </div>
+    </body>
+</html>
