@@ -118,6 +118,14 @@ var safetyExplorerSuite = (function () {
     data: "Labs",
     settings: {}
   }, {
+    name: "paneled-outlier-explorer",
+    label: "Paneled Outlier Explorer",
+    main: "paneledOutlierExplorer",
+    sub: null,
+    css: null,
+    data: "Labs",
+    settings: {}
+  }, {
     name: "safety-results-over-time",
     label: "Results Over Time",
     main: "safetyResultsOverTime",
