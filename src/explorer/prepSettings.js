@@ -24,4 +24,9 @@ export function prepSettings(explorer) {
       if (thisRenderer) thisRenderer.settings = custom_setting;
     });
   }
+
+  //Title and instructions
+  explorer.config.title = explorer.config.title || defaultSettings.title;
+  explorer.config.instructions =
+    explorer.config.instructions || defaultSettings.instructions;
 }
