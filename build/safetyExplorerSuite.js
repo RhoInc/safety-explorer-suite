@@ -54,6 +54,9 @@ var safetyExplorerSuite = (function () {
   \------------------------------------------------------------------------------------------------*/
 
   function layout() {
+    if (this.config.title) this.wrap.append("h1").text(this.config.title).style("margin-bottom", "0.2em").style("margin-top", "0.2em");
+
+    if (this.config.instructions) this.wrap.append("div").append("small").text(this.config.instructions);
     this.nav.wrap = this.wrap.append("div").attr("class", "nav");
     this.chartWrap = this.wrap.append("div").attr("class", "chartWrap");
   }
@@ -174,7 +177,9 @@ var safetyExplorerSuite = (function () {
 
   var defaultSettings = {
     renderers: null,
-    custom_settings: null
+    custom_settings: null,
+    title: null,
+    instructions: null
   };
 
   function prepSettings(explorer) {
@@ -199,6 +204,10 @@ var safetyExplorerSuite = (function () {
         if (thisRenderer) thisRenderer.settings = custom_setting;
       });
     }
+
+    //Title and instructions
+    explorer.config.title = explorer.config.title || defaultSettings.title;
+    explorer.config.instructions = explorer.config.instructions || defaultSettings.instructions;
   }
 
   function createExplorer() {
