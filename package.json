@@ -12,13 +12,14 @@
   "license": "MIT",
   "dependencies": {
     "d3": "^3.5.14",
-    "webcharts":"~1",
-    "aeexplorer":"~3",
-    "ae-timelines":"~2",
-    "safety-histogram":"~2",
-    "safety-results-over-time":"~2",
-    "safety-shift-plot":"~2",
-    "safety-outlier-explorer":"~2"
+    "webcharts":"1.9.0",
+    "aeexplorer":"3.2.2",
+    "ae-timelines":"2.0.3",
+    "safety-histogram":"2.0.3",
+    "safety-results-over-time":"2.0.3",
+    "safety-shift-plot":"2.0.3",
+    "safety-outlier-explorer":"2.0.3",
+    "paneled-outlier-explorer":"1.0.3"
   },
   "devDependencies": {
     "babel-cli": "^6.5.1",
