@@ -3,6 +3,7 @@
 \------------------------------------------------------------------------------------------------*/
 
 import { loadFiles } from "./loadFiles";
+import { loadSettings } from "./loadSettings";
 
 export function init(dataArray, loadcsv = false) {
   if (loadcsv) {
@@ -27,8 +28,13 @@ export function init(dataArray, loadcsv = false) {
     //draw nav
     this.nav.init(this);
 
-    //prep the renderers and draw first codebook
-    this.charts.init(this);
-    this.charts.renderers[0].render();
+    //load chart settings (if needed) and then prep the renderers and draw first codebook
+    console.log(this);
+    if (this.config.chartSettings.load) {
+      loadSettings(this);
+    } else {
+      this.charts.init(this);
+      this.charts.renderers[0].render();
+    }
   }
 }

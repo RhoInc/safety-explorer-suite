@@ -4,6 +4,8 @@ import { nav } from "./explorer/nav";
 import { charts } from "./explorer/charts";
 import { loadFiles } from "./explorer/loadFiles";
 import { prepSettings } from "./explorer/prepSettings";
+import { settingsLibrary } from "./explorer/settingsLibrary";
+
 export function createExplorer(element = "body", config) {
   let explorer = {
     element: element,
@@ -13,7 +15,8 @@ export function createExplorer(element = "body", config) {
     nav: nav,
     loadFiles: loadFiles,
     prepSettings: prepSettings,
-    charts: charts
+    charts: charts,
+    settingsLibrary: settingsLibrary
   };
 
   return explorer;

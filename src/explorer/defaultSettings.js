@@ -1,8 +1,13 @@
 const defaultSettings = {
   renderers: null,
-  custom_settings: null,
+  settings_path: null,
+  settings: null,
   title: null,
-  instructions: null
+  instructions: null,
+  chartSettings: {
+    custom: null,
+    location: {}
+  }
 };
 
 export default defaultSettings;

@@ -1,4 +1,7 @@
+import { prepSettings } from "./prepSettings";
+
 export function init(explorer) {
+  prepSettings(explorer);
   explorer.charts.renderers.forEach(function(renderer) {
     //link the data
     renderer.dataFile = explorer.data.filter(function(d) {
@@ -6,7 +9,6 @@ export function init(explorer) {
     })[0];
 
     //add render method
-    //     var mainFunction = cat.controls.mainFunction.node().value;
     renderer.render = function() {
       if (renderer.sub) {
         //var subFunction = cat.controls.subFunction.node().value;
