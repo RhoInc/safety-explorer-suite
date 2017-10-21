@@ -4,7 +4,6 @@
 // renderer.settings
 
 export function prepSettings(explorer) {
-  console.log(explorer);
   explorer.charts.renderers.forEach(function(renderer) {
     var customMatch = explorer.config.chartSettings.custom
       ? explorer.config.chartSettings.custom.filter(
@@ -23,4 +22,7 @@ export function prepSettings(explorer) {
       renderer.settings = importedMatch[0];
     }
   });
+
+  //initialize user settings customizations
+  explorer.events.onChartconfig.call(explorer);
 }

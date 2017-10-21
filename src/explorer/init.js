@@ -13,6 +13,9 @@ export function init(dataArray, loadcsv = false) {
     //otherwise initialize the charts
     this.data = dataArray;
 
+    //Initialize data customizations callback
+    this.events.onDatatransform.call(this);
+
     // prep settings & customize renderers
     this.prepSettings(this);
 

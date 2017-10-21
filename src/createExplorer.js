@@ -19,5 +19,21 @@ export function createExplorer(element = "body", config) {
     settingsLibrary: settingsLibrary
   };
 
+  explorer.events = {
+    onDatatransform() {},
+    onChartconfig() {}
+  };
+
+  explorer.on = function(event, callback) {
+    let possible_events = ["datatransform", "chartconfig"];
+    if (possible_events.indexOf(event) < 0) {
+      return;
+    }
+    if (callback) {
+      explorer.events[
+        "on" + event.charAt(0).toUpperCase() + event.slice(1)
+      ] = callback;
+    }
+  };
   return explorer;
 }

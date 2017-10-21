@@ -56,6 +56,9 @@ var safetyExplorerSuite = (function () {
       //otherwise initialize the charts
       this.data = dataArray;
 
+      //Initialize data customizations callback
+      this.events.onDatatransform.call(this);
+
       // prep settings & customize renderers
       this.prepSettings(this);
 
@@ -182,7 +185,6 @@ var safetyExplorerSuite = (function () {
   // renderer.settings
 
   function prepSettings(explorer) {
-    console.log(explorer);
     explorer.charts.renderers.forEach(function (renderer) {
       var customMatch = explorer.config.chartSettings.custom ? explorer.config.chartSettings.custom.filter(function (f) {
         return f.renderer_name == renderer.name;
@@ -197,6 +199,9 @@ var safetyExplorerSuite = (function () {
         renderer.settings = importedMatch[0];
       }
     });
+
+    //initialize user settings customizations
+    explorer.events.onChartconfig.call(explorer);
   }
 
   function init$2(explorer) {
@@ -436,6 +441,20 @@ var safetyExplorerSuite = (function () {
       settingsLibrary: settingsLibrary
     };
 
+    explorer.events = {
+      onDatatransform: function onDatatransform() {},
+      onChartconfig: function onChartconfig() {}
+    };
+
+    explorer.on = function (event, callback) {
+      var possible_events = ["datatransform", "chartconfig"];
+      if (possible_events.indexOf(event) < 0) {
+        return;
+      }
+      if (callback) {
+        explorer.events["on" + event.charAt(0).toUpperCase() + event.slice(1)] = callback;
+      }
+    };
     return explorer;
   }
 
