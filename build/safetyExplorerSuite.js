@@ -57,14 +57,14 @@ var safetyExplorerSuite = (function () {
     if (this.config.title) this.wrap.append("h1").text(this.config.title).style("margin-bottom", "0.2em").style("margin-top", "0.2em");
 
     if (this.config.instructions) this.wrap.append("div").append("small").text(this.config.instructions);
-    this.nav.wrap = this.wrap.append("div").attr("class", "nav");
+    this.nav.wrap = this.wrap.append("div").attr("class", "ses-nav");
     this.chartWrap = this.wrap.append("div").attr("class", "chartWrap");
   }
 
   function init$1(explorer) {
     explorer.nav.wrap.selectAll("*").remove();
 
-    var chartNav = explorer.nav.wrap.append("ul").attr("class", "nav nav-tabs");
+    var chartNav = explorer.nav.wrap.append("ul").attr("class", "ses-nav ses-nav-tabs");
 
     var chartNavItems = chartNav.selectAll("li").data(explorer.charts.renderers).enter().append("li").classed("active", function (d, i) {
       return i == 0;
