@@ -1,7 +1,9 @@
 export function init(explorer) {
   explorer.nav.wrap.selectAll("*").remove();
 
-  var chartNav = explorer.nav.wrap.append("ul").attr("class", "nav nav-tabs");
+  var chartNav = explorer.nav.wrap
+    .append("ul")
+    .attr("class", "ses-nav ses-nav-tabs");
 
   var chartNavItems = chartNav
     .selectAll("li")
