@@ -258,7 +258,7 @@
         explorer.config.initial_renderer =
             explorer.charts.renderers.find(function(renderer) {
                 return renderer.name === explorer.config.initial_renderer;
-            }) || explorer.config.renderers[0];
+            }) || explorer.charts.renderers[0];
 
         //customize the settings (or use the default settings if nothing is specified)
         if (explorer.config.custom_settings) {
