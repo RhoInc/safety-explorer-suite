@@ -58,7 +58,7 @@
 
             //prep the renderers and draw first codebook
             this.charts.init(this);
-            this.charts.renderers[0].render();
+            this.config.initial_renderer.render();
         }
     }
 
@@ -94,7 +94,7 @@
             .enter()
             .append('li')
             .classed('active', function(d, i) {
-                return i == 0;
+                return d.name === explorer.config.initial_renderer.name;
             });
 
         chartNavItems.append('a').text(function(d) {
@@ -226,6 +226,7 @@
 
     var defaultSettings = {
         renderers: null,
+        initial_renderer: 'aeexplorer',
         custom_settings: null,
         title: null,
         instructions: null
@@ -233,16 +234,31 @@
 
     function prepSettings(explorer) {
         //set defaults and update the renderers accordingly
-        explorer.config.renderers = explorer.config.renderers || defaultSettings.renderers;
+        explorer.config.renderers =
+            explorer.config.renderers ||
+            explorer.charts.renderers.map(function(renderer) {
+                return renderer.name;
+            });
         explorer.config.custom_settings =
             explorer.config.custom_settings || defaultSettings.custom_settings;
 
         //only keep the selected renderers (or keep them all if none are specified)
-        if (explorer.config.renderers) {
-            explorer.charts.renderers = explorer.charts.renderers.filter(function(d) {
+        explorer.charts.renderers = explorer.charts.renderers
+            .filter(function(d) {
                 return explorer.config.renderers.indexOf(d.name) > -1;
+            })
+            .sort(function(a, b) {
+                return (
+                    explorer.config.renderers.indexOf(a.name) -
+                    explorer.config.renderers.indexOf(b.name)
+                );
             });
-        }
+
+        //set initial renderer
+        explorer.config.initial_renderer =
+            explorer.charts.renderers.find(function(renderer) {
+                return renderer.name === explorer.config.initial_renderer;
+            }) || explorer.config.renderers[0];
 
         //customize the settings (or use the default settings if nothing is specified)
         if (explorer.config.custom_settings) {

@@ -12,9 +12,9 @@
     "d3": "~3",
     "paneled-outlier-explorer": "~1",
     "safety-histogram": "~2",
+    "safety-outlier-explorer": "~2",
     "safety-results-over-time": "~2",
     "safety-shift-plot": "~2",
-    "safety-outlier-explorer": "~2",
     "webcharts": "~1"
   },
   "scripts": {

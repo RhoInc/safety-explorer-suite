@@ -29,6 +29,6 @@ export function init(dataArray, loadcsv = false) {
 
         //prep the renderers and draw first codebook
         this.charts.init(this);
-        this.charts.renderers[0].render();
+        this.config.initial_renderer.render();
     }
 }

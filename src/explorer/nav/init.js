@@ -9,7 +9,7 @@ export function init(explorer) {
         .enter()
         .append('li')
         .classed('active', function(d, i) {
-            return i == 0;
+            return d.name === explorer.config.initial_renderer.name;
         });
 
     chartNavItems.append('a').text(function(d) {
