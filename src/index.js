@@ -1,5 +1,5 @@
-import { createExplorer } from "./createExplorer";
+import { createExplorer } from './createExplorer';
 
 export default {
-  createExplorer: createExplorer
+    createExplorer: createExplorer
 };

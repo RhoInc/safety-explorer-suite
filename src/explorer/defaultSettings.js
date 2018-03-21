@@ -1,8 +1,9 @@
 const defaultSettings = {
-  renderers: null,
-  custom_settings: null,
-  title: null,
-  instructions: null
+    renderers: null,
+    initial_renderer: 'aeexplorer',
+    custom_settings: null,
+    title: null,
+    instructions: null
 };
 
 export default defaultSettings;
