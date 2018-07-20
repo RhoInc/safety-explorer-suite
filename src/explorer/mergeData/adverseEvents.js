@@ -13,8 +13,7 @@ export default function adverseEvents(dm, ae) {
         });
 
     //AE variables
-    const aeVariables = Object.keys(ae.raw[0])
-        .filter(key => dmVariables.indexOf(key) < 0);
+    const aeVariables = Object.keys(ae.raw[0]).filter(key => dmVariables.indexOf(key) < 0);
     const aeVariableMapping = schema.variables
         .filter(variable => variable.sdtm.domain === 'AE' && variable.name !== variable.sdtm.name)
         .map(variable => {
@@ -23,22 +22,19 @@ export default function adverseEvents(dm, ae) {
                 name: variable.name
             };
         });
-    const sdtmRenames = aeVariableMapping
-        .map(mapping => mapping.sdtm);
+    const sdtmRenames = aeVariableMapping.map(mapping => mapping.sdtm);
 
     //Create shell records for participants without adverse events.
     const withAEs = d3.set(ae.raw.map(d => d.USUBJID)).values();
-    const adae = dm.raw
-        .filter(d => withAEs.indexOf(d.USUBJID) < 0);
+    const adae = dm.raw.filter(d => withAEs.indexOf(d.USUBJID) < 0);
 
     //Create shell adverse event variables for participants without adverse events.
     adae.forEach(d => {
         for (const aeVariable of aeVariables) {
-            const variable = sdtmRenames.indexOf(aeVariable) > -1
-                ? aeVariableMapping
-                    .find(mapping => mapping.sdtm === aeVariable)
-                    .name
-                : aeVariable;
+            const variable =
+                sdtmRenames.indexOf(aeVariable) > -1
+                    ? aeVariableMapping.find(mapping => mapping.sdtm === aeVariable).name
+                    : aeVariable;
             d[variable] = '';
         }
     });
@@ -47,11 +43,10 @@ export default function adverseEvents(dm, ae) {
     ae.raw.forEach(d => {
         const datum = {};
         for (const aeVariable in d) {
-            const variable = sdtmRenames.indexOf(aeVariable) > -1
-                ? aeVariableMapping
-                    .find(mapping => mapping.sdtm === aeVariable)
-                    .name
-                : aeVariable;
+            const variable =
+                sdtmRenames.indexOf(aeVariable) > -1
+                    ? aeVariableMapping.find(mapping => mapping.sdtm === aeVariable).name
+                    : aeVariable;
             datum[variable] = d[aeVariable];
         }
         Object.assign(datum, dm.raw.find(di => di.USUBJID === d.USUBJID));

@@ -1,155 +1,155 @@
 export default {
-    "standard": "medical signs",
-    "variables": [
+    standard: 'medical signs',
+    variables: [
         {
-            "name": "USUBJID",
-            "type": "string",
-            "label": "Unique Subject Identifier",
-            "sdtm": {
-                "domain": "DM",
-                "name": "USUBJID"
+            name: 'USUBJID',
+            type: 'string',
+            label: 'Unique Subject Identifier',
+            sdtm: {
+                domain: 'DM',
+                name: 'USUBJID'
             },
-            "adam": "USUBJID"
+            adam: 'USUBJID'
         },
         {
-            "name": "SITEID",
-            "type": "string",
-            "label": "Study Site Identifier",
-            "sdtm": {
-                "domain": "DM",
-                "name": "SITEID"
+            name: 'SITEID',
+            type: 'string',
+            label: 'Study Site Identifier',
+            sdtm: {
+                domain: 'DM',
+                name: 'SITEID'
             },
-            "adam": "SITEID"
+            adam: 'SITEID'
         },
         {
-            "name": "AGE",
-            "type": "number",
-            "label": "Age",
-            "sdtm": {
-                "domain": "DM",
-                "name": "AGE"
+            name: 'AGE',
+            type: 'number',
+            label: 'Age',
+            sdtm: {
+                domain: 'DM',
+                name: 'AGE'
             },
-            "adam": "AGE"
+            adam: 'AGE'
         },
         {
-            "name": "SEX",
-            "type": "string",
-            "label": "Sex",
-            "sdtm": {
-                "domain": "DM",
-                "name": "SEX"
+            name: 'SEX',
+            type: 'string',
+            label: 'Sex',
+            sdtm: {
+                domain: 'DM',
+                name: 'SEX'
             },
-            "adam": "SEX"
+            adam: 'SEX'
         },
         {
-            "name": "RACE",
-            "type": "string",
-            "label": "Race",
-            "sdtm": {
-                "domain": "DM",
-                "name": "RACE"
+            name: 'RACE',
+            type: 'string',
+            label: 'Race',
+            sdtm: {
+                domain: 'DM',
+                name: 'RACE'
             },
-            "adam": "RACE"
+            adam: 'RACE'
         },
         {
-            "name": "VISIT",
-            "type": "string",
-            "label": "Analysis Visit",
-            "sdtm": {
-                "domain": "BDS",
-                "name": "VISIT"
+            name: 'VISIT',
+            type: 'string',
+            label: 'Analysis Visit',
+            sdtm: {
+                domain: 'BDS',
+                name: 'VISIT'
             },
-            "adam": "AVISIT"
+            adam: 'AVISIT'
         },
         {
-            "name": "VISITNUM",
-            "type": "number",
-            "label": "Analysis Visit (N)",
-            "sdtm": {
-                "domain": "BDS",
-                "name": "VISITNUM"
+            name: 'VISITNUM',
+            type: 'number',
+            label: 'Analysis Visit (N)',
+            sdtm: {
+                domain: 'BDS',
+                name: 'VISITNUM'
             },
-            "adam": "AVISITN"
+            adam: 'AVISITN'
         },
         {
-            "name": "DT",
-            "type": "number",
-            "label": "Analysis Date",
-            "sdtm": {
-                "domain": "BDS",
-                "name": "__DTC"
+            name: 'DT',
+            type: 'number',
+            label: 'Analysis Date',
+            sdtm: {
+                domain: 'BDS',
+                name: '__DTC'
             },
-            "adam": "ADT"
+            adam: 'ADT'
         },
         {
-            "name": "DY",
-            "type": "number",
-            "label": "Analysis Relative Day",
-            "sdtm": {
-                "domain": "BDS",
-                "name": "__DY"
+            name: 'DY',
+            type: 'number',
+            label: 'Analysis Relative Day',
+            sdtm: {
+                domain: 'BDS',
+                name: '__DY'
             },
-            "adam": "ADY"
+            adam: 'ADY'
         },
         {
-            "name": "CAT",
-            "type": "string",
-            "label": "Parameter Category",
-            "sdtm": {
-                "domain": "BDS",
-                "name": "__CAT"
+            name: 'CAT',
+            type: 'string',
+            label: 'Parameter Category',
+            sdtm: {
+                domain: 'BDS',
+                name: '__CAT'
             },
-            "adam": "PARCAT"
+            adam: 'PARCAT'
         },
         {
-            "name": "TEST",
-            "type": "string",
-            "label": "Parameter",
-            "sdtm": {
-                "domain": "BDS",
-                "name": "__TEST"
+            name: 'TEST',
+            type: 'string',
+            label: 'Parameter',
+            sdtm: {
+                domain: 'BDS',
+                name: '__TEST'
             },
-            "adam": "PARAM"
+            adam: 'PARAM'
         },
         {
-            "name": "STRESU",
-            "type": "string",
-            "label": "Units",
-            "sdtm": {
-                "domain": "BDS",
-                "name": "__STRESU"
+            name: 'STRESU',
+            type: 'string',
+            label: 'Units',
+            sdtm: {
+                domain: 'BDS',
+                name: '__STRESU'
             },
-            "adam": null
+            adam: null
         },
         {
-            "name": "STRESN",
-            "type": "number",
-            "label": "Analysis Value",
-            "sdtm": {
-                "domain": "BDS",
-                "name": "__STRESN"
+            name: 'STRESN',
+            type: 'number',
+            label: 'Analysis Value',
+            sdtm: {
+                domain: 'BDS',
+                name: '__STRESN'
             },
-            "adam": "AVAL"
+            adam: 'AVAL'
         },
         {
-            "name": "STNRLO",
-            "type": "number",
-            "label": "Analysis Normal Range Upper Limit",
-            "sdtm": {
-                "domain": "BDS",
-                "name": "__STNRLO"
+            name: 'STNRLO',
+            type: 'number',
+            label: 'Analysis Normal Range Upper Limit',
+            sdtm: {
+                domain: 'BDS',
+                name: '__STNRLO'
             },
-            "adam": "ANRLO"
+            adam: 'ANRLO'
         },
         {
-            "name": "STNRHI",
-            "type": "number",
-            "label": "Analysis Normal Range Upper Limit",
-            "sdtm": {
-                "domain": "BDS",
-                "name": "__STNRHI"
+            name: 'STNRHI',
+            type: 'number',
+            label: 'Analysis Normal Range Upper Limit',
+            sdtm: {
+                domain: 'BDS',
+                name: '__STNRHI'
             },
-            "adam": "ANRHI"
+            adam: 'ANRHI'
         }
     ]
-}
+};
