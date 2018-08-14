@@ -3,14 +3,19 @@
 \------------------------------------------------------------------------------------------------*/
 
 import { loadFiles } from './loadFiles';
+import mergeData from './mergeData';
 
-export function init(dataArray, loadcsv = false) {
+export function init(dataArray, loadcsv = false, sdtm = false) {
     if (loadcsv) {
         //load the csvs if requested
         loadFiles(this, dataArray);
     } else {
         //otherwise initialize the charts
-        this.data = dataArray;
+        this.dataArray = dataArray;
+
+        //Merge SDTM data.
+        if (this.config.sdtm) mergeData.call(this);
+        this.data = this.dataArray;
 
         // prep settings & customize renderers
         this.prepSettings(this);
