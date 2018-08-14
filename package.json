@@ -16,7 +16,7 @@
     "safety-results-over-time": "^2.2.2",
     "safety-shift-plot": "^2.1.0",
     "webcharts": "^1.10.0",
-    "web-codebook":"^1.4.2"
+    "webcodebook":"^1.4.2"
   },
   "scripts": {
     "build": "npm run bundle && npm run format",
