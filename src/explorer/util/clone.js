@@ -2,8 +2,7 @@ export default function clone(obj) {
     let copy;
 
     //boolean, number, string, null, undefined
-    if ('object' != typeof obj || null == obj)
-        return obj;
+    if ('object' != typeof obj || null == obj) return obj;
 
     //date
     if (obj instanceof Date) {
@@ -25,8 +24,7 @@ export default function clone(obj) {
     if (obj instanceof Object) {
         copy = {};
         for (var attr in obj) {
-            if (obj.hasOwnProperty(attr))
-                copy[attr] = clone(obj[attr]);
+            if (obj.hasOwnProperty(attr)) copy[attr] = clone(obj[attr]);
         }
         return copy;
     }

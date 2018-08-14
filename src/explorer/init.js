@@ -14,8 +14,7 @@ export function init(dataArray, loadcsv = false, sdtm = false) {
         this.dataArray = dataArray;
 
         //Merge SDTM data.
-        if (this.config.sdtm)
-            mergeData.call(this);
+        if (this.config.sdtm) mergeData.call(this);
         this.data = this.dataArray;
 
         // prep settings & customize renderers

@@ -1,175 +1,175 @@
 export default {
-    "standard": "adverse events",
-    "variables": [
+    standard: 'adverse events',
+    variables: [
         {
-            "name": "USUBJID",
-            "type": "string",
-            "label": "Unique Subject Identifier",
-            "sdtm": {
-                "domain": "DM",
-                "name": "USUBJID"
+            name: 'USUBJID',
+            type: 'string',
+            label: 'Unique Subject Identifier',
+            sdtm: {
+                domain: 'DM',
+                name: 'USUBJID'
             },
-            "adam": "USUBJID"
+            adam: 'USUBJID'
         },
         {
-            "name": "SITEID",
-            "type": "string",
-            "label": "Study Site Identifier",
-            "sdtm": {
-                "domain": "DM",
-                "name": "SITEID"
+            name: 'SITEID',
+            type: 'string',
+            label: 'Study Site Identifier',
+            sdtm: {
+                domain: 'DM',
+                name: 'SITEID'
             },
-            "adam": "SITEID"
+            adam: 'SITEID'
         },
         {
-            "name": "AGE",
-            "type": "number",
-            "label": "Age",
-            "sdtm": {
-                "domain": "DM",
-                "name": "AGE"
+            name: 'AGE',
+            type: 'number',
+            label: 'Age',
+            sdtm: {
+                domain: 'DM',
+                name: 'AGE'
             },
-            "adam": "AGE"
+            adam: 'AGE'
         },
         {
-            "name": "SEX",
-            "type": "string",
-            "label": "Sex",
-            "sdtm": {
-                "domain": "DM",
-                "name": "SEX"
+            name: 'SEX',
+            type: 'string',
+            label: 'Sex',
+            sdtm: {
+                domain: 'DM',
+                name: 'SEX'
             },
-            "adam": "SEX"
+            adam: 'SEX'
         },
         {
-            "name": "RACE",
-            "type": "string",
-            "label": "Race",
-            "sdtm": {
-                "domain": "DM",
-                "name": "RACE"
+            name: 'RACE',
+            type: 'string',
+            label: 'Race',
+            sdtm: {
+                domain: 'DM',
+                name: 'RACE'
             },
-            "adam": "RACE"
+            adam: 'RACE'
         },
         {
-            "name": "ASTDT",
-            "type": "string",
-            "label": "Analysis Start Date",
-            "sdtm": {
-                "domain": "AE",
-                "name": "AESTDTC"
+            name: 'ASTDT',
+            type: 'string',
+            label: 'Analysis Start Date',
+            sdtm: {
+                domain: 'AE',
+                name: 'AESTDTC'
             },
-            "adam": "ASTDT"
+            adam: 'ASTDT'
         },
         {
-            "name": "ASTDY",
-            "type": "number",
-            "label": "Analysis Start Relative Day",
-            "sdtm": {
-                "domain": "AE",
-                "name": "AESTDY"
+            name: 'ASTDY',
+            type: 'number',
+            label: 'Analysis Start Relative Day',
+            sdtm: {
+                domain: 'AE',
+                name: 'AESTDY'
             },
-            "adam": "ASTDY"
+            adam: 'ASTDY'
         },
         {
-            "name": "AENDT",
-            "type": "string",
-            "label": "Analysis End Date",
-            "sdtm": {
-                "domain": "AE",
-                "name": "AEENDTC"
+            name: 'AENDT',
+            type: 'string',
+            label: 'Analysis End Date',
+            sdtm: {
+                domain: 'AE',
+                name: 'AEENDTC'
             },
-            "adam": "AENDT"
+            adam: 'AENDT'
         },
         {
-            "name": "AENDY",
-            "type": "number",
-            "label": "Analysis End Relative Day",
-            "sdtm": {
-                "domain": "AE",
-                "name": "AEENDY"
+            name: 'AENDY',
+            type: 'number',
+            label: 'Analysis End Relative Day',
+            sdtm: {
+                domain: 'AE',
+                name: 'AEENDY'
             },
-            "adam": "AENDY"
+            adam: 'AENDY'
         },
         {
-            "name": "AESEQ",
-            "type": "number",
-            "label": "Sequence Number",
-            "sdtm": {
-                "domain": "AE",
-                "name": "AESEQ"
+            name: 'AESEQ',
+            type: 'number',
+            label: 'Sequence Number',
+            sdtm: {
+                domain: 'AE',
+                name: 'AESEQ'
             },
-            "adam": "AESEQ"
+            adam: 'AESEQ'
         },
         {
-            "name": "AETERM",
-            "type": "string",
-            "label": "Reported Term for the Adverse Event",
-            "sdtm": {
-                "domain": "AE",
-                "name": "AETERM"
+            name: 'AETERM',
+            type: 'string',
+            label: 'Reported Term for the Adverse Event',
+            sdtm: {
+                domain: 'AE',
+                name: 'AETERM'
             },
-            "adam": "AETERM"
+            adam: 'AETERM'
         },
         {
-            "name": "AEDECOD",
-            "type": "string",
-            "label": "Dictionary-Derived Term",
-            "sdtm": {
-                "domain": "AE",
-                "name": "AEDECOD"
+            name: 'AEDECOD',
+            type: 'string',
+            label: 'Dictionary-Derived Term',
+            sdtm: {
+                domain: 'AE',
+                name: 'AEDECOD'
             },
-            "adam": "AEDECOD"
+            adam: 'AEDECOD'
         },
         {
-            "name": "AEBODSYS",
-            "type": "string",
-            "label": "Body System or Organ Class",
-            "sdtm": {
-                "domain": "AE",
-                "name": "AEBODSYS"
+            name: 'AEBODSYS',
+            type: 'string',
+            label: 'Body System or Organ Class',
+            sdtm: {
+                domain: 'AE',
+                name: 'AEBODSYS'
             },
-            "adam": "AEBODSYS"
+            adam: 'AEBODSYS'
         },
         {
-            "name": "AESER",
-            "type": "string",
-            "label": "Serious Event",
-            "sdtm": {
-                "domain": "AE",
-                "name": "AESER"
+            name: 'AESER',
+            type: 'string',
+            label: 'Serious Event',
+            sdtm: {
+                domain: 'AE',
+                name: 'AESER'
             },
-            "adam": "AESER"
+            adam: 'AESER'
         },
         {
-            "name": "AESEV",
-            "type": "string",
-            "label": "Severity/Intensity",
-            "sdtm": {
-                "domain": "AE",
-                "name": "AESEV"
+            name: 'AESEV',
+            type: 'string',
+            label: 'Severity/Intensity',
+            sdtm: {
+                domain: 'AE',
+                name: 'AESEV'
             },
-            "adam": "AESEV"
+            adam: 'AESEV'
         },
         {
-            "name": "AEREL",
-            "type": "string",
-            "label": "Causality",
-            "sdtm": {
-                "domain": "AE",
-                "name": "AEREL"
+            name: 'AEREL',
+            type: 'string',
+            label: 'Causality',
+            sdtm: {
+                domain: 'AE',
+                name: 'AEREL'
             },
-            "adam": "AEREL"
+            adam: 'AEREL'
         },
         {
-            "name": "AEOUT",
-            "type": "string",
-            "label": "Outcome",
-            "sdtm": {
-                "domain": "AE",
-                "name": "AEOUT"
+            name: 'AEOUT',
+            type: 'string',
+            label: 'Outcome',
+            sdtm: {
+                domain: 'AE',
+                name: 'AEOUT'
             },
-            "adam": "AEOUT"
+            adam: 'AEOUT'
         }
     ]
-}
+};
