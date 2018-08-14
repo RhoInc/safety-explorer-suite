@@ -840,9 +840,6 @@
                     );
                 }
 
-                console.log(renderer);
-                console.log(myChart);
-
                 if (renderer.dataFile) {
                     myChart.init(renderer.dataFile.raw);
                 } else {
