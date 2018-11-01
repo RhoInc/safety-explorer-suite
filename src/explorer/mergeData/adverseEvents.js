@@ -49,9 +49,12 @@ export default function adverseEvents(dm, ae) {
                     : aeVariable;
             datum[variable] = d[aeVariable];
         }
-        Object.assign(datum, dm.raw.find(di => di.USUBJID === d.USUBJID));
+        const dmDatum = dm.raw.find(di => di.USUBJID === d.USUBJID);
+        for (const prop in dmDatum)
+            datum[prop] = datum[prop] || dmDatum[prop];
         adae.push(datum);
     });
+    console.table(dm.raw);
 
     return adae;
 }
