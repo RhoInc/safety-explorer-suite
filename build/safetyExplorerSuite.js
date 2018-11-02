@@ -1,8 +1,179 @@
-(function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-    typeof define === 'function' && define.amd ? define(factory) :
-    (global.safetyExplorerSuite = factory());
-}(this, (function () { 'use strict';
+(function(global, factory) {
+    typeof exports === 'object' && typeof module !== 'undefined'
+        ? (module.exports = factory())
+        : typeof define === 'function' && define.amd
+            ? define(factory)
+            : (global.safetyExplorerSuite = factory());
+})(this, function() {
+    'use strict';
+
+    if (typeof Object.assign != 'function') {
+        Object.defineProperty(Object, 'assign', {
+            value: function assign(target, varArgs) {
+                if (target == null) {
+                    // TypeError if undefined or null
+                    throw new TypeError('Cannot convert undefined or null to object');
+                }
+
+                var to = Object(target);
+
+                for (var index = 1; index < arguments.length; index++) {
+                    var nextSource = arguments[index];
+
+                    if (nextSource != null) {
+                        // Skip over if undefined or null
+                        for (var nextKey in nextSource) {
+                            // Avoid bugs when hasOwnProperty is shadowed
+                            if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
+                                to[nextKey] = nextSource[nextKey];
+                            }
+                        }
+                    }
+                }
+
+                return to;
+            },
+            writable: true,
+            configurable: true
+        });
+    }
+
+    if (!Array.prototype.find) {
+        Object.defineProperty(Array.prototype, 'find', {
+            value: function value(predicate) {
+                // 1. Let O be ? ToObject(this value).
+                if (this == null) {
+                    throw new TypeError('"this" is null or not defined');
+                }
+
+                var o = Object(this);
+
+                // 2. Let len be ? ToLength(? Get(O, 'length')).
+                var len = o.length >>> 0;
+
+                // 3. If IsCallable(predicate) is false, throw a TypeError exception.
+                if (typeof predicate !== 'function') {
+                    throw new TypeError('predicate must be a function');
+                }
+
+                // 4. If thisArg was supplied, let T be thisArg; else let T be undefined.
+                var thisArg = arguments[1];
+
+                // 5. Let k be 0.
+                var k = 0;
+
+                // 6. Repeat, while k < len
+                while (k < len) {
+                    // a. Let Pk be ! ToString(k).
+                    // b. Let kValue be ? Get(O, Pk).
+                    // c. Let testResult be ToBoolean(? Call(predicate, T, � kValue, k, O �)).
+                    // d. If testResult is true, return kValue.
+                    var kValue = o[k];
+                    if (predicate.call(thisArg, kValue, k, o)) {
+                        return kValue;
+                    }
+                    // e. Increase k by 1.
+                    k++;
+                }
+
+                // 7. Return undefined.
+                return undefined;
+            }
+        });
+    }
+
+    if (!Array.prototype.findIndex) {
+        Object.defineProperty(Array.prototype, 'findIndex', {
+            value: function value(predicate) {
+                // 1. Let O be ? ToObject(this value).
+                if (this == null) {
+                    throw new TypeError('"this" is null or not defined');
+                }
+
+                var o = Object(this);
+
+                // 2. Let len be ? ToLength(? Get(O, "length")).
+                var len = o.length >>> 0;
+
+                // 3. If IsCallable(predicate) is false, throw a TypeError exception.
+                if (typeof predicate !== 'function') {
+                    throw new TypeError('predicate must be a function');
+                }
+
+                // 4. If thisArg was supplied, let T be thisArg; else let T be undefined.
+                var thisArg = arguments[1];
+
+                // 5. Let k be 0.
+                var k = 0;
+
+                // 6. Repeat, while k < len
+                while (k < len) {
+                    // a. Let Pk be ! ToString(k).
+                    // b. Let kValue be ? Get(O, Pk).
+                    // c. Let testResult be ToBoolean(? Call(predicate, T, � kValue, k, O �)).
+                    // d. If testResult is true, return k.
+                    var kValue = o[k];
+                    if (predicate.call(thisArg, kValue, k, o)) {
+                        return k;
+                    }
+                    // e. Increase k by 1.
+                    k++;
+                }
+
+                // 7. Return -1.
+                return -1;
+            }
+        });
+    }
+
+    var _typeof =
+        typeof Symbol === 'function' && typeof Symbol.iterator === 'symbol'
+            ? function(obj) {
+                  return typeof obj;
+              }
+            : function(obj) {
+                  return obj &&
+                      typeof Symbol === 'function' &&
+                      obj.constructor === Symbol &&
+                      obj !== Symbol.prototype
+                      ? 'symbol'
+                      : typeof obj;
+              };
+
+    function clone(obj) {
+        var copy = void 0;
+
+        //boolean, number, string, null, undefined
+        if ('object' != (typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) || null == obj)
+            return obj;
+
+        //date
+        if (obj instanceof Date) {
+            copy = new Date();
+            copy.setTime(obj.getTime());
+            return copy;
+        }
+
+        //array
+        if (obj instanceof Array) {
+            copy = [];
+            for (var i = 0, len = obj.length; i < len; i++) {
+                copy[i] = clone(obj[i]);
+            }
+            return copy;
+        }
+
+        //object
+        if (obj instanceof Object) {
+            copy = {};
+            for (var attr in obj) {
+                if (obj.hasOwnProperty(attr)) copy[attr] = clone(obj[attr]);
+            }
+            return copy;
+        }
+
+        throw new Error('Unable to copy [obj]! Its type is not supported.');
+    }
 
     //Simple convienence function to load multiple files in parallel.
     // input files is an array of objects structured as follows:
@@ -14,10 +185,10 @@
 
     function loadFiles(explorer, dataFiles, sdtm) {
         var remaining = dataFiles.length;
-        dataFiles.forEach(function (file) {
-            d3.csv(file.path, function (csv) {
+        dataFiles.forEach(function(file) {
+            d3.csv(file.path, function(csv) {
                 file.raw = csv;
-                if (! --remaining) {
+                if (!--remaining) {
                     explorer.init(dataFiles, false, sdtm);
                 }
             });
@@ -26,204 +197,237 @@
 
     var schema = {
         standard: 'adverse events',
-        variables: [{
-            name: 'USUBJID',
-            type: 'string',
-            label: 'Unique Subject Identifier',
-            sdtm: {
-                domain: 'DM',
-                name: 'USUBJID'
+        variables: [
+            {
+                name: 'USUBJID',
+                type: 'string',
+                label: 'Unique Subject Identifier',
+                sdtm: {
+                    domain: 'DM',
+                    name: 'USUBJID'
+                },
+                adam: 'USUBJID'
             },
-            adam: 'USUBJID'
-        }, {
-            name: 'SITEID',
-            type: 'string',
-            label: 'Study Site Identifier',
-            sdtm: {
-                domain: 'DM',
-                name: 'SITEID'
+            {
+                name: 'SITEID',
+                type: 'string',
+                label: 'Study Site Identifier',
+                sdtm: {
+                    domain: 'DM',
+                    name: 'SITEID'
+                },
+                adam: 'SITEID'
             },
-            adam: 'SITEID'
-        }, {
-            name: 'AGE',
-            type: 'number',
-            label: 'Age',
-            sdtm: {
-                domain: 'DM',
-                name: 'AGE'
+            {
+                name: 'AGE',
+                type: 'number',
+                label: 'Age',
+                sdtm: {
+                    domain: 'DM',
+                    name: 'AGE'
+                },
+                adam: 'AGE'
             },
-            adam: 'AGE'
-        }, {
-            name: 'SEX',
-            type: 'string',
-            label: 'Sex',
-            sdtm: {
-                domain: 'DM',
-                name: 'SEX'
+            {
+                name: 'SEX',
+                type: 'string',
+                label: 'Sex',
+                sdtm: {
+                    domain: 'DM',
+                    name: 'SEX'
+                },
+                adam: 'SEX'
             },
-            adam: 'SEX'
-        }, {
-            name: 'RACE',
-            type: 'string',
-            label: 'Race',
-            sdtm: {
-                domain: 'DM',
-                name: 'RACE'
+            {
+                name: 'RACE',
+                type: 'string',
+                label: 'Race',
+                sdtm: {
+                    domain: 'DM',
+                    name: 'RACE'
+                },
+                adam: 'RACE'
             },
-            adam: 'RACE'
-        }, {
-            name: 'ASTDT',
-            type: 'string',
-            label: 'Analysis Start Date',
-            sdtm: {
-                domain: 'AE',
-                name: 'AESTDTC'
+            {
+                name: 'ASTDT',
+                type: 'string',
+                label: 'Analysis Start Date',
+                sdtm: {
+                    domain: 'AE',
+                    name: 'AESTDTC'
+                },
+                adam: 'ASTDT'
             },
-            adam: 'ASTDT'
-        }, {
-            name: 'ASTDY',
-            type: 'number',
-            label: 'Analysis Start Relative Day',
-            sdtm: {
-                domain: 'AE',
-                name: 'AESTDY'
+            {
+                name: 'ASTDY',
+                type: 'number',
+                label: 'Analysis Start Relative Day',
+                sdtm: {
+                    domain: 'AE',
+                    name: 'AESTDY'
+                },
+                adam: 'ASTDY'
             },
-            adam: 'ASTDY'
-        }, {
-            name: 'AENDT',
-            type: 'string',
-            label: 'Analysis End Date',
-            sdtm: {
-                domain: 'AE',
-                name: 'AEENDTC'
+            {
+                name: 'AENDT',
+                type: 'string',
+                label: 'Analysis End Date',
+                sdtm: {
+                    domain: 'AE',
+                    name: 'AEENDTC'
+                },
+                adam: 'AENDT'
             },
-            adam: 'AENDT'
-        }, {
-            name: 'AENDY',
-            type: 'number',
-            label: 'Analysis End Relative Day',
-            sdtm: {
-                domain: 'AE',
-                name: 'AEENDY'
+            {
+                name: 'AENDY',
+                type: 'number',
+                label: 'Analysis End Relative Day',
+                sdtm: {
+                    domain: 'AE',
+                    name: 'AEENDY'
+                },
+                adam: 'AENDY'
             },
-            adam: 'AENDY'
-        }, {
-            name: 'AESEQ',
-            type: 'number',
-            label: 'Sequence Number',
-            sdtm: {
-                domain: 'AE',
-                name: 'AESEQ'
+            {
+                name: 'AESEQ',
+                type: 'number',
+                label: 'Sequence Number',
+                sdtm: {
+                    domain: 'AE',
+                    name: 'AESEQ'
+                },
+                adam: 'AESEQ'
             },
-            adam: 'AESEQ'
-        }, {
-            name: 'AETERM',
-            type: 'string',
-            label: 'Reported Term for the Adverse Event',
-            sdtm: {
-                domain: 'AE',
-                name: 'AETERM'
+            {
+                name: 'AETERM',
+                type: 'string',
+                label: 'Reported Term for the Adverse Event',
+                sdtm: {
+                    domain: 'AE',
+                    name: 'AETERM'
+                },
+                adam: 'AETERM'
             },
-            adam: 'AETERM'
-        }, {
-            name: 'AEDECOD',
-            type: 'string',
-            label: 'Dictionary-Derived Term',
-            sdtm: {
-                domain: 'AE',
-                name: 'AEDECOD'
+            {
+                name: 'AEDECOD',
+                type: 'string',
+                label: 'Dictionary-Derived Term',
+                sdtm: {
+                    domain: 'AE',
+                    name: 'AEDECOD'
+                },
+                adam: 'AEDECOD'
             },
-            adam: 'AEDECOD'
-        }, {
-            name: 'AEBODSYS',
-            type: 'string',
-            label: 'Body System or Organ Class',
-            sdtm: {
-                domain: 'AE',
-                name: 'AEBODSYS'
+            {
+                name: 'AEBODSYS',
+                type: 'string',
+                label: 'Body System or Organ Class',
+                sdtm: {
+                    domain: 'AE',
+                    name: 'AEBODSYS'
+                },
+                adam: 'AEBODSYS'
             },
-            adam: 'AEBODSYS'
-        }, {
-            name: 'AESER',
-            type: 'string',
-            label: 'Serious Event',
-            sdtm: {
-                domain: 'AE',
-                name: 'AESER'
+            {
+                name: 'AESER',
+                type: 'string',
+                label: 'Serious Event',
+                sdtm: {
+                    domain: 'AE',
+                    name: 'AESER'
+                },
+                adam: 'AESER'
             },
-            adam: 'AESER'
-        }, {
-            name: 'AESEV',
-            type: 'string',
-            label: 'Severity/Intensity',
-            sdtm: {
-                domain: 'AE',
-                name: 'AESEV'
+            {
+                name: 'AESEV',
+                type: 'string',
+                label: 'Severity/Intensity',
+                sdtm: {
+                    domain: 'AE',
+                    name: 'AESEV'
+                },
+                adam: 'AESEV'
             },
-            adam: 'AESEV'
-        }, {
-            name: 'AEREL',
-            type: 'string',
-            label: 'Causality',
-            sdtm: {
-                domain: 'AE',
-                name: 'AEREL'
+            {
+                name: 'AEREL',
+                type: 'string',
+                label: 'Causality',
+                sdtm: {
+                    domain: 'AE',
+                    name: 'AEREL'
+                },
+                adam: 'AEREL'
             },
-            adam: 'AEREL'
-        }, {
-            name: 'AEOUT',
-            type: 'string',
-            label: 'Outcome',
-            sdtm: {
-                domain: 'AE',
-                name: 'AEOUT'
-            },
-            adam: 'AEOUT'
-        }]
+            {
+                name: 'AEOUT',
+                type: 'string',
+                label: 'Outcome',
+                sdtm: {
+                    domain: 'AE',
+                    name: 'AEOUT'
+                },
+                adam: 'AEOUT'
+            }
+        ]
     };
 
     function adverseEvents(dm, ae) {
+        var _this = this;
+
         //DM variables
         var dmVariables = Object.keys(dm.raw[0]);
-        var dmVariableMapping = schema.variables.filter(function (variable) {
-            return variable.sdtm.domain === 'DM' && variable.name !== variable.sdtm.name;
-        }).map(function (variable) {
-            return {
-                old: variable.sdtm.name,
-                new: variable.name
-            };
-        });
+        var dmVariableMapping = schema.variables
+            .filter(function(variable) {
+                return variable.sdtm.domain === 'DM' && variable.name !== variable.sdtm.name;
+            })
+            .map(function(variable) {
+                return {
+                    old: variable.sdtm.name,
+                    new: variable.name
+                };
+            });
 
         //AE variables
-        var aeVariables = Object.keys(ae.raw[0]).filter(function (key) {
+        var aeVariables = Object.keys(ae.raw[0]).filter(function(key) {
             return dmVariables.indexOf(key) < 0;
         });
-        var aeVariableMapping = schema.variables.filter(function (variable) {
-            return variable.sdtm.domain === 'AE' && variable.name !== variable.sdtm.name;
-        }).map(function (variable) {
-            return {
-                sdtm: variable.sdtm.name,
-                name: variable.name
-            };
-        });
-        var sdtmRenames = aeVariableMapping.map(function (mapping) {
+        var aeVariableMapping = schema.variables
+            .filter(function(variable) {
+                return variable.sdtm.domain === 'AE' && variable.name !== variable.sdtm.name;
+            })
+            .map(function(variable) {
+                return {
+                    sdtm: variable.sdtm.name,
+                    name: variable.name
+                };
+            });
+        var sdtmRenames = aeVariableMapping.map(function(mapping) {
             return mapping.sdtm;
         });
 
         //Create shell records for participants without adverse events.
-        var withAEs = d3.set(ae.raw.map(function (d) {
-            return d.USUBJID;
-        })).values();
-        var adae = dm.raw.filter(function (d) {
-            return withAEs.indexOf(d.USUBJID) < 0;
-        });
+        var withAEs = d3
+            .set(
+                ae.raw.map(function(d) {
+                    return d.USUBJID;
+                })
+            )
+            .values();
+        var adae = this.clone(
+            dm.raw.filter(function(d) {
+                return withAEs.indexOf(d.USUBJID) < 0;
+            })
+        );
 
         //Create shell adverse event variables for participants without adverse events.
-        adae.forEach(function (d) {
+        adae.forEach(function(d) {
             var _loop = function _loop(aeVariable) {
-                var variable = sdtmRenames.indexOf(aeVariable) > -1 ? aeVariableMapping.find(function (mapping) {
-                    return mapping.sdtm === aeVariable;
-                }).name : aeVariable;
+                var variable =
+                    sdtmRenames.indexOf(aeVariable) > -1
+                        ? aeVariableMapping.find(function(mapping) {
+                              return mapping.sdtm === aeVariable;
+                          }).name
+                        : aeVariable;
                 d[variable] = '';
             };
 
@@ -232,7 +436,11 @@
             var _iteratorError = undefined;
 
             try {
-                for (var _iterator = aeVariables[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                for (
+                    var _iterator = aeVariables[Symbol.iterator](), _step;
+                    !(_iteratorNormalCompletion = (_step = _iterator.next()).done);
+                    _iteratorNormalCompletion = true
+                ) {
                     var aeVariable = _step.value;
 
                     _loop(aeVariable);
@@ -254,206 +462,247 @@
         });
 
         //Merge demographics variables onto adverse events data.
-        ae.raw.forEach(function (d) {
+        ae.raw.forEach(function(d) {
             var datum = {};
 
             var _loop2 = function _loop2(aeVariable) {
-                var variable = sdtmRenames.indexOf(aeVariable) > -1 ? aeVariableMapping.find(function (mapping) {
-                    return mapping.sdtm === aeVariable;
-                }).name : aeVariable;
+                var variable =
+                    sdtmRenames.indexOf(aeVariable) > -1
+                        ? aeVariableMapping.find(function(mapping) {
+                              return mapping.sdtm === aeVariable;
+                          }).name
+                        : aeVariable;
                 datum[variable] = d[aeVariable];
             };
 
             for (var aeVariable in d) {
                 _loop2(aeVariable);
             }
-            var dmDatum = dm.raw.find(function (di) {
-                return di.USUBJID === d.USUBJID;
-            });
+            var dmDatum = _this.clone(
+                dm.raw.find(function(di) {
+                    return di.USUBJID === d.USUBJID;
+                })
+            );
             for (var prop in dmDatum) {
                 datum[prop] = datum[prop] || dmDatum[prop];
-            }adae.push(datum);
+            }
+            adae.push(datum);
         });
-        console.table(dm.raw);
 
         return adae;
     }
 
     var schema$1 = {
         standard: 'medical signs',
-        variables: [{
-            name: 'USUBJID',
-            type: 'string',
-            label: 'Unique Subject Identifier',
-            sdtm: {
-                domain: 'DM',
-                name: 'USUBJID'
+        variables: [
+            {
+                name: 'USUBJID',
+                type: 'string',
+                label: 'Unique Subject Identifier',
+                sdtm: {
+                    domain: 'DM',
+                    name: 'USUBJID'
+                },
+                adam: 'USUBJID'
             },
-            adam: 'USUBJID'
-        }, {
-            name: 'SITEID',
-            type: 'string',
-            label: 'Study Site Identifier',
-            sdtm: {
-                domain: 'DM',
-                name: 'SITEID'
+            {
+                name: 'SITEID',
+                type: 'string',
+                label: 'Study Site Identifier',
+                sdtm: {
+                    domain: 'DM',
+                    name: 'SITEID'
+                },
+                adam: 'SITEID'
             },
-            adam: 'SITEID'
-        }, {
-            name: 'AGE',
-            type: 'number',
-            label: 'Age',
-            sdtm: {
-                domain: 'DM',
-                name: 'AGE'
+            {
+                name: 'AGE',
+                type: 'number',
+                label: 'Age',
+                sdtm: {
+                    domain: 'DM',
+                    name: 'AGE'
+                },
+                adam: 'AGE'
             },
-            adam: 'AGE'
-        }, {
-            name: 'SEX',
-            type: 'string',
-            label: 'Sex',
-            sdtm: {
-                domain: 'DM',
-                name: 'SEX'
+            {
+                name: 'SEX',
+                type: 'string',
+                label: 'Sex',
+                sdtm: {
+                    domain: 'DM',
+                    name: 'SEX'
+                },
+                adam: 'SEX'
             },
-            adam: 'SEX'
-        }, {
-            name: 'RACE',
-            type: 'string',
-            label: 'Race',
-            sdtm: {
-                domain: 'DM',
-                name: 'RACE'
+            {
+                name: 'RACE',
+                type: 'string',
+                label: 'Race',
+                sdtm: {
+                    domain: 'DM',
+                    name: 'RACE'
+                },
+                adam: 'RACE'
             },
-            adam: 'RACE'
-        }, {
-            name: 'VISIT',
-            type: 'string',
-            label: 'Analysis Visit',
-            sdtm: {
-                domain: 'BDS',
-                name: 'VISIT'
+            {
+                name: 'VISIT',
+                type: 'string',
+                label: 'Analysis Visit',
+                sdtm: {
+                    domain: 'BDS',
+                    name: 'VISIT'
+                },
+                adam: 'AVISIT'
             },
-            adam: 'AVISIT'
-        }, {
-            name: 'VISITNUM',
-            type: 'number',
-            label: 'Analysis Visit (N)',
-            sdtm: {
-                domain: 'BDS',
-                name: 'VISITNUM'
+            {
+                name: 'VISITNUM',
+                type: 'number',
+                label: 'Analysis Visit (N)',
+                sdtm: {
+                    domain: 'BDS',
+                    name: 'VISITNUM'
+                },
+                adam: 'AVISITN'
             },
-            adam: 'AVISITN'
-        }, {
-            name: 'DT',
-            type: 'number',
-            label: 'Analysis Date',
-            sdtm: {
-                domain: 'BDS',
-                name: '__DTC'
+            {
+                name: 'DT',
+                type: 'number',
+                label: 'Analysis Date',
+                sdtm: {
+                    domain: 'BDS',
+                    name: '__DTC'
+                },
+                adam: 'ADT'
             },
-            adam: 'ADT'
-        }, {
-            name: 'DY',
-            type: 'number',
-            label: 'Analysis Relative Day',
-            sdtm: {
-                domain: 'BDS',
-                name: '__DY'
+            {
+                name: 'DY',
+                type: 'number',
+                label: 'Analysis Relative Day',
+                sdtm: {
+                    domain: 'BDS',
+                    name: '__DY'
+                },
+                adam: 'ADY'
             },
-            adam: 'ADY'
-        }, {
-            name: 'CAT',
-            type: 'string',
-            label: 'Parameter Category',
-            sdtm: {
-                domain: 'BDS',
-                name: '__CAT'
+            {
+                name: 'CAT',
+                type: 'string',
+                label: 'Parameter Category',
+                sdtm: {
+                    domain: 'BDS',
+                    name: '__CAT'
+                },
+                adam: 'PARCAT'
             },
-            adam: 'PARCAT'
-        }, {
-            name: 'TEST',
-            type: 'string',
-            label: 'Parameter',
-            sdtm: {
-                domain: 'BDS',
-                name: '__TEST'
+            {
+                name: 'TEST',
+                type: 'string',
+                label: 'Parameter',
+                sdtm: {
+                    domain: 'BDS',
+                    name: '__TEST'
+                },
+                adam: 'PARAM'
             },
-            adam: 'PARAM'
-        }, {
-            name: 'STRESU',
-            type: 'string',
-            label: 'Units',
-            sdtm: {
-                domain: 'BDS',
-                name: '__STRESU'
+            {
+                name: 'STRESU',
+                type: 'string',
+                label: 'Units',
+                sdtm: {
+                    domain: 'BDS',
+                    name: '__STRESU'
+                },
+                adam: null
             },
-            adam: null
-        }, {
-            name: 'STRESN',
-            type: 'number',
-            label: 'Analysis Value',
-            sdtm: {
-                domain: 'BDS',
-                name: '__STRESN'
+            {
+                name: 'STRESN',
+                type: 'number',
+                label: 'Analysis Value',
+                sdtm: {
+                    domain: 'BDS',
+                    name: '__STRESN'
+                },
+                adam: 'AVAL'
             },
-            adam: 'AVAL'
-        }, {
-            name: 'STNRLO',
-            type: 'number',
-            label: 'Analysis Normal Range Upper Limit',
-            sdtm: {
-                domain: 'BDS',
-                name: '__STNRLO'
+            {
+                name: 'STNRLO',
+                type: 'number',
+                label: 'Analysis Normal Range Upper Limit',
+                sdtm: {
+                    domain: 'BDS',
+                    name: '__STNRLO'
+                },
+                adam: 'ANRLO'
             },
-            adam: 'ANRLO'
-        }, {
-            name: 'STNRHI',
-            type: 'number',
-            label: 'Analysis Normal Range Upper Limit',
-            sdtm: {
-                domain: 'BDS',
-                name: '__STNRHI'
-            },
-            adam: 'ANRHI'
-        }]
+            {
+                name: 'STNRHI',
+                type: 'number',
+                label: 'Analysis Normal Range Upper Limit',
+                sdtm: {
+                    domain: 'BDS',
+                    name: '__STNRHI'
+                },
+                adam: 'ANRHI'
+            }
+        ]
     };
 
     function medicalSigns(dm, bds) {
+        var _this = this;
+
         //DM variables
         var dmVariables = Object.keys(dm.raw[0]);
-        var dmVariableMapping = schema$1.variables.filter(function (variable) {
-            return variable.sdtm.domain === 'DM' && variable.name !== variable.sdtm.name;
-        }).map(function (variable) {
-            return {
-                old: variable.sdtm.name,
-                new: variable.name
-            };
-        });
+        var dmVariableMapping = schema$1.variables
+            .filter(function(variable) {
+                return variable.sdtm.domain === 'DM' && variable.name !== variable.sdtm.name;
+            })
+            .map(function(variable) {
+                return {
+                    old: variable.sdtm.name,
+                    new: variable.name
+                };
+            });
 
         //Create shell records for participants without medical sign results.
-        var withResults = d3.set(d3.merge(bds.map(function (data) {
-            return data.raw;
-        })).map(function (d) {
-            return d.USUBJID;
-        })).values();
-        var adbds = dm.raw.filter(function (d) {
-            return withResults.indexOf(d.USUBJID) < 0;
-        });
+        var withResults = d3
+            .set(
+                d3
+                    .merge(
+                        bds.map(function(data) {
+                            return data.raw;
+                        })
+                    )
+                    .map(function(d) {
+                        return d.USUBJID;
+                    })
+            )
+            .values();
+        var adbds = this.clone(
+            dm.raw.filter(function(d) {
+                return withResults.indexOf(d.USUBJID) < 0;
+            })
+        );
 
         //Create shell medical sign variables for participants without medical sign results.
-        var bdsVariables = schema$1.variables.filter(function (variable) {
-            return variable.sdtm.domain === 'BDS';
-        }).map(function (variable) {
-            return variable.name;
-        });
-        adbds.forEach(function (d) {
+        var schemaVariables = schema$1.variables
+            .filter(function(variable) {
+                return variable.sdtm.domain === 'BDS';
+            })
+            .map(function(variable) {
+                return variable.name;
+            });
+        adbds.forEach(function(d) {
             var _iteratorNormalCompletion = true;
             var _didIteratorError = false;
             var _iteratorError = undefined;
 
             try {
-                for (var _iterator = bdsVariables[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                for (
+                    var _iterator = schemaVariables[Symbol.iterator](), _step;
+                    !(_iteratorNormalCompletion = (_step = _iterator.next()).done);
+                    _iteratorNormalCompletion = true
+                ) {
                     var variable = _step.value;
 
                     d[variable] = '';
@@ -475,41 +724,73 @@
         });
 
         //Iterate over BDS data arrays.
-        bds.forEach(function (data) {
+        bds.forEach(function(data) {
             //ADBDS variables
-            var bdsVariables = Object.keys(data.raw[0]).filter(function (key) {
+            var bdsVariables = Object.keys(data.raw[0]).filter(function(key) {
                 return dmVariables.indexOf(key) < 0;
             });
-            var bdsVariableMapping = schema$1.variables.filter(function (variable) {
-                return variable.sdtm.domain === 'BDS' && variable.name !== variable.sdtm.name;
-            }).map(function (variable) {
-                return {
-                    sdtm: variable.sdtm.name.replace('__', data.domain),
-                    name: variable.name
-                };
-            });
-            var sdtmRenames = bdsVariableMapping.map(function (mapping) {
+
+            //If domain is not defined find most common two-character variable prefix, as the SDTM data standard prefixes variables with the two-character domain code.
+            data.domain =
+                data.domain ||
+                d3
+                    .nest()
+                    .key(function(d) {
+                        return d;
+                    })
+                    .rollup(function(d) {
+                        return d.length;
+                    })
+                    .entries(
+                        bdsVariables.map(function(variable) {
+                            return variable.substring(0, 2);
+                        })
+                    )
+                    .sort(function(a, b) {
+                        return b.values - a.values;
+                    })[0].key;
+
+            //Capture variable mappings from schema with which to rename domain-specific variables.
+            var bdsVariableMapping = schema$1.variables
+                .filter(function(variable) {
+                    return variable.sdtm.domain === 'BDS' && variable.name !== variable.sdtm.name;
+                })
+                .map(function(variable) {
+                    return {
+                        sdtm: variable.sdtm.name.replace('__', data.domain),
+                        name: variable.name
+                    };
+                });
+            var sdtmRenames = bdsVariableMapping.map(function(mapping) {
                 return mapping.sdtm;
             });
 
             //Merge demographics variables onto medical signs data.
             var domainRegex = new RegExp('^' + data.domain);
-            data.raw.forEach(function (d) {
+            data.raw.forEach(function(d, i) {
                 var datum = {};
 
                 var _loop = function _loop(bdsVariable) {
-                    var variable = sdtmRenames.indexOf(bdsVariable) > -1 ? bdsVariableMapping.find(function (mapping) {
-                        return mapping.sdtm === bdsVariable;
-                    }).name : bdsVariable;
+                    var variable =
+                        sdtmRenames.indexOf(bdsVariable) > -1
+                            ? bdsVariableMapping.find(function(mapping) {
+                                  return mapping.sdtm === bdsVariable;
+                              }).name
+                            : bdsVariable;
                     datum[variable] = d[bdsVariable];
                 };
 
                 for (var bdsVariable in d) {
                     _loop(bdsVariable);
                 }
-                Object.assign(datum, dm.raw.find(function (di) {
-                    return di.USUBJID === d.USUBJID;
-                }));
+                Object.assign(
+                    datum,
+                    _this.clone(
+                        dm.raw.find(function(di) {
+                            return di.USUBJID === d.USUBJID;
+                        })
+                    )
+                );
                 adbds.push(datum);
             });
         });
@@ -518,28 +799,42 @@
     }
 
     function mergeData() {
-        if (this.dataArray.some(function (data) {
-            return data.type === 'AE';
-        })) this.dataArray.push({
-            type: 'AEs',
-            'Data Standard': 'Analysis',
-            raw: adverseEvents(this.dataArray.find(function (data) {
-                return data.type === 'DM';
-            }), this.dataArray.find(function (data) {
+        if (
+            this.dataArray.some(function(data) {
                 return data.type === 'AE';
-            }))
-        });
-        if (this.dataArray.some(function (data) {
-            return data.type === 'BDS';
-        })) this.dataArray.push({
-            type: 'Labs',
-            'Data Standard': 'Analysis',
-            raw: medicalSigns(this.dataArray.find(function (data) {
-                return data.type === 'DM';
-            }), this.dataArray.filter(function (data) {
+            })
+        )
+            this.dataArray.push({
+                type: 'AEs',
+                'Data Standard': 'Analysis',
+                raw: adverseEvents.call(
+                    this,
+                    this.dataArray.find(function(data) {
+                        return data.type === 'DM';
+                    }),
+                    this.dataArray.find(function(data) {
+                        return data.type === 'AE';
+                    })
+                )
+            });
+        if (
+            this.dataArray.some(function(data) {
                 return data.type === 'BDS';
-            }))
-        });
+            })
+        )
+            this.dataArray.push({
+                type: 'Labs',
+                'Data Standard': 'Analysis',
+                raw: medicalSigns.call(
+                    this,
+                    this.dataArray.find(function(data) {
+                        return data.type === 'DM';
+                    }),
+                    this.dataArray.filter(function(data) {
+                        return data.type === 'BDS';
+                    })
+                )
+            });
     }
 
     /*------------------------------------------------------------------------------------------------\
@@ -547,36 +842,39 @@
     \------------------------------------------------------------------------------------------------*/
 
     function init(dataArray) {
-            var loadcsv = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-            var sdtm = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+        var loadcsv = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+        var sdtm = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
-            if (loadcsv) {
-                    //load the csvs if requested
-                    loadFiles(this, dataArray, sdtm);
-            } else {
-                    //otherwise initialize the charts
-                    this.dataArray = dataArray;
+        if (loadcsv) {
+            //load the csvs if requested
+            loadFiles(this, dataArray, sdtm);
+        } else {
+            //otherwise initialize the charts
+            this.dataArray = dataArray;
 
-                    //Merge SDTM data.
-                    if (sdtm) mergeData.call(this);
-                    this.data = this.dataArray;
+            //Merge SDTM data.
+            if (sdtm) mergeData.call(this);
+            this.data = this.dataArray;
 
-                    // prep settings & customize renderers
-                    this.prepSettings(this);
+            // prep settings & customize renderers
+            this.prepSettings(this);
 
-                    //create wrapper in specified div
-                    this.wrap = d3.select(this.element).append('div').attr('class', 'web-codebook-explorer');
+            //create wrapper in specified div
+            this.wrap = d3
+                .select(this.element)
+                .append('div')
+                .attr('class', 'web-codebook-explorer');
 
-                    //layout the divs
-                    this.layout(this);
+            //layout the divs
+            this.layout(this);
 
-                    //draw nav
-                    this.nav.init(this);
+            //draw nav
+            this.nav.init(this);
 
-                    //prep the renderers and draw first codebook
-                    this.charts.init(this);
-                    this.config.initial_renderer.render();
-            }
+            //prep the renderers and draw first codebook
+            this.charts.init(this);
+            this.config.initial_renderer.render();
+        }
     }
 
     /*------------------------------------------------------------------------------------------------\
@@ -584,9 +882,18 @@
     \------------------------------------------------------------------------------------------------*/
 
     function layout() {
-        if (this.config.title) this.wrap.append('h1').text(this.config.title).style('margin-bottom', '0.2em').style('margin-top', '0.2em');
+        if (this.config.title)
+            this.wrap
+                .append('h1')
+                .text(this.config.title)
+                .style('margin-bottom', '0.2em')
+                .style('margin-top', '0.2em');
 
-        if (this.config.instructions) this.wrap.append('div').append('small').text(this.config.instructions);
+        if (this.config.instructions)
+            this.wrap
+                .append('div')
+                .append('small')
+                .text(this.config.instructions);
         this.nav.wrap = this.wrap.append('div').attr('class', 'nav');
         this.chartWrap = this.wrap.append('div').attr('class', 'chartWrap');
     }
@@ -596,15 +903,20 @@
 
         var chartNav = explorer.nav.wrap.append('ul').attr('class', 'ses-nav ses-nav-tabs');
 
-        var chartNavItems = chartNav.selectAll('li').data(explorer.charts.renderers).enter().append('li').classed('active', function (d, i) {
-            return d.name === explorer.config.initial_renderer.name;
-        });
+        var chartNavItems = chartNav
+            .selectAll('li')
+            .data(explorer.charts.renderers)
+            .enter()
+            .append('li')
+            .classed('active', function(d, i) {
+                return d.name === explorer.config.initial_renderer.name;
+            });
 
-        chartNavItems.append('a').text(function (d) {
+        chartNavItems.append('a').text(function(d) {
             return d.label;
         });
 
-        chartNavItems.on('click', function (d) {
+        chartNavItems.on('click', function(d) {
             if (!d3.select(this).classed('active')) {
                 explorer.chartWrap.selectAll('*').remove();
                 chartNavItems.classed('active', false);
@@ -619,84 +931,93 @@
     \------------------------------------------------------------------------------------------------*/
 
     var nav = {
-      init: init$1
+        init: init$1
     };
 
-    var renderers = [{
-        name: 'aeexplorer',
-        label: 'AE Explorer',
-        main: 'aeTable',
-        sub: 'createChart',
-        css: 'css/aeTable.css',
-        data: 'AEs',
-        settings: {}
-    }, {
-        name: 'ae-timelines',
-        label: 'AE Timeline',
-        main: 'aeTimelines',
-        sub: null,
-        css: null,
-        data: 'AEs',
-        settings: {}
-    }, {
-        name: 'safety-histogram',
-        label: 'Histogram',
-        main: 'safetyHistogram',
-        sub: null,
-        css: null,
-        data: 'Labs',
-        settings: {}
-    }, {
-        name: 'safety-outlier-explorer',
-        label: 'Outlier Explorer',
-        main: 'safetyOutlierExplorer',
-        sub: null,
-        css: null,
-        data: 'Labs',
-        settings: {}
-    }, {
-        name: 'paneled-outlier-explorer',
-        label: 'Paneled Outlier Explorer',
-        main: 'paneledOutlierExplorer',
-        sub: null,
-        css: null,
-        data: 'Labs',
-        settings: {}
-    }, {
-        name: 'safety-results-over-time',
-        label: 'Results Over Time',
-        main: 'safetyResultsOverTime',
-        sub: null,
-        css: null,
-        data: 'Labs',
-        settings: {}
-    }, {
-        name: 'safety-shift-plot',
-        label: 'Shift Plot',
-        main: 'safetyShiftPlot',
-        sub: null,
-        css: null,
-        data: 'Labs',
-        settings: {}
-    }, {
-        name: 'web-codebook',
-        label: 'Codebooks',
-        main: 'webcodebook',
-        sub: 'createExplorer',
-        css: 'css/webcodebook.css',
-        data: null,
-        settings: {
-            labelColumn: 'type',
-            ignoredColumns: ['raw', 'fileFound', 'key', 'domain'],
-            files: null
+    var renderers = [
+        {
+            name: 'aeexplorer',
+            label: 'AE Explorer',
+            main: 'aeTable',
+            sub: 'createChart',
+            css: 'css/aeTable.css',
+            data: 'AEs',
+            settings: {}
+        },
+        {
+            name: 'ae-timelines',
+            label: 'AE Timeline',
+            main: 'aeTimelines',
+            sub: null,
+            css: null,
+            data: 'AEs',
+            settings: {}
+        },
+        {
+            name: 'safety-histogram',
+            label: 'Histogram',
+            main: 'safetyHistogram',
+            sub: null,
+            css: null,
+            data: 'Labs',
+            settings: {}
+        },
+        {
+            name: 'safety-outlier-explorer',
+            label: 'Outlier Explorer',
+            main: 'safetyOutlierExplorer',
+            sub: null,
+            css: null,
+            data: 'Labs',
+            settings: {}
+        },
+        {
+            name: 'paneled-outlier-explorer',
+            label: 'Paneled Outlier Explorer',
+            main: 'paneledOutlierExplorer',
+            sub: null,
+            css: null,
+            data: 'Labs',
+            settings: {}
+        },
+        {
+            name: 'safety-results-over-time',
+            label: 'Results Over Time',
+            main: 'safetyResultsOverTime',
+            sub: null,
+            css: null,
+            data: 'Labs',
+            settings: {}
+        },
+        {
+            name: 'safety-shift-plot',
+            label: 'Shift Plot',
+            main: 'safetyShiftPlot',
+            sub: null,
+            css: null,
+            data: 'Labs',
+            settings: {}
+        },
+        {
+            name: 'web-codebook',
+            label: 'Codebooks',
+            main: 'webcodebook',
+            sub: 'createExplorer',
+            css: 'css/webcodebook.css',
+            data: null,
+            settings: {
+                labelColumn: 'type',
+                ignoredColumns: ['raw', 'fileFound', 'key', 'domain'],
+                files: null
+            }
         }
-    }];
+    ];
 
     function init$2(explorer) {
-        explorer.charts.renderers.forEach(function (renderer) {
+        explorer.charts.renderers.forEach(function(renderer) {
             //link the data
             if (renderer.name == 'web-codebook') {
-                renderer.settings.files = explorer.data.map(function (d) {
+                renderer.settings.files = explorer.data.map(function(d) {
                     d['Data'] = d.type;
                     d.Rows = d.raw.length;
                     d.Columns = Object.keys(d.raw[0]).length;
@@ -705,19 +1026,25 @@
                 });
                 renderer.dataFile = null;
             } else {
-                renderer.dataFile = explorer.data.filter(function (d) {
+                renderer.dataFile = explorer.data.filter(function(d) {
                     return d.type == renderer.data;
                 })[0];
             }
 
             //add render method
             //     var mainFunction = cat.controls.mainFunction.node().value;
-            renderer.render = function () {
+            renderer.render = function() {
                 if (renderer.sub) {
                     //var subFunction = cat.controls.subFunction.node().value;
-                    var myChart = window[renderer.main][renderer.sub](explorer.element + ' .chartWrap', renderer.settings);
+                    var myChart = window[renderer.main][renderer.sub](
+                        explorer.element + ' .chartWrap',
+                        renderer.settings
+                    );
                 } else {
-                    var myChart = window[renderer.main](explorer.element + ' .chartWrap', renderer.settings);
+                    var myChart = window[renderer.main](
+                        explorer.element + ' .chartWrap',
+                        renderer.settings
+                    );
                 }
 
                 if (renderer.dataFile) {
@@ -728,7 +1055,7 @@
             };
 
             //add destroy method
-            renderer.destroy = function () {};
+            renderer.destroy = function() {};
         });
     }
 
@@ -751,27 +1078,36 @@
 
     function prepSettings(explorer) {
         //set defaults and update the renderers accordingly
-        explorer.config.renderers = explorer.config.renderers || explorer.charts.renderers.map(function (renderer) {
-            return renderer.name;
-        });
-        explorer.config.custom_settings = explorer.config.custom_settings || defaultSettings.custom_settings;
+        explorer.config.renderers =
+            explorer.config.renderers ||
+            explorer.charts.renderers.map(function(renderer) {
+                return renderer.name;
+            });
+        explorer.config.custom_settings =
+            explorer.config.custom_settings || defaultSettings.custom_settings;
 
         //only keep the selected renderers (or keep them all if none are specified)
-        explorer.charts.renderers = explorer.charts.renderers.filter(function (d) {
-            return explorer.config.renderers.indexOf(d.name) > -1;
-        }).sort(function (a, b) {
-            return explorer.config.renderers.indexOf(a.name) - explorer.config.renderers.indexOf(b.name);
-        });
+        explorer.charts.renderers = explorer.charts.renderers
+            .filter(function(d) {
+                return explorer.config.renderers.indexOf(d.name) > -1;
+            })
+            .sort(function(a, b) {
+                return (
+                    explorer.config.renderers.indexOf(a.name) -
+                    explorer.config.renderers.indexOf(b.name)
+                );
+            });
 
         //set initial renderer
-        explorer.config.initial_renderer = explorer.charts.renderers.find(function (renderer) {
-            return renderer.name === explorer.config.initial_renderer;
-        }) || explorer.charts.renderers[0];
+        explorer.config.initial_renderer =
+            explorer.charts.renderers.find(function(renderer) {
+                return renderer.name === explorer.config.initial_renderer;
+            }) || explorer.charts.renderers[0];
 
         //customize the settings (or use the default settings if nothing is specified)
         if (explorer.config.custom_settings) {
-            explorer.config.custom_settings.forEach(function (custom_setting) {
-                var thisRenderer = explorer.charts.renderers.filter(function (renderer) {
+            explorer.config.custom_settings.forEach(function(custom_setting) {
+                var thisRenderer = explorer.charts.renderers.filter(function(renderer) {
                     return custom_setting.renderer_name == renderer.name;
                 })[0];
 
@@ -789,6 +1125,7 @@
         var config = arguments[1];
 
         var explorer = {
+            clone: clone,
             element: element,
             config: config,
             init: init,
@@ -807,5 +1144,4 @@
     };
 
     return index;
-
-})));
+});

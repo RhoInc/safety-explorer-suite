@@ -4,21 +4,28 @@ const ses = safetyExplorerSuite
 const dataArray = [
     {
         type: 'DM',
-        path: 'https://raw.githubusercontent.com/RhoInc/viz-library/master/data/safetyData/SDTM/DM.csv'
+        //domain: 'DM',
+        path: 'https://raw.githubusercontent.com/RhoInc/viz-library/master/data/safetyData/SDTM/DM.csv',
+        //path: '../../viz-library/data/safetyData/SDTM/DM.csv', // load local data file for performance
     },
     {
         type: 'AE',
-        path: 'https://raw.githubusercontent.com/RhoInc/viz-library/master/data/safetyData/SDTM/AE.csv'
+        //domain: 'AE',
+        path: 'https://raw.githubusercontent.com/RhoInc/viz-library/master/data/safetyData/SDTM/AE.csv',
+        //path: '../../viz-library/data/safetyData/SDTM/AE.csv', // load local data file for performance
     },
     {
         type: 'BDS',
-        path: 'https://raw.githubusercontent.com/RhoInc/viz-library/master/data/safetyData/SDTM/LB.csv'
+        //domain: 'LB',
+        path: 'https://raw.githubusercontent.com/RhoInc/viz-library/master/data/safetyData/SDTM/LB.csv',
+        //path: '../../viz-library/data/safetyData/SDTM/LB.csv', // load local data file for performance
     },
     {
         type: 'BDS',
-        path: 'https://raw.githubusercontent.com/RhoInc/viz-library/master/data/safetyData/SDTM/VS.csv'
+        //domain: 'VS',
+        path: 'https://raw.githubusercontent.com/RhoInc/viz-library/master/data/safetyData/SDTM/VS.csv',
+        //path: '../../viz-library/data/safetyData/SDTM/VS.csv', // load local data file for performance
     },
 ];
 
 ses.init(dataArray, true, true);
-console.log(ses);

@@ -1,3 +1,4 @@
+import clone from './util/clone';
 import { init } from './explorer/init';
 import { layout } from './explorer/layout';
 import { nav } from './explorer/nav';
@@ -8,6 +9,7 @@ import { prepSettings } from './explorer/prepSettings';
 
 export function createExplorer(element = 'body', config) {
     let explorer = {
+        clone,
         element: element,
         config: config,
         init: init,

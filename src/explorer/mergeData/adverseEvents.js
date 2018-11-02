@@ -26,7 +26,7 @@ export default function adverseEvents(dm, ae) {
 
     //Create shell records for participants without adverse events.
     const withAEs = d3.set(ae.raw.map(d => d.USUBJID)).values();
-    const adae = dm.raw.filter(d => withAEs.indexOf(d.USUBJID) < 0);
+    const adae = this.clone(dm.raw.filter(d => withAEs.indexOf(d.USUBJID) < 0));
 
     //Create shell adverse event variables for participants without adverse events.
     adae.forEach(d => {
@@ -49,12 +49,10 @@ export default function adverseEvents(dm, ae) {
                     : aeVariable;
             datum[variable] = d[aeVariable];
         }
-        const dmDatum = dm.raw.find(di => di.USUBJID === d.USUBJID);
-        for (const prop in dmDatum)
-            datum[prop] = datum[prop] || dmDatum[prop];
+        const dmDatum = this.clone(dm.raw.find(di => di.USUBJID === d.USUBJID));
+        for (const prop in dmDatum) datum[prop] = datum[prop] || dmDatum[prop];
         adae.push(datum);
     });
-    console.table(dm.raw);
 
     return adae;
 }
