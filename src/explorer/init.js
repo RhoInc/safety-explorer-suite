@@ -8,13 +8,13 @@ import mergeData from './mergeData';
 export function init(dataArray, loadcsv = false, sdtm = false) {
     if (loadcsv) {
         //load the csvs if requested
-        loadFiles(this, dataArray);
+        loadFiles(this, dataArray, sdtm);
     } else {
         //otherwise initialize the charts
         this.dataArray = dataArray;
 
         //Merge SDTM data.
-        if (this.config.sdtm) mergeData.call(this);
+        if (sdtm) mergeData.call(this);
         this.data = this.dataArray;
 
         // prep settings & customize renderers

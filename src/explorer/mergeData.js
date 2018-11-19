@@ -6,7 +6,8 @@ export default function mergeData() {
         this.dataArray.push({
             type: 'AEs',
             'Data Standard': 'Analysis',
-            raw: adverseEvents(
+            raw: adverseEvents.call(
+                this,
                 this.dataArray.find(data => data.type === 'DM'),
                 this.dataArray.find(data => data.type === 'AE')
             )
@@ -15,7 +16,8 @@ export default function mergeData() {
         this.dataArray.push({
             type: 'Labs',
             'Data Standard': 'Analysis',
-            raw: medicalSigns(
+            raw: medicalSigns.call(
+                this,
                 this.dataArray.find(data => data.type === 'DM'),
                 this.dataArray.filter(data => data.type === 'BDS')
             )

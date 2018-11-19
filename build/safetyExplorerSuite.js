@@ -7,6 +7,174 @@
 })(this, function() {
     'use strict';
 
+    if (typeof Object.assign != 'function') {
+        Object.defineProperty(Object, 'assign', {
+            value: function assign(target, varArgs) {
+                if (target == null) {
+                    // TypeError if undefined or null
+                    throw new TypeError('Cannot convert undefined or null to object');
+                }
+
+                var to = Object(target);
+
+                for (var index = 1; index < arguments.length; index++) {
+                    var nextSource = arguments[index];
+
+                    if (nextSource != null) {
+                        // Skip over if undefined or null
+                        for (var nextKey in nextSource) {
+                            // Avoid bugs when hasOwnProperty is shadowed
+                            if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
+                                to[nextKey] = nextSource[nextKey];
+                            }
+                        }
+                    }
+                }
+
+                return to;
+            },
+            writable: true,
+            configurable: true
+        });
+    }
+
+    if (!Array.prototype.find) {
+        Object.defineProperty(Array.prototype, 'find', {
+            value: function value(predicate) {
+                // 1. Let O be ? ToObject(this value).
+                if (this == null) {
+                    throw new TypeError('"this" is null or not defined');
+                }
+
+                var o = Object(this);
+
+                // 2. Let len be ? ToLength(? Get(O, 'length')).
+                var len = o.length >>> 0;
+
+                // 3. If IsCallable(predicate) is false, throw a TypeError exception.
+                if (typeof predicate !== 'function') {
+                    throw new TypeError('predicate must be a function');
+                }
+
+                // 4. If thisArg was supplied, let T be thisArg; else let T be undefined.
+                var thisArg = arguments[1];
+
+                // 5. Let k be 0.
+                var k = 0;
+
+                // 6. Repeat, while k < len
+                while (k < len) {
+                    // a. Let Pk be ! ToString(k).
+                    // b. Let kValue be ? Get(O, Pk).
+                    // c. Let testResult be ToBoolean(? Call(predicate, T, � kValue, k, O �)).
+                    // d. If testResult is true, return kValue.
+                    var kValue = o[k];
+                    if (predicate.call(thisArg, kValue, k, o)) {
+                        return kValue;
+                    }
+                    // e. Increase k by 1.
+                    k++;
+                }
+
+                // 7. Return undefined.
+                return undefined;
+            }
+        });
+    }
+
+    if (!Array.prototype.findIndex) {
+        Object.defineProperty(Array.prototype, 'findIndex', {
+            value: function value(predicate) {
+                // 1. Let O be ? ToObject(this value).
+                if (this == null) {
+                    throw new TypeError('"this" is null or not defined');
+                }
+
+                var o = Object(this);
+
+                // 2. Let len be ? ToLength(? Get(O, "length")).
+                var len = o.length >>> 0;
+
+                // 3. If IsCallable(predicate) is false, throw a TypeError exception.
+                if (typeof predicate !== 'function') {
+                    throw new TypeError('predicate must be a function');
+                }
+
+                // 4. If thisArg was supplied, let T be thisArg; else let T be undefined.
+                var thisArg = arguments[1];
+
+                // 5. Let k be 0.
+                var k = 0;
+
+                // 6. Repeat, while k < len
+                while (k < len) {
+                    // a. Let Pk be ! ToString(k).
+                    // b. Let kValue be ? Get(O, Pk).
+                    // c. Let testResult be ToBoolean(? Call(predicate, T, � kValue, k, O �)).
+                    // d. If testResult is true, return k.
+                    var kValue = o[k];
+                    if (predicate.call(thisArg, kValue, k, o)) {
+                        return k;
+                    }
+                    // e. Increase k by 1.
+                    k++;
+                }
+
+                // 7. Return -1.
+                return -1;
+            }
+        });
+    }
+
+    var _typeof =
+        typeof Symbol === 'function' && typeof Symbol.iterator === 'symbol'
+            ? function(obj) {
+                  return typeof obj;
+              }
+            : function(obj) {
+                  return obj &&
+                      typeof Symbol === 'function' &&
+                      obj.constructor === Symbol &&
+                      obj !== Symbol.prototype
+                      ? 'symbol'
+                      : typeof obj;
+              };
+
+    function clone(obj) {
+        var copy = void 0;
+
+        //boolean, number, string, null, undefined
+        if ('object' != (typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) || null == obj)
+            return obj;
+
+        //date
+        if (obj instanceof Date) {
+            copy = new Date();
+            copy.setTime(obj.getTime());
+            return copy;
+        }
+
+        //array
+        if (obj instanceof Array) {
+            copy = [];
+            for (var i = 0, len = obj.length; i < len; i++) {
+                copy[i] = clone(obj[i]);
+            }
+            return copy;
+        }
+
+        //object
+        if (obj instanceof Object) {
+            copy = {};
+            for (var attr in obj) {
+                if (obj.hasOwnProperty(attr)) copy[attr] = clone(obj[attr]);
+            }
+            return copy;
+        }
+
+        throw new Error('Unable to copy [obj]! Its type is not supported.');
+    }
+
     //Simple convienence function to load multiple files in parallel.
     // input files is an array of objects structured as follows:
     // [
@@ -15,13 +183,13 @@
     //]
     //
 
-    function loadFiles(explorer, dataFiles) {
+    function loadFiles(explorer, dataFiles, sdtm) {
         var remaining = dataFiles.length;
         dataFiles.forEach(function(file) {
             d3.csv(file.path, function(csv) {
                 file.raw = csv;
                 if (!--remaining) {
-                    explorer.init(dataFiles);
+                    explorer.init(dataFiles, false, sdtm);
                 }
             });
         });
@@ -204,6 +372,8 @@
     };
 
     function adverseEvents(dm, ae) {
+        var _this = this;
+
         //DM variables
         var dmVariables = Object.keys(dm.raw[0]);
         var dmVariableMapping = schema.variables
@@ -243,9 +413,11 @@
                 })
             )
             .values();
-        var adae = dm.raw.filter(function(d) {
-            return withAEs.indexOf(d.USUBJID) < 0;
-        });
+        var adae = this.clone(
+            dm.raw.filter(function(d) {
+                return withAEs.indexOf(d.USUBJID) < 0;
+            })
+        );
 
         //Create shell adverse event variables for participants without adverse events.
         adae.forEach(function(d) {
@@ -306,12 +478,14 @@
             for (var aeVariable in d) {
                 _loop2(aeVariable);
             }
-            Object.assign(
-                datum,
+            var dmDatum = _this.clone(
                 dm.raw.find(function(di) {
                     return di.USUBJID === d.USUBJID;
                 })
             );
+            for (var prop in dmDatum) {
+                datum[prop] = datum[prop] || dmDatum[prop];
+            }
             adae.push(datum);
         });
 
@@ -475,6 +649,8 @@
     };
 
     function medicalSigns(dm, bds) {
+        var _this = this;
+
         //DM variables
         var dmVariables = Object.keys(dm.raw[0]);
         var dmVariableMapping = schema$1.variables
@@ -502,12 +678,14 @@
                     })
             )
             .values();
-        var adbds = dm.raw.filter(function(d) {
-            return withResults.indexOf(d.USUBJID) < 0;
-        });
+        var adbds = this.clone(
+            dm.raw.filter(function(d) {
+                return withResults.indexOf(d.USUBJID) < 0;
+            })
+        );
 
         //Create shell medical sign variables for participants without medical sign results.
-        var bdsVariables = schema$1.variables
+        var schemaVariables = schema$1.variables
             .filter(function(variable) {
                 return variable.sdtm.domain === 'BDS';
             })
@@ -521,7 +699,7 @@
 
             try {
                 for (
-                    var _iterator = bdsVariables[Symbol.iterator](), _step;
+                    var _iterator = schemaVariables[Symbol.iterator](), _step;
                     !(_iteratorNormalCompletion = (_step = _iterator.next()).done);
                     _iteratorNormalCompletion = true
                 ) {
@@ -551,6 +729,28 @@
             var bdsVariables = Object.keys(data.raw[0]).filter(function(key) {
                 return dmVariables.indexOf(key) < 0;
             });
+
+            //If domain is not defined find most common two-character variable prefix, as the SDTM data standard prefixes variables with the two-character domain code.
+            data.domain =
+                data.domain ||
+                d3
+                    .nest()
+                    .key(function(d) {
+                        return d;
+                    })
+                    .rollup(function(d) {
+                        return d.length;
+                    })
+                    .entries(
+                        bdsVariables.map(function(variable) {
+                            return variable.substring(0, 2);
+                        })
+                    )
+                    .sort(function(a, b) {
+                        return b.values - a.values;
+                    })[0].key;
+
+            //Capture variable mappings from schema with which to rename domain-specific variables.
             var bdsVariableMapping = schema$1.variables
                 .filter(function(variable) {
                     return variable.sdtm.domain === 'BDS' && variable.name !== variable.sdtm.name;
@@ -566,7 +766,8 @@
             });
 
             //Merge demographics variables onto medical signs data.
-            data.raw.forEach(function(d) {
+            var domainRegex = new RegExp('^' + data.domain);
+            data.raw.forEach(function(d, i) {
                 var datum = {};
 
                 var _loop = function _loop(bdsVariable) {
@@ -584,9 +785,11 @@
                 }
                 Object.assign(
                     datum,
-                    dm.raw.find(function(di) {
-                        return di.USUBJID === d.USUBJID;
-                    })
+                    _this.clone(
+                        dm.raw.find(function(di) {
+                            return di.USUBJID === d.USUBJID;
+                        })
+                    )
                 );
                 adbds.push(datum);
             });
@@ -604,7 +807,8 @@
             this.dataArray.push({
                 type: 'AEs',
                 'Data Standard': 'Analysis',
-                raw: adverseEvents(
+                raw: adverseEvents.call(
+                    this,
                     this.dataArray.find(function(data) {
                         return data.type === 'DM';
                     }),
@@ -621,7 +825,8 @@
             this.dataArray.push({
                 type: 'Labs',
                 'Data Standard': 'Analysis',
-                raw: medicalSigns(
+                raw: medicalSigns.call(
+                    this,
                     this.dataArray.find(function(data) {
                         return data.type === 'DM';
                     }),
@@ -633,20 +838,22 @@
     }
 
     /*------------------------------------------------------------------------------------------------\
-  Initialize explorer
-\------------------------------------------------------------------------------------------------*/
+      Initialize explorer
+    \------------------------------------------------------------------------------------------------*/
 
     function init(dataArray) {
         var loadcsv = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+        var sdtm = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
         if (loadcsv) {
             //load the csvs if requested
-            loadFiles(this, dataArray);
+            loadFiles(this, dataArray, sdtm);
         } else {
             //otherwise initialize the charts
             this.dataArray = dataArray;
 
             //Merge SDTM data.
-            if (this.config.sdtm) mergeData.call(this);
+            if (sdtm) mergeData.call(this);
             this.data = this.dataArray;
 
             // prep settings & customize renderers
@@ -671,8 +878,8 @@
     }
 
     /*------------------------------------------------------------------------------------------------\
-  Generate HTML containers.
-\------------------------------------------------------------------------------------------------*/
+      Generate HTML containers.
+    \------------------------------------------------------------------------------------------------*/
 
     function layout() {
         if (this.config.title)
@@ -720,8 +927,8 @@
     }
 
     /*------------------------------------------------------------------------------------------------\
-  Define controls object.
-\------------------------------------------------------------------------------------------------*/
+      Define controls object.
+    \------------------------------------------------------------------------------------------------*/
 
     var nav = {
         init: init$1
@@ -853,8 +1060,8 @@
     }
 
     /*------------------------------------------------------------------------------------------------\
-  Define controls object.
-\------------------------------------------------------------------------------------------------*/
+      Define controls object.
+    \------------------------------------------------------------------------------------------------*/
 
     var charts = {
         renderers: renderers,
@@ -918,6 +1125,7 @@
         var config = arguments[1];
 
         var explorer = {
+            clone: clone,
             element: element,
             config: config,
             init: init,
