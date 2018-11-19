@@ -1,16 +1,16 @@
-ul.nav-tabs {
+ul.ses-nav-tabs {
     list-style-type: none;
     overflow: hidden;
     background-color: black;
     padding:0;
 }
-ul.nav-tabs li {
+ul.ses-nav-tabs li {
     float: left;
     cursor:pointer;
     border:2px solid black
 }
 
-ul.nav-tabs li a {
+ul.ses-nav-tabs li a {
     display: block;
     text-align: center;
     color:white;
@@ -19,19 +19,19 @@ ul.nav-tabs li a {
 }
 
 
-ul.nav-tabs li:hover {
+ul.ses-nav-tabs li:hover {
     background-color: #777;
     border:2px solid #777;
 
 }
 
-ul.nav-tabs li.active, ul.nav-tabs li.active:hover {
+ul.ses-nav-tabs li.active, ul.ses-nav-tabs li.active:hover {
     background-color: white;
     border:2px solid black;
 
 }
 
-ul.nav-tabs li.active a, ul.nav-tabs li.active:hover a{
+ul.ses-nav-tabs li.active a, ul.ses-nav-tabs li.active:hover a{
   color:black;
 }
 

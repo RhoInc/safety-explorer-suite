@@ -6,14 +6,14 @@
 //]
 //
 
-export function loadFiles(explorer, dataFiles) {
-  var remaining = dataFiles.length;
-  dataFiles.forEach(function(file) {
-    d3.csv(file.path, function(csv) {
-      file.raw = csv;
-      if (!--remaining) {
-        explorer.init(dataFiles);
-      }
+export function loadFiles(explorer, dataFiles, sdtm) {
+    var remaining = dataFiles.length;
+    dataFiles.forEach(function(file) {
+        d3.csv(file.path, function(csv) {
+            file.raw = csv;
+            if (!--remaining) {
+                explorer.init(dataFiles, false, sdtm);
+            }
+        });
     });
-  });
 }
