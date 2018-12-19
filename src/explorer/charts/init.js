@@ -1,4 +1,7 @@
+import { prepSettings } from './prepSettings';
+
 export function init(explorer) {
+    prepSettings(explorer);
     explorer.charts.renderers.forEach(function(renderer) {
         //link the data
         if (renderer.name == 'web-codebook') {

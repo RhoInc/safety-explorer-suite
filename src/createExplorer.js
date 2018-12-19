@@ -4,20 +4,34 @@ import { layout } from './explorer/layout';
 import { nav } from './explorer/nav';
 import { charts } from './explorer/charts';
 import { loadFiles } from './explorer/loadFiles';
-import mergeData from './explorer/mergeData';
 import { prepSettings } from './explorer/prepSettings';
+import { settingsLibrary } from './explorer/settingsLibrary';
 
 export function createExplorer(element = 'body', config) {
-    let explorer = {
+    const explorer = {
         clone,
-        element: element,
-        config: config,
-        init: init,
-        layout: layout,
-        nav: nav,
-        loadFiles: loadFiles,
-        prepSettings: prepSettings,
-        charts: charts
+        element,
+        config,
+        init,
+        layout,
+        nav,
+        loadFiles,
+        prepSettings,
+        charts,
+        settingsLibrary,
+        events: {
+            onDatatransform() {},
+            onChartconfig() {}
+        },
+        on: (event, callback) => {
+            const possible_events = ['datatransform', 'chartconfig'];
+
+            if (possible_events.indexOf(event) < 0) return;
+
+            if (callback) {
+                explorer.events[`on ${event.charAt(0).toUpperCase() + event.slice(1)}`] = callback;
+            }
+        }
     };
 
     return explorer;
