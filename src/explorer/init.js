@@ -1,21 +1,20 @@
-/*------------------------------------------------------------------------------------------------\
-  Initialize explorer
-\------------------------------------------------------------------------------------------------*/
-
 import { loadFiles } from './loadFiles';
+import { loadSettings } from './loadSettings';
 import mergeData from './mergeData';
 
 export function init(dataArray, loadcsv = false, sdtm = false) {
-    if (loadcsv) {
-        //load the csvs if requested
-        loadFiles(this, dataArray, sdtm);
-    } else {
+    if (loadcsv) loadFiles(this, dataArray, sdtm);
+    // load the csvs if requested
+    else {
         //otherwise initialize the charts
         this.dataArray = dataArray;
 
         //Merge SDTM data.
         if (sdtm) mergeData.call(this);
         this.data = this.dataArray;
+
+        //Initialize data customizations callback
+        this.events.onDatatransform.call(this);
 
         // prep settings & customize renderers
         this.prepSettings(this);
@@ -32,8 +31,11 @@ export function init(dataArray, loadcsv = false, sdtm = false) {
         //draw nav
         this.nav.init(this);
 
-        //prep the renderers and draw first codebook
-        this.charts.init(this);
-        this.config.initial_renderer.render();
+        //load chart settings (if needed) and then prep the renderers and draw first codebook
+        if (this.config.chartSettings.load) loadSettings(this);
+        else {
+            this.charts.init(this);
+            this.config.initial_renderer.render();
+        }
     }
 }
