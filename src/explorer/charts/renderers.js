@@ -63,6 +63,15 @@ const renderers = [
         settings: {}
     },
     {
+        name: 'safety-eDISH',
+        label: 'eDISH',
+        main: 'safetyedish',
+        sub: null,
+        css: null,
+        data: 'Labs',
+        settings: {}
+    },
+    {
         name: 'web-codebook',
         label: 'Codebooks',
         main: 'webcodebook',
