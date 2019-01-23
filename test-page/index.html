@@ -15,6 +15,7 @@
             <script type = 'text/javascript' src = 'https://cdn.jsdelivr.net/gh/RhoInc/safety-results-over-time/build/safetyResultsOverTime.js'></script>
             <script type = 'text/javascript' src = 'https://cdn.jsdelivr.net/gh/RhoInc/safety-shift-plot/build/safetyShiftPlot.js'></script>
             <script type = 'text/javascript' src = 'https://cdn.jsdelivr.net/gh/RhoInc/web-codebook/build/webcodebook.js'></script>
+            <script type = 'text/javascript' src = 'https://cdn.jsdelivr.net/gh/ASA-DIA-InteractiveSafetyGraphics/safety-eDISH/build/safetyedish.js'></script>
 
         <link type = 'text/css' rel = 'stylesheet' href = 'https://cdn.jsdelivr.net/gh/RhoInc/Webcharts/css/webcharts.css'>
         <link type = 'text/css' rel = 'stylesheet' href = '../css/safetyExplorerSuite.css'></script>
@@ -26,7 +27,14 @@
 
     <body>
         <div id = 'title'>Safety Explorer Suite</div>
-        <div id = 'subtitle'>Test Page</div>
+        <div id = 'subtitle'>
+            Test Page
+            <label class = 'version-select'>
+                Safety Explorer Suite Version
+                <select class = 'version-select__select'></select>
+                <button class = 'version-select__submit'>Update</button>
+            </label>
+        </div>
         <div id = 'container'></div>
     </body>
 
