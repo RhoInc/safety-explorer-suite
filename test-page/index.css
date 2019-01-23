@@ -23,3 +23,8 @@
     margin: 12px 2%;
     display: inline-block;
 }
+.version-select {
+    float: right;
+    font-size: 16px;
+    font-weight: bold;
+}
