@@ -1,27 +1,19 @@
 const dataArray = [
     {
         type: 'DM',
-        //domain: 'DM',
         path: 'https://raw.githubusercontent.com/RhoInc/data-library/master/data/clinical-trials/sdtm/dm.csv',
-        //path: '../../data-library/data/clinical-trials/sdtm/DM.csv', // load local data file for performance
     },
     {
         type: 'AE',
-        //domain: 'AE',
         path: 'https://raw.githubusercontent.com/RhoInc/data-library/master/data/clinical-trials/sdtm/ae.csv',
-        //path: '../../data-library/data/clinical-trials/sdtm/AE.csv', // load local data file for performance
     },
     {
         type: 'BDS',
-        //domain: 'LB',
         path: 'https://raw.githubusercontent.com/RhoInc/data-library/master/data/clinical-trials/sdtm/lb.csv',
-        //path: '../../data-library/data/clinical-trials/sdtm/LB.csv', // load local data file for performance
     },
     {
         type: 'BDS',
-        //domain: 'VS',
         path: 'https://raw.githubusercontent.com/RhoInc/data-library/master/data/clinical-trials/sdtm/vs.csv',
-        //path: '../../data-library/data/clinical-trials/sdtm/VS.csv', // load local data file for performance
     },
 ];
 
