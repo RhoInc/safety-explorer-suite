@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Safety Explorer Suite: Test Page</title>
+        <title>Safety Explorer Suite</title>
         <meta http-equiv = 'Content-Type' content = 'text/html; charset = utf-8'>
 
         <script type = 'text/javascript' src = 'https://d3js.org/d3.v3.min.js'></script>
@@ -16,88 +16,20 @@
             <script type = 'text/javascript' src = 'https://cdn.jsdelivr.net/gh/RhoInc/safety-shift-plot/build/safetyShiftPlot.js'></script>
             <script type = 'text/javascript' src = 'https://cdn.jsdelivr.net/gh/RhoInc/web-codebook/build/webcodebook.js'></script>
             <script type = 'text/javascript' src = 'https://cdn.jsdelivr.net/gh/ASA-DIA-InteractiveSafetyGraphics/safety-eDISH/build/safetyedish.js'></script>
+        <script type = 'text/javascript' src = './settings.js'></script>
 
         <link type = 'text/css' rel = 'stylesheet' href = 'https://cdn.jsdelivr.net/gh/RhoInc/Webcharts/css/webcharts.min.css'>
         <link type = 'text/css' rel = 'stylesheet' href = '../../css/safetyExplorerSuite.css'></script>
             <link type = 'text/css' rel = 'stylesheet' href = 'https://cdn.jsdelivr.net/gh/RhoInc/aeexplorer/css/aeTable.css'></script>
             <link type = 'text/css' rel = 'stylesheet' href = 'https://cdn.jsdelivr.net/gh/RhoInc/web-codebook/css/webcodebook.css'></script>
-
         <link type = 'text/css' rel = 'stylesheet' href = '../index.css'>
     </head>
 
     <body>
         <div id = 'title'>Safety Explorer Suite</div>
-        <div id = 'subtitle'>
-            Test Page
-            <label class = 'version-select'>
-                Safety Explorer Suite Version
-                <select class = 'version-select__select'></select>
-                <button class = 'version-select__submit'>Update</button>
-            </label>
-        </div>
+        <div id = 'subtitle'> Queries</div>
         <div id = 'container'></div>
     </body>
 
     <script type = 'text/javascript' src = './index.js'></script>
 </html>
-
-<!--html><head>
-        <meta http-equiv="Content-Type" content="text/html; charset = utf-8">
-
-        <title>Safety Explorer - Default</title>
-
-        <script type="text/javascript" src="https://d3js.org/d3.v3.min.js"></script>
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/RhoInc/Webcharts@master/build/webcharts.js"></script>
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/RhoInc/ae-timelines@master/build/aeTimelines.js"></script>
-            <script type="text/javascript" src="aetimelines.js"></script>
-
-        <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/RhoInc/Webcharts@master/css/webcharts.css">
-        <link type="text/css" href="safetyExplorer.css" rel="stylesheet">
-
-
-    </head>
-
-    <body><div class="head">
-  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="../../util/web/css/examples.css">
-  <ul class="vl-ex-header">
-      <li class="icon"><a href="../../"><img src="../../util/web/img/rho.png"></a></li>
-      <li class="site crumb"><a href="../../"><span>Graphics</span></a></li>
-      <li class="crumb">Example</li>
-      <li class="title">Safety Explorer with Query Data</li>
-      <li class="info" title="Click to toggle chart details" onclick="toggleDetails()">ⓘ</li>
-      <li class="arrow next-arrow right"><a href="../0012-web-codebook-explorer"></a></li>
-      <li class="arrow back-arrow right"><a href="../0010-spike-histogram"></a></li>
-  </ul>
-  <div id="vl-ex-details" style="display:none;">
-    <p class="vl-ex-description"><b>Safety Explorer with Query Data</b> - The safety explorer is a collection of interactive graphics visualizing adverse event, lab, and vital sign data captured in clinical trials. This instance demonstrates customized versions of each graphic including added filters and/or highlights for query data.</p>
-
-    <ul class="vl-ex-tags"><li class="vl-ex-data"><a href="../../../data/safetyData-queries/ADAE.csv"></a></li><li class="vl-ex-data"><a href="../../../data/safetyData-queries/ADBDS.csv"></a></li><li class="vl-ex-repo"><a href="https://www.github.com/Rhoinc/safety-explorer-suite"></a></li><li class="vl-ex-code"><a href="aetimelines.js"></a></li><li class="dep"><a href="https://www.npmjs.com/package/d3">d3 ~3</a></li><li class="dep"><a href="https://www.npmjs.com/package/webcharts">webcharts ~1</a></li><li class="dep"><a href="https://www.npmjs.com/package/aetable">aetable 3.2.6</a></li><li class="dep"><a href="https://www.npmjs.com/package/aetimelines">aetimelines 2.1.0</a></li><li class="dep"><a href="https://www.npmjs.com/package/safetyhistogram">safetyhistogram 2.2.0</a></li><li class="dep"><a href="https://www.npmjs.com/package/safetyOutlierExplorer">safetyOutlierExplorer 2.3.0</a></li><li class="dep"><a href="https://www.npmjs.com/package/safetyResultsOverTime">safetyResultsOverTime 2.2.2</a></li><li class="dep"><a href="https://www.npmjs.com/package/safetyShiftPlot">safetyShiftPlot 2.1.0</a></li><li class="tag">javascript</li><li class="tag">interactive</li><li class="tag">webcharts</li><li class="tag">adverse events</li><li class="tag">safety explorer</li><li class="tag">queries</li></ul>
-  </div>
-  <script>
-    function toggleDetails(){
-      var details = document.getElementById("vl-ex-details");
-      if (details.style.display === "none") {
-          details.style.display = "block";
-      } else {
-          details.style.display = "none";
-        }
-    }
-  </script>
-</div>
-
-      <ul class="nav nav-tabs">
-          <li role="presentation"><a href="aetable.html">AE Table</a></li>
-          <li role="presentation" class="active"><a href="aetimelines.html">AE Timelines</a></li>
-          <li role="presentation"><a href="safetyresultsovertime.html">Results over Time</a></li>
-          <li role="presentation"><a href="safetyhistogram.html">Histogram</a></li>
-          <li role="presentation"><a href="safetyoutlierexplorer.html">Outlier Explorer</a></li>
-          <li role="presentation"><a href="safetyshiftplot.html">Shift Plot</a></li>
-      </ul>
-        <div class="safetyExplorerChart" id="ae-timelines">
-            <div class="header"></div>
-            <div class="content"></div>
-        </div>
-    
-
-</body></html-->

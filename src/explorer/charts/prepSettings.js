@@ -5,7 +5,6 @@
 
 export function prepSettings(explorer) {
     explorer.charts.renderers.forEach(function(renderer) {
-        console.log(renderer);
         var customMatch = explorer.config.chartSettings.custom
             ? explorer.config.chartSettings.custom.filter(f => f.renderer_name == renderer.name)
             : [];

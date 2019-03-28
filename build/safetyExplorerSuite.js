@@ -908,7 +908,6 @@
 
     function prepSettings(explorer) {
         explorer.charts.renderers.forEach(function (renderer) {
-            console.log(renderer);
             var customMatch = explorer.config.chartSettings.custom ? explorer.config.chartSettings.custom.filter(function (f) {
                 return f.renderer_name == renderer.name;
             }) : [];
@@ -957,7 +956,9 @@
                 }
 
                 if (renderer.dataFile) {
-                    myChart.init(renderer.dataFile.raw);
+                    myChart.init(renderer.dataFile.raw.map(function (d) {
+                        return Object.assign({}, d);
+                    }));
                 } else {
                     myChart.init();
                 }
@@ -992,7 +993,6 @@
     };
 
     function prepSettings$1(explorer) {
-        console.log(explorer.config);
         //set defaults and update the renderers accordingly
         explorer.config.renderers = explorer.config.renderers || explorer.charts.renderers.map(function (renderer) {
             return renderer.name;

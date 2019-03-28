@@ -1,7 +1,6 @@
 import defaultSettings from './defaultSettings';
 
 export function prepSettings(explorer) {
-    console.log(explorer.config);
     //set defaults and update the renderers accordingly
     explorer.config.renderers =
         explorer.config.renderers || explorer.charts.renderers.map(renderer => renderer.name);
