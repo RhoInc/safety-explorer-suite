@@ -1118,7 +1118,11 @@
                 }
 
                 if (renderer.dataFile) {
-                    myChart.init(renderer.dataFile.raw);
+                    myChart.init(
+                        renderer.dataFile.raw.map(function(d) {
+                            return Object.assign({}, d);
+                        })
+                    );
                 } else {
                     myChart.init();
                 }

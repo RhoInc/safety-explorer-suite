@@ -36,7 +36,7 @@ export function init(explorer) {
             }
 
             if (renderer.dataFile) {
-                myChart.init(renderer.dataFile.raw);
+                myChart.init(renderer.dataFile.raw.map(d => Object.assign({}, d)));
             } else {
                 myChart.init();
             }
