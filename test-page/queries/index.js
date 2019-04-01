@@ -1,6 +1,6 @@
-const adae = fetch('https://raw.githubusercontent.com/RhoInc/data-library/master/data/clinical-trials/renderer-specific/adae_queries.csv')
+const adae = fetch('https://raw.githubusercontent.com/RhoInc/data-library/master/data/clinical-trials/renderer-specific/adae-queries.csv')
     .then(response => response.text());
-const adbds = fetch('https://raw.githubusercontent.com/RhoInc/data-library/master/data/clinical-trials/renderer-specific/adbds_queries.csv')
+const adbds = fetch('https://raw.githubusercontent.com/RhoInc/data-library/master/data/clinical-trials/renderer-specific/adbds-queries.csv')
     .then(response => response.text());
 Promise.all([adae,adbds])
     .then(values => {
