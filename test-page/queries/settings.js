@@ -481,5 +481,8 @@ const settings = {
                 }
             ]
         }
-    ]
+    ],
+    initial_renderer: window && window.location && window.location.hash
+        ? window.location.hash.substring(1)
+        : null // allow linking to each renderer
 };

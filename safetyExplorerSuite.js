@@ -451,7 +451,7 @@
 
         //Create shell adverse event variables for participants without adverse events.
         adae.forEach(function(d) {
-            var _loop = function _loop(aeVariable) {
+            aeVariables.forEach(function(aeVariable) {
                 var variable =
                     sdtmRenames.indexOf(aeVariable) > -1
                         ? aeVariableMapping.find(function(mapping) {
@@ -459,43 +459,14 @@
                           }).name
                         : aeVariable;
                 d[variable] = '';
-            };
-
-            var _iteratorNormalCompletion = true;
-            var _didIteratorError = false;
-            var _iteratorError = undefined;
-
-            try {
-                for (
-                    var _iterator = aeVariables[Symbol.iterator](), _step;
-                    !(_iteratorNormalCompletion = (_step = _iterator.next()).done);
-                    _iteratorNormalCompletion = true
-                ) {
-                    var aeVariable = _step.value;
-
-                    _loop(aeVariable);
-                }
-            } catch (err) {
-                _didIteratorError = true;
-                _iteratorError = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion && _iterator.return) {
-                        _iterator.return();
-                    }
-                } finally {
-                    if (_didIteratorError) {
-                        throw _iteratorError;
-                    }
-                }
-            }
+            });
         });
 
         //Merge demographics variables onto adverse events data.
         ae.raw.forEach(function(d) {
             var datum = {};
 
-            var _loop2 = function _loop2(aeVariable) {
+            var _loop = function _loop(aeVariable) {
                 var variable =
                     sdtmRenames.indexOf(aeVariable) > -1
                         ? aeVariableMapping.find(function(mapping) {
@@ -506,7 +477,7 @@
             };
 
             for (var aeVariable in d) {
-                _loop2(aeVariable);
+                _loop(aeVariable);
             }
             var dmDatum = _this.clone(
                 dm.raw.find(function(di) {
@@ -723,34 +694,9 @@
                 return variable.name;
             });
         adbds.forEach(function(d) {
-            var _iteratorNormalCompletion = true;
-            var _didIteratorError = false;
-            var _iteratorError = undefined;
-
-            try {
-                for (
-                    var _iterator = schemaVariables[Symbol.iterator](), _step;
-                    !(_iteratorNormalCompletion = (_step = _iterator.next()).done);
-                    _iteratorNormalCompletion = true
-                ) {
-                    var variable = _step.value;
-
-                    d[variable] = '';
-                }
-            } catch (err) {
-                _didIteratorError = true;
-                _iteratorError = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion && _iterator.return) {
-                        _iterator.return();
-                    }
-                } finally {
-                    if (_didIteratorError) {
-                        throw _iteratorError;
-                    }
-                }
-            }
+            schemaVariables.forEach(function(variable) {
+                d[variable] = '';
+            });
         });
 
         //Iterate over BDS data arrays.
@@ -891,7 +837,7 @@
             this.wrap = d3
                 .select(this.element)
                 .append('div')
-                .attr('class', 'web-codebook-explorer');
+                .attr('class', 'safety-explorer');
 
             //layout the divs
             this.layout(this);

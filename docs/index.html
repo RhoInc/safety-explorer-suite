@@ -56,23 +56,32 @@
             <tr>
               <td><strong>Safety Explorer Suite Framework</strong></td>
               <td>A single page, like the one shown above, with all 9 interactive graphics created using the safety-explorer-suite framework. Data is only loaded once (instead of once per page). </td>
-              <td class="links"><a href="https://rhoinc.github.io/viz-library/examples/0015-safety-explorer-single-page/example.html"><i class="fa fa-bar-chart fa-lg"></i>Stand-alone Example</a> <br> <a href="https://rhoinc.github.io/viz-library/examples/0015-safety-explorer-single-page/"><i class="fa fa-bar-chart fa-lg"></i>Example + Code</a></td>
+              <td class="links">
+                  <a target = '_blank' href="../test-page">
+                      <i class="fa fa-bar-chart fa-lg"></i>Default Example
+                  </a>
+                  <!--a target = '_blank' href="https://github.com/RhoInc/safety-explorer-suite/blob/master/test-page/index.js" title = 'Code' style = 'text-align: right'>
+                      <i class="fa fa-code fa-lg"></i>
+                  </a-->
+                  <br>
+                  <a target = '_blank' href="../test-page/queries">
+                      <i class="fa fa-bar-chart fa-lg"></i>Customized Example
+                  </a>
+                  <!--a target = '_blank' href="https://github.com/RhoInc/safety-explorer-suite/blob/master/test-page/queries/settings.js" title = 'Custom Settings' style = 'text-align: right'>
+                      <i class="fa fa-code fa-lg"></i>
+                  </a-->
+              </td>
             </tr>
             <tr>
               <td><strong>R/Shiny Framework</strong></td>
               <td>A single page with all 9 interactive graphics in the R/Shiny framework. Created using the runSafetyApp() function in the safetyexploreR framework. </td>
-              <td class="links"><a href="https://becca-krouse.shinyapps.io/safetyapp/"><i class="fa fa-bar-chart fa-lg"></i>Stand-alone Example</a></td>
+              <td class="links"><a target = '_blank' href="https://becca-krouse.shinyapps.io/safetyGraphicsApp/"><i class="fa fa-bar-chart fa-lg"></i>Stand-alone Example</a></td>
             </tr>
-            <tr>
-              <td><strong>Default Configuration</strong></td>
-              <td>One page per interactive graphic using default settings, and provides links to each graphic with a simple navigation bar.</td>
-              <td class="links"><a href="https://rhoinc.github.io/viz-library/examples/0008-safetyExplorer-default/ae-table/index.html"><i class="fa fa-bar-chart fa-lg"></i>Stand-alone Example </a> <br> <a href="https://rhoinc.github.io/viz-library/examples/0008-safetyExplorer-default/"><i class="fa fa-bar-chart fa-lg"></i>Example + Code</a></td>
-            </tr>
-            <tr>
+            <!--tr>
               <td><strong>Custom Configuration</strong></td>
               <td>One page per interactive graphic using default settings along with a navigation bar. </td>
-              <td class="links"><a href="https://rhoinc.github.io/viz-library/examples/0011-safetyExplorer-queries/ae-table/index.html"><i class="fa fa-bar-chart fa-lg"></i>Stand-alone Example</a> <br> <a href="https://rhoinc.github.io/viz-library/examples/0011-safetyExplorer-queries/"><i class="fa fa-bar-chart fa-lg"></i>Example + Code</a></td>
-            </tr>
+              <td class="links"><a target = '_blank' href="../test-page/queries"><i class="fa fa-bar-chart fa-lg"></i>Stand-alone Example</a> <br> <a target = '_blank' href="https://github.com/RhoInc/safety-explorer-suite/blob/master/test-page/queries/index.js"><i class="fa fa-code fa-lg"></i>Code</a></td>
+            </tr-->
 
           </table>
           <h2  class="anchor" id="libraries">Libraries</h2>
@@ -87,14 +96,14 @@
                 <p>Interactive graphic giving an overview of adverse event (AE) rates by group</p>
                 <p>
                   <span class="italic">Code: </span>
-                  <a class="doc-link github" href="https://github.com/RhoInc/aeexplorer"><i class="fa fa-github fa-lg"></i>Repository</a>
-                  <a class="doc-link info-circle" href="https://github.com/RhoInc/aeexplorer/wiki"><i class="fa fa-info-circle fa-lg"></i>Documentation</a>
-                  <a class="doc-link info-circle" href="https://www.npmjs.com/package/aeexplorer"><i class="fa fa-file-o fa-lg"></i>npm</a>
+                  <a class="doc-link github" target = '_blank' href="https://github.com/RhoInc/aeexplorer"><i class="fa fa-github fa-lg"></i>Repository</a>
+                  <a class="doc-link info-circle" target = '_blank' href="https://github.com/RhoInc/aeexplorer/wiki"><i class="fa fa-info-circle fa-lg"></i>Documentation</a>
+                  <a class="doc-link info-circle" target = '_blank' href="https://www.npmjs.com/package/aeexplorer"><i class="fa fa-file-o fa-lg"></i>npm</a>
                 </p>
                 <p>
                   <span class="italic">Examples: </span>
-                  <a class="doc-link bar-ch" href="https://rhoinc.github.io/viz-library/examples/0008-safetyExplorer-default/ae-table/index.html"><i class="fa fa-bar-chart fa-lg"></i>Default Settings</a>
-                  <a class="doc-link bar-ch" href="https://rhoinc.github.io/viz-library/examples/0011-safetyExplorer-queries/ae-table/index.html"><i class="fa fa-bar-chart fa-lg"></i>Custom Settings</a>
+                  <a class="doc-link bar-ch" target = '_blank' href="https://rhoinc.github.io/aeexplorer/test-page"><i class="fa fa-bar-chart fa-lg"></i>Default Settings</a>
+                  <a class="doc-link bar-ch" target = '_blank' href="../test-page/queries/#aeexplorer"><i class="fa fa-bar-chart fa-lg"></i>Custom Settings</a>
                 </p>
               </div>
             </div>
@@ -109,14 +118,14 @@
                 <p>Interactive graphic showing the timeline of participant AEs</p>
                 <p>
                   <span class="italic">Code: </span>
-                  <a class="doc-link github" href="https://github.com/RhoInc/ae-timelines"><i class="fa fa-github fa-lg"></i>Repository</a>
-                  <a class="doc-link info-circle" href="https://github.com/RhoInc/ae-timelines/wiki"><i class="fa fa-info-circle fa-lg"></i>Documentation</a>
-                  <a class="doc-link info-circle" href="https://www.npmjs.com/package/ae-timelines"><i class="fa fa-file-o fa-lg"></i>npm</a>
+                  <a class="doc-link github" target = '_blank' href="https://github.com/RhoInc/ae-timelines"><i class="fa fa-github fa-lg"></i>Repository</a>
+                  <a class="doc-link info-circle" target = '_blank' href="https://github.com/RhoInc/ae-timelines/wiki"><i class="fa fa-info-circle fa-lg"></i>Documentation</a>
+                  <a class="doc-link info-circle" target = '_blank' href="https://www.npmjs.com/package/ae-timelines"><i class="fa fa-file-o fa-lg"></i>npm</a>
                 </p>
                 <p>
                   <span class="italic">Examples: </span>
-                  <a class="doc-link bar-ch" href="https://rhoinc.github.io/viz-library/examples/0008-safetyExplorer-default/ae-timelines/index.html"><i class="fa fa-bar-chart fa-lg"></i>Default Settings</a>
-                  <a class="doc-link bar-ch" href="https://rhoinc.github.io/viz-library/examples/0011-safetyExplorer-queries/ae-timelines/index.html"><i class="fa fa-bar-chart fa-lg"></i>Custom Settings</a>
+                  <a class="doc-link bar-ch" target = '_blank' href="https://rhoinc.github.io/ae-timelines/test-page"><i class="fa fa-bar-chart fa-lg"></i>Default Settings</a>
+                  <a class="doc-link bar-ch" target = '_blank' href="../test-page/queries/#ae-timelines"><i class="fa fa-bar-chart fa-lg"></i>Custom Settings</a>
                 </p>
               </div>
             </div>
@@ -130,14 +139,14 @@
                 <p>Interactive graphic showing patterns of participant-level longitudinal safety markers</p>
                 <p>
                   <span class="italic">Code: </span>
-                  <a class="doc-link github" href="https://github.com/RhoInc/safety-outlier-explorer"><i class="fa fa-github fa-lg"></i>Repository</a>
-                  <a class="doc-link info-circle" href="https://github.com/RhoInc/safety-outlier-explorer/wiki"><i class="fa fa-info-circle fa-lg"></i>Documentation</a>
-                  <a class="doc-link info-circle" href="https://www.npmjs.com/package/safety-outlier-explorer"><i class="fa fa-file-o fa-lg"></i>npm</a>
+                  <a class="doc-link github" target = '_blank' href="https://github.com/RhoInc/safety-outlier-explorer"><i class="fa fa-github fa-lg"></i>Repository</a>
+                  <a class="doc-link info-circle" target = '_blank' href="https://github.com/RhoInc/safety-outlier-explorer/wiki"><i class="fa fa-info-circle fa-lg"></i>Documentation</a>
+                  <a class="doc-link info-circle" target = '_blank' href="https://www.npmjs.com/package/safety-outlier-explorer"><i class="fa fa-file-o fa-lg"></i>npm</a>
                 </p>
                 <p>
                   <span class="italic">Examples: </span>
-                  <a class="doc-link bar-ch" href="https://rhoinc.github.io/viz-library/examples/0008-safetyExplorer-default/safety-outlier-explorer/index.html"><i class="fa fa-bar-chart fa-lg"></i>Default Settings</a>
-                  <a class="doc-link bar-ch" href="https://rhoinc.github.io/viz-library/examples/0011-safetyExplorer-queries/safety-outlier-explorer/index.html"><i class="fa fa-bar-chart fa-lg"></i>Custom Settings</a>
+                  <a class="doc-link bar-ch" target = '_blank' href="https://rhoinc.github.io/safety-outlier-explorer/test-page"><i class="fa fa-bar-chart fa-lg"></i>Default Settings</a>
+                  <a class="doc-link bar-ch" target = '_blank' href="../test-page/queries/#safety-outlier-explorer"><i class="fa fa-bar-chart fa-lg"></i>Custom Settings</a>
                 </p>
               </div>
             </div>
@@ -152,13 +161,14 @@
                 <p>Paneled Interactive graphic showing patterns of participant-level longitudinal safety markers</p>
                 <p>
                   <span class="italic">Code: </span>
-                  <a class="doc-link github" href="https://github.com/RhoInc/paneled-outlier-explorer"><i class="fa fa-github fa-lg"></i>Repository</a>
-                  <a class="doc-link info-circle" href="https://github.com/RhoInc/paneled-outlier-explorer/wiki"><i class="fa fa-info-circle fa-lg"></i>Documentation</a>
-                  <a class="doc-link info-circle" href="https://www.npmjs.com/package/paneled-outlier-explorer"><i class="fa fa-file-o fa-lg"></i>npm</a>
+                  <a class="doc-link github" target = '_blank' href="https://github.com/RhoInc/paneled-outlier-explorer"><i class="fa fa-github fa-lg"></i>Repository</a>
+                  <a class="doc-link info-circle" target = '_blank' href="https://github.com/RhoInc/paneled-outlier-explorer/wiki"><i class="fa fa-info-circle fa-lg"></i>Documentation</a>
+                  <a class="doc-link info-circle" target = '_blank' href="https://www.npmjs.com/package/paneled-outlier-explorer"><i class="fa fa-file-o fa-lg"></i>npm</a>
                 </p>
                 <p>
                   <span class="italic">Example: </span>
-                  <a class="doc-link bar-ch" href="https://rhoinc.github.io/viz-library/examples/0019-paneled-outlier-explorer/example.html"><i class="fa fa-bar-chart fa-lg"></i>Default Settings</a>
+                  <a class="doc-link bar-ch" target = '_blank' href="https://rhoinc.github.io/paneled-outlier-explorer/test-page"><i class="fa fa-bar-chart fa-lg"></i>Default Settings</a>
+                  <a class="doc-link bar-ch" target = '_blank' href="../test-page/queries/#paneled-outlier-explorer"><i class="fa fa-bar-chart fa-lg"></i>Default Settings</a>
                 </p>
               </div>
             </div>
@@ -174,15 +184,15 @@
                 <p>Interactive graphic showing population trends in longitudinal safety results</p>
                 <p>
                   <span class="italic">Code: </span>
-                  <a class="doc-link github" href="https://github.com/RhoInc/safety-results-over-time"><i class="fa fa-github fa-lg"></i>Repository</a>
-                  <a class="doc-link info-circle" href="https://github.com/RhoInc/safety-results-over-time/wiki"><i class="fa fa-info-circle fa-lg"></i>Documentation</a>
-                  <a class="doc-link info-circle" href="https://www.npmjs.com/package/safety-results-over-time"><i class="fa fa-file-o fa-lg"></i>npm</a>
+                  <a class="doc-link github" target = '_blank' href="https://github.com/RhoInc/safety-results-over-time"><i class="fa fa-github fa-lg"></i>Repository</a>
+                  <a class="doc-link info-circle" target = '_blank' href="https://github.com/RhoInc/safety-results-over-time/wiki"><i class="fa fa-info-circle fa-lg"></i>Documentation</a>
+                  <a class="doc-link info-circle" target = '_blank' href="https://www.npmjs.com/package/safety-results-over-time"><i class="fa fa-file-o fa-lg"></i>npm</a>
 
                 </p>
                 <p>
                   <span class="italic">Examples: </span>
-                  <a class="doc-link bar-ch" href="https://rhoinc.github.io/viz-library/examples/0008-safetyExplorer-default/safety-results-over-time/index.html"><i class="fa fa-bar-chart fa-lg"></i>Default Settings</a>
-                  <a class="doc-link bar-ch" href="https://rhoinc.github.io/viz-library/examples/0011-safetyExplorer-queries/safety-results-over-time/index.html"><i class="fa fa-bar-chart fa-lg"></i>Custom Settings</a>
+                  <a class="doc-link bar-ch" target = '_blank' href="https://rhoinc.github.io/safety-results-over-time/test-page"><i class="fa fa-bar-chart fa-lg"></i>Default Settings</a>
+                  <a class="doc-link bar-ch" target = '_blank' href="../test-page/queries/#safety-results-over-time"><i class="fa fa-bar-chart fa-lg"></i>Custom Settings</a>
                 </p>
               </div>
             </div>
@@ -196,14 +206,14 @@
                 <p>Interactive graphic showing the distribution of safety markers</p>
                 <p>
                   <span class="italic">Code: </span>
-                  <a class="doc-link github" href="https://github.com/RhoInc/safety-histogram"><i class="fa fa-github fa-lg"></i>Repository</a>
-                  <a class="doc-link info-circle" href="https://github.com/RhoInc/safety-histogram/wiki"><i class="fa fa-info-circle fa-lg"></i>Documentation</a>
-                  <a class="doc-link info-circle" href="https://www.npmjs.com/package/safety-histogram"><i class="fa fa-file-o fa-lg"></i>npm</a>
+                  <a class="doc-link github" target = '_blank' href="https://github.com/RhoInc/safety-histogram"><i class="fa fa-github fa-lg"></i>Repository</a>
+                  <a class="doc-link info-circle" target = '_blank' href="https://github.com/RhoInc/safety-histogram/wiki"><i class="fa fa-info-circle fa-lg"></i>Documentation</a>
+                  <a class="doc-link info-circle" target = '_blank' href="https://www.npmjs.com/package/safety-histogram"><i class="fa fa-file-o fa-lg"></i>npm</a>
                 </p>
                 <p>
                   <span class="italic">Examples: </span>
-                  <a class="doc-link bar-ch" href="https://rhoinc.github.io/viz-library/examples/0008-safetyExplorer-default/safety-histogram/index.html"><i class="fa fa-bar-chart fa-lg"></i>Default Settings</a>
-                  <a class="doc-link bar-ch" href="https://rhoinc.github.io/viz-library/examples/0011-safetyExplorer-queries/safety-histogram/index.html"><i class="fa fa-bar-chart fa-lg"></i>Custom Settings</a>
+                  <a class="doc-link bar-ch" target = '_blank' href="https://rhoinc.github.io/safety-histogram/test-page"><i class="fa fa-bar-chart fa-lg"></i>Default Settings</a>
+                  <a class="doc-link bar-ch" target = '_blank' href="../test-page/queries/#safety-histogram"><i class="fa fa-bar-chart fa-lg"></i>Custom Settings</a>
                 </p>
               </div>
             </div>
@@ -218,14 +228,14 @@
                 <p>Interactive graphic showing participant-level trends for longitudinal safety markers</p>
                 <p>
                   <span class="italic">Code: </span>
-                  <a class="doc-link github" href="https://github.com/RhoInc/safety-shift-plot"><i class="fa fa-github fa-lg"></i>Repository</a>
-                  <a class="doc-link info-circle" href="https://github.com/RhoInc/safety-shift-plot/wiki"><i class="fa fa-info-circle fa-lg"></i>Documentation</a>
-                  <a class="doc-link info-circle" href="https://www.npmjs.com/package/safety-shift-plot"><i class="fa fa-file-o fa-lg"></i>npm</a>
+                  <a class="doc-link github" target = '_blank' href="https://github.com/RhoInc/safety-shift-plot"><i class="fa fa-github fa-lg"></i>Repository</a>
+                  <a class="doc-link info-circle" target = '_blank' href="https://github.com/RhoInc/safety-shift-plot/wiki"><i class="fa fa-info-circle fa-lg"></i>Documentation</a>
+                  <a class="doc-link info-circle" target = '_blank' href="https://www.npmjs.com/package/safety-shift-plot"><i class="fa fa-file-o fa-lg"></i>npm</a>
                 </p>
                 <p>
                   <span class="italic">Examples: </span>
-                  <a class="doc-link bar-ch" href="https://rhoinc.github.io/viz-library/examples/0008-safetyExplorer-default/safety-shift-plot/index.html"><i class="fa fa-bar-chart fa-lg"></i>Default Settings</a>
-                  <a class="doc-link bar-ch" href="https://rhoinc.github.io/viz-library/examples/0011-safetyExplorer-queries/safety-shift-plot/index.html"><i class="fa fa-bar-chart fa-lg"></i>Custom Settings</a>
+                  <a class="doc-link bar-ch" target = '_blank' href="https://rhoinc.github.io/safety-shift-plot/test-page"><i class="fa fa-bar-chart fa-lg"></i>Default Settings</a>
+                  <a class="doc-link bar-ch" target = '_blank' href="../test-page/queries/#safety-shift-plot"><i class="fa fa-bar-chart fa-lg"></i>Custom Settings</a>
                 </p>
               </div>
             </div>
@@ -240,13 +250,14 @@
                 <p>Interactive graphic for Evaluation of Drug-Induced Serious Hepatotoxicity (eDISH)</p>
                 <p>
                   <span class="italic">Code: </span>
-                  <a class="doc-link github" href="https://github.com/ASA-DIA-InteractiveSafetyGraphics/safety-eDISH"><i class="fa fa-github fa-lg"></i>Repository</a>
-                  <a class="doc-link info-circle" href="https://github.com/ASA-DIA-InteractiveSafetyGraphics/safety-eDISH/wiki"><i class="fa fa-info-circle fa-lg"></i>Documentation</a>
-                  <a class="doc-link info-circle" href="https://www.npmjs.com/package/safety-edish"><i class="fa fa-file-o fa-lg"></i>npm</a>
+                  <a class="doc-link github" target = '_blank' href="https://github.com/ASA-DIA-InteractiveSafetyGraphics/safety-eDISH"><i class="fa fa-github fa-lg"></i>Repository</a>
+                  <a class="doc-link info-circle" target = '_blank' href="https://github.com/ASA-DIA-InteractiveSafetyGraphics/safety-eDISH/wiki"><i class="fa fa-info-circle fa-lg"></i>Documentation</a>
+                  <a class="doc-link info-circle" target = '_blank' href="https://www.npmjs.com/package/safety-edish"><i class="fa fa-file-o fa-lg"></i>npm</a>
                 </p>
                 <p>
                   <span class="italic">Examples: </span>
-                  <a class="doc-link bar-ch" href="https://asa-dia-interactivesafetygraphics.github.io/safety-eDISH/test/"></i>Custom Settings</a>
+                  <a class="doc-link bar-ch" target = '_blank' href="../test-page/#safety-eDISH"></i>Default Settings</a>
+                  <a class="doc-link bar-ch" target = '_blank' href="https://SafetyGraphics.github.io/safety-eDISH/test-page/example1/"></i>Custom Settings</a>
                 </p>
               </div>
             </div>
@@ -261,14 +272,14 @@
                 <p>Interactive, graphical summary of every variable in a dataset</p>
                 <p>
                   <span class="italic">Code: </span>
-                  <a class="doc-link github" href="https://github.com/RhoInc/web-codebook"><i class="fa fa-github fa-lg"></i>Repository</a>
-                  <a class="doc-link info-circle" href="https://github.com/RhoInc/web-codebook/wiki"><i class="fa fa-info-circle fa-lg"></i>Documentation</a>
-                  <a class="doc-link info-circle" href="https://www.npmjs.com/package/webcodebook"><i class="fa fa-file-o fa-lg"></i>npm</a>
+                  <a class="doc-link github" target = '_blank' href="https://github.com/RhoInc/web-codebook"><i class="fa fa-github fa-lg"></i>Repository</a>
+                  <a class="doc-link info-circle" target = '_blank' href="https://github.com/RhoInc/web-codebook/wiki"><i class="fa fa-info-circle fa-lg"></i>Documentation</a>
+                  <a class="doc-link info-circle" target = '_blank' href="https://www.npmjs.com/package/webcodebook"><i class="fa fa-file-o fa-lg"></i>npm</a>
                 </p>
                 <p>
                   <span class="italic">Examples: </span>
-                  <a class="doc-link bar-ch" href="https://rhoinc.github.io/web-codebook/test-page/"><i class="fa fa-bar-chart fa-lg"></i>Default Settings</a>
-                  <a class="doc-link bar-ch" href="https://rhoinc.github.io/viz-library/examples/0009-web-codebook-demo/example.html"><i class="fa fa-bar-chart fa-lg"></i>Custom Settings</a>
+                  <a class="doc-link bar-ch" target = '_blank' href="https://rhoinc.github.io/web-codebook/test-page/default/"><i class="fa fa-bar-chart fa-lg"></i>Codebook</a>
+                  <a class="doc-link bar-ch" target = '_blank' href="https://rhoinc.github.io/web-codebook/test-page/explorer/"><i class="fa fa-bar-chart fa-lg"></i>Explorer</a>
                 </p>
               </div>
             </div>
@@ -283,19 +294,20 @@
                 <p>Helper library implementing all 9 graphics on a single page.</p>
                 <p>
                   <span class="italic">Code: </span>
-                  <a class="doc-link github" href="https://github.com/RhoInc/safety-explorer-suite"><i class="fa fa-github fa-lg"></i>Repository</a>
-                  <a class="doc-link info-circle" href="https://github.com/RhoInc/safety-explorer-suite/wiki"><i class="fa fa-info-circle fa-lg"></i>Documentation</a>
-                  <a class="doc-link info-circle" href="https://www.npmjs.com/package/safety-explorer-suite"><i class="fa fa-file-o fa-lg"></i>npm</a>
+                  <a class="doc-link github" target = '_blank' href="https://github.com/RhoInc/safety-explorer-suite"><i class="fa fa-github fa-lg"></i>Repository</a>
+                  <a class="doc-link info-circle" target = '_blank' href="https://github.com/RhoInc/safety-explorer-suite/wiki"><i class="fa fa-info-circle fa-lg"></i>Documentation</a>
+                  <a class="doc-link info-circle" target = '_blank' href="https://www.npmjs.com/package/safety-explorer-suite"><i class="fa fa-file-o fa-lg"></i>npm</a>
 
                 </p>
-                <p>
+                <!--p>
                   <span class="italic">Examples: </span>
-                  <a class="doc-link bar-ch" href="https://rhoinc.github.io/viz-library/examples/0015-safety-explorer-single-page/example.html"><i class="fa fa-bar-chart fa-lg"></i>Default Settings</a>
-                </p>
+                  <a class="doc-link bar-ch" target = '_blank' href="../test-page"><i class="fa fa-bar-chart fa-lg"></i>Default Settings</a>
+                  <a class="doc-link bar-ch" target = '_blank' href="../test-page/queries"><i class="fa fa-bar-chart fa-lg"></i>Custom Settings</a>
+                </p-->
               </div>
             </div>
 
-            <!-- safetyexploreR -->
+            <!-- safetyGraphics -->
             <div class="media-block">
               <img src="./img/safetyexploreR.png" width="200" height="150" alt="AE Explorer">
               <div class="text-wrap">
@@ -305,14 +317,14 @@
                 <p>R implementation of the interactive safety explorer graphics using htmlwidgets and shiny</p>
                 <p>
                   <span class="italic">Code: </span>
-                  <a class="doc-link github" href="https://github.com/RhoInc/safetyexploreR"><i class="fa fa-github fa-lg"></i>Repository</a>
-                  <a class="doc-link info-circle" href="https://github.com/RhoInc/safetyexploreR/wiki"><i class="fa fa-info-circle fa-lg"></i>Documentation</a>
+                  <a class="doc-link github" target = '_blank' href="https://github.com/SafetyGraphics/safetyGraphics"><i class="fa fa-github fa-lg"></i>Repository</a>
+                  <a class="doc-link info-circle" target = '_blank' href="https://github.com/SafetyGraphics/safetyGraphics/wiki"><i class="fa fa-info-circle fa-lg"></i>Documentation</a>
                 </p>
-                <p>
+                <!--p>
                   <span class="italic">Examples: </span>
-                  <a class="doc-link bar-ch" href="https://becca-krouse.shinyapps.io/aetableapp/"><i class="fa fa-bar-chart fa-lg"></i>AE Table (Shiny)</a>
-                  <a class="doc-link bar-ch" href="https://becca-krouse.shinyapps.io/safetyapp/"><i class="fa fa-bar-chart fa-lg"></i>Safety Explorer Suite (Shiny)</a>
-                </p>
+                  <a class="doc-link bar-ch" target = '_blank' href="https://becca-krouse.shinyapps.io/aetableapp/"><i class="fa fa-bar-chart fa-lg"></i>AE Table (Shiny)</a>
+                  <a class="doc-link bar-ch" target = '_blank' href="https://becca-krouse.shinyapps.io/safetyapp/"><i class="fa fa-bar-chart fa-lg"></i>Safety Explorer Suite (Shiny)</a>
+                </p-->
               </div>
             </div>
           </div>
@@ -320,17 +332,22 @@
           <p> There are 4 primary ways to use the Safety Explorer Suite: </p>
 
           <h4>1. Create a series of stand-alone web pages, and link them together.</h4>
-          <p>The Safety Explorer Suite charts can be used in modern web browers (IE9+, Chrome, Firefox, etc.), either by including the needed requirements in the global namespace or by using one of the workflows described <a href="https://github.com/RhoInc/Webcharts/wiki#how-to-use">here</a>. See the examples for the individual <a href = "#libraries">libraries</a> for more details.</p>
+          <p>
+            The Safety Explorer Suite charts can be used in modern web browers (IE9+, Chrome, Firefox, etc.), either by including the needed requirements in the global namespace or by using one of the workflows described <a target = '_blank' href="https://github.com/RhoInc/Webcharts/wiki#how-to-use">here</a>.
+            See the examples for the individual <a href = "#libraries">libraries</a> for more details.
+          </p>
 
           <h4>2. Create a single webpage for mutiple charts using the safety-explorer-suite.</h4>
-          <p>The safety-explorer-suite repository provides a simple framework for rendering multiple charts on a single page. See <a href="https://rhoinc.github.io/viz-library/examples/0015-safety-explorer-single-page/example.html">this example</a> and the <a href="https://github.com/RhoInc/safety-explorer-suite/wiki"> repository's wiki</a> for details.</p>
+          <p>
+            The safety-explorer-suite repository provides a simple framework for rendering multiple charts on a single page.
+            See <a target = '_blank' href="../test-page/">this example</a> and the <a target = '_blank' href="https://github.com/RhoInc/safety-explorer-suite/wiki">repository's wiki</a> for details.
+          </p>
 
-          <h4>3. Use the safetyexploreR library to create stand-alone charts in R.</h4>
-          <p>Each chart has a stand-alone wrapper function in the safetyexploreR package that allows for simple creation of standalone charts in R. See the <a href="https://github.com/RhoInc/safetyexploreR/wiki">wiki</a> for details.
-
-          <h4>4. Use the safetyexploreR library to initiative a shiny application with multiple charts.</h4>
-          <p>The safetyexploreR's runSafetyApp() function initializes a shiny application combining all 9 charts.</p>
-
+          <h4>3. Use the safetyGraphics library to initiative a Shiny application with multiple charts.</h4>
+          <p>
+            Each chart has a stand-alone wrapper function in the safetyexploreR package that allows for simple creation of standalone charts in R. 
+            See the <a target = '_blank' href="https://github.com/SafetyGraphics/safetyGraphics/wiki/Vignette:-Shiny-User-Guide">vignette</a> for details.
+          </p>
 
        </div
       </div>

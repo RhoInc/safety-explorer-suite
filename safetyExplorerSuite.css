@@ -3,6 +3,7 @@ ul.ses-nav-tabs {
     overflow: hidden;
     background-color: black;
     padding:0;
+    margin-bottom: 24px;
 }
 ul.ses-nav-tabs li {
     float: left;
@@ -35,7 +36,6 @@ ul.ses-nav-tabs li.active a, ul.ses-nav-tabs li.active:hover a{
   color:black;
 }
 
-.safetyExplorerChart {
-    width: 96%;
-    margin: 2%;
+.chartWrap {
+    margin: 0 2%;
 }

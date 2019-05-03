@@ -1,9 +1,9 @@
 {
   "name": "safety-explorer-suite",
-  "version": "0.7.2",
+  "version": "0.8.0",
   "description": "The Safety Explorer Suite provides a framework for rendering a set of charts related to Clinical Trial Safety Monitoring.",
   "module": "./src/index.js",
-  "main": "./build/safetyExplorerSuite.js",
+  "main": "./safetyExplorerSuite.js",
   "author": "Rho, Inc.",
   "license": "MIT",
   "dependencies": {
@@ -24,7 +24,7 @@
     "bundle": "rollup -c",
     "format": "npm run format-src && npm run format-bundle",
     "format-src": "prettier --print-width=100 --tab-width=4 --single-quote --write \"./src/**/*.js\"",
-    "format-bundle": "prettier --print-width=100 --tab-width=4 --single-quote --write ./build/*.js",
+    "format-bundle": "prettier --print-width=100 --tab-width=4 --single-quote --write ./safetyExplorerSuite.js",
     "test-page": "start chrome ./test-page/index.html && start firefox ./test-page/index.html && start iexplore file://%CD%/test-page/index.html",
     "watch": "rollup -c -w"
   },
