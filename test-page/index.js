@@ -86,13 +86,13 @@ d3.select('.version-select__submit')
         const version = d3.select('.version-select__select')
             .select('option:checked')
             .text();
-        console.log(version);
+        console.log('Selected version: ' + version);
 
         //Load .js file.
         const jsURL = version !== 'master'
-            ? `${baseURL}@${version}/build/safetyExplorerSuite.js`
-            : `${baseURL}/build/safetyExplorerSuite.js`;
-        console.log(jsURL);
+            ? baseURL + '@' + version + '/build/safetyExplorerSuite.js'
+            : baseURL + '/build/safetyExplorerSuite.js';
+        console.log('.js path: ' + jsURL);
         const js = document.createElement('script');
         js.onload = function() {
             d3.selectAll('#container *').remove();
@@ -103,9 +103,9 @@ d3.select('.version-select__submit')
 
         //Load .css file.
         const cssURL = version !== 'master'
-            ? `${baseURL}@${version}/css/safetyExplorerSuite.css`
-            : `${baseURL}/css/safetyExplorerSuite.css`;
-        console.log(cssURL);
+            ? baseURL + '@' + version + '/css/safetyExplorerSuite.css'
+            : baseURL + '/css/safetyExplorerSuite.css';
+        console.log('.css path: ' + cssURL);
         const css = document.createElement('link');
         css.type = 'text/css';
         css.rel = 'stylesheet';

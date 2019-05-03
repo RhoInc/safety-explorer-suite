@@ -21,9 +21,9 @@ export default function medicalSigns(dm, bds) {
         .filter(variable => variable.sdtm.domain === 'BDS')
         .map(variable => variable.name);
     adbds.forEach(d => {
-        for (const variable of schemaVariables) {
+        schemaVariables.forEach(variable => {
             d[variable] = '';
-        }
+        });
     });
 
     //Iterate over BDS data arrays.

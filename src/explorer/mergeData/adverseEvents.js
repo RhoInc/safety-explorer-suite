@@ -30,13 +30,13 @@ export default function adverseEvents(dm, ae) {
 
     //Create shell adverse event variables for participants without adverse events.
     adae.forEach(d => {
-        for (const aeVariable of aeVariables) {
+        aeVariables.forEach(aeVariable => {
             const variable =
                 sdtmRenames.indexOf(aeVariable) > -1
                     ? aeVariableMapping.find(mapping => mapping.sdtm === aeVariable).name
                     : aeVariable;
             d[variable] = '';
-        }
+        });
     });
 
     //Merge demographics variables onto adverse events data.
