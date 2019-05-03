@@ -23,7 +23,7 @@ export function init(dataArray, loadcsv = false, sdtm = false) {
         this.wrap = d3
             .select(this.element)
             .append('div')
-            .attr('class', 'web-codebook-explorer');
+            .attr('class', 'safety-explorer');
 
         //layout the divs
         this.layout(this);
