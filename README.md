@@ -4,7 +4,7 @@ The Safety Explorer Suite is a central location for a series of custom charts re
 ## Example
 A typical set of safety charts created by the safety explorer suite looks like the example below. You can play with a live example [here](https://rhoinc.github.io/safety-explorer-suite/test-page).
 
-![Screencast](https://rhoinc.github.io/safety-explorer-suite/img/safety-explorer-suite-screencast.gif)
+![Screencast](https://rhoinc.github.io/safety-explorer-suite/docs/img/safety-explorer-suite-screencast.gif)
 
 ## Documentation
 More information about the Safety Explorer Suite can be found on the [webpage](https://rhoinc.github.io/safety-explorer-suite/) or in the [wiki](https://github.com/RhoInc/safety-explorer-suite/wiki).
