@@ -457,7 +457,7 @@ const settings = {
             ]
         },
         {
-            "renderer_name": "safety-eDISH",
+            "renderer_name": "hep-explorer",
             "filters": [
                 {
                     "value_col": "ARM",
