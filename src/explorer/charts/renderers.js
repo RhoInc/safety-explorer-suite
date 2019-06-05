@@ -63,9 +63,9 @@ const renderers = [
         settings: {}
     },
     {
-        name: 'safety-eDISH',
-        label: 'eDISH',
-        main: 'safetyedish',
+        name: 'hep-explorer',
+        label: 'Hepatotoxicity Explorer',
+        main: 'hepexplorer',
         sub: null,
         css: null,
         data: 'Labs',

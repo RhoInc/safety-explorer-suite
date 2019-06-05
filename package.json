@@ -1,23 +1,23 @@
 {
   "name": "safety-explorer-suite",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "The Safety Explorer Suite provides a framework for rendering a set of charts related to Clinical Trial Safety Monitoring.",
   "module": "./src/index.js",
   "main": "./safetyExplorerSuite.js",
   "author": "Rho, Inc.",
   "license": "MIT",
   "dependencies": {
-    "ae-timelines": "^2.1.0",
-    "aeexplorer": "^3.2.6",
+    "ae-timelines": "^2.1.5",
+    "aeexplorer": "^3.3.5",
     "d3": "~3",
-    "paneled-outlier-explorer": "^1.1.0",
-    "safety-edish": "^0.16.0",
-    "safety-histogram": "^2.2.0",
-    "safety-outlier-explorer": "^2.3.0",
-    "safety-results-over-time": "^2.2.2",
-    "safety-shift-plot": "^2.1.0",
-    "webcharts": "^1.10.0",
-    "webcodebook": "^1.4.2"
+    "hep-explorer": "^1.0.0",
+    "paneled-outlier-explorer": "^1.1.2",
+    "safety-histogram": "^2.3.0",
+    "safety-outlier-explorer": "^2.5.4",
+    "safety-results-over-time": "^2.3.1",
+    "safety-shift-plot": "^2.1.2",
+    "webcharts": "^1.11.5",
+    "webcodebook": "^1.6.1"
   },
   "scripts": {
     "build": "npm audit fix && npm run bundle && npm run format",
@@ -32,7 +32,7 @@
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-preset-env": "^1.7.0",
     "babel-register": "^6.26.0",
-    "prettier": "^1.13.7",
+    "prettier": "^1.17.1",
     "rollup": "^0.66.6",
     "rollup-plugin-babel": "^3.0.7"
   }

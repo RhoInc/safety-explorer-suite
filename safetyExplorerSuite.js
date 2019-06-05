@@ -2,8 +2,8 @@
     typeof exports === 'object' && typeof module !== 'undefined'
         ? (module.exports = factory())
         : typeof define === 'function' && define.amd
-            ? define(factory)
-            : (global.safetyExplorerSuite = factory());
+        ? define(factory)
+        : (global.safetyExplorerSuite = factory());
 })(this, function() {
     'use strict';
 
@@ -976,9 +976,9 @@
             settings: {}
         },
         {
-            name: 'safety-eDISH',
-            label: 'eDISH',
-            main: 'safetyedish',
+            name: 'hep-explorer',
+            label: 'Hepatotoxicity Explorer',
+            main: 'hepexplorer',
             sub: null,
             css: null,
             data: 'Labs',
