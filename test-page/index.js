@@ -1,5 +1,6 @@
 //Generate safety explorer given an array of data files.
 function initSafetyExplorerSuite(dataArray) {
+    d3.selectAll('#container *').remove();
     safetyExplorerSuite
         .createExplorer(
             '#container', // element
@@ -115,12 +116,14 @@ initSafetyExplorerSuite(dataArray);
             const jsURL = version !== 'master'
                 ? baseURL + '@' + version + '/build/safetyExplorerSuite.js'
                 : baseURL + '/build/safetyExplorerSuite.js';
-            console.log('.js path: ' + jsURL);
             const js = document.createElement('script');
-            js.onload = function() {
-                d3.selectAll('#container *').remove();
-                initSafetyExplorerSuite(dataArray);
-            }
+            js.addEventListener('load', () => {
+                console.log('Successfully loaded ' + jsURL + '.');
+                initSafetyExplorerSuite(dataArray)
+            }, false);
+            js.addEventListener('error', () => {
+                console.log('Failed to load ' + jsURL + '.');
+            }, false);
             js.src = jsURL;
             document.head.appendChild(js);
 
@@ -128,8 +131,13 @@ initSafetyExplorerSuite(dataArray);
             const cssURL = version !== 'master'
                 ? baseURL + '@' + version + '/css/safetyExplorerSuite.css'
                 : baseURL + '/css/safetyExplorerSuite.css';
-            console.log('.css path: ' + cssURL);
             const css = document.createElement('link');
+            css.addEventListener('load', () => {
+                console.log('Successfully loaded ' + cssURL + '.');
+            }, false);
+            css.addEventListener('error', () => {
+                console.log('Failed to load ' + cssURL + '.');
+            }, false);
             css.type = 'text/css';
             css.rel = 'stylesheet';
             css.href = cssURL;
