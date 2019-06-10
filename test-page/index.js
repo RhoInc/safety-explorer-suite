@@ -1,14 +1,10 @@
 //Generate safety explorer given an array of data files.
-function initSafetyExplorerSuite(dataArray) {
+function initSafetyExplorerSuite(settings, dataArray) {
     d3.selectAll('#container *').remove();
     safetyExplorerSuite
         .createExplorer(
             '#container', // element
-            {
-                initial_renderer: window && window.location && window.location.hash
-                    ? window.location.hash.substring(1)
-                    : null // allow linking to each renderer
-            } // settings
+            settings // settings
         )
         .init(
             clone(dataArray), // array of data files
@@ -37,7 +33,134 @@ const dataArray = [
     },
 ];
 
-initSafetyExplorerSuite(dataArray);
+//Get safety-explorer-suite version from window hash.
+const version = window.location.hash
+    ? window.location.hash.substring(1)
+    : 'master';
+if (version !== 'master')
+    loadLibrary(version);
+
+//Wait for settings (defined below) to be available.
+const waitForSettings = setInterval(
+    function() {
+        if (settings !== undefined) {
+            clearInterval(waitForSettings);
+            initSafetyExplorerSuite(settings, dataArray);
+        }
+    },
+    1
+);
+
+/*------------------------------------------------------------------------------------------------\
+ * Settings
+\------------------------------------------------------------------------------------------------*/
+
+    const filters = [
+        {value_col: 'SEX', label: 'Sex'},
+        {value_col: 'ARM', label: 'Treatment Group'},
+        {value_col: 'RACE', label: 'Race'},
+        {value_col: 'SITEID', label: 'Site'},
+    ];
+    const settings = {
+        initial_renderer: window && window.location && window.location.hash
+            ? window.location.hash.substring(1)
+            : null, // allow linking to each renderer
+        custom_settings: [
+            {
+                renderer_name: 'aeexplorer',
+                variables: {
+                    filters: [
+                        {
+                            value_col: 'AESER',
+                            label: 'Serious?',
+                            type: 'event',
+                            start: null
+                        },
+                        {
+                            value_col: 'AESEV',
+                            label: 'Severity',
+                            type: 'event',
+                            start: null
+                        },
+                        {
+                            value_col: 'AEREL',
+                            label: 'Relationship',
+                            type: 'event',
+                            start: null
+                        },
+                        {
+                            value_col: 'AEOUT',
+                            label: 'Outcome',
+                            type: 'event',
+                            start: null
+                        },
+                    ].concat(clone(filters)),
+                },
+                defaults: {
+                    placeholderFlag: {
+                        value_col: 'AETERM',
+                        values: [''],
+                    },
+                },
+            },
+            {
+                renderer_name: 'ae-timelines',
+                filters: [
+                    {
+                        value_col: 'AESER',
+                        label: 'Serious?',
+                        type: 'event',
+                        start: null
+                    },
+                    {
+                        value_col: 'AESEV',
+                        label: 'Severity',
+                        type: 'event',
+                        start: null
+                    },
+                    {
+                        value_col: 'AEREL',
+                        label: 'Relationship',
+                        type: 'event',
+                        start: null
+                    },
+                    {
+                        value_col: 'AEOUT',
+                        label: 'Outcome',
+                        type: 'event',
+                        start: null
+                    },
+                ].concat(clone(filters)),
+            },
+            {
+                renderer_name: 'safety-histogram',
+                filters: clone(filters),
+                displayNormalRange: true,
+            },
+            {
+                renderer_name: 'safety-outlier-explorer',
+                filters: clone(filters),
+            },
+            {
+                renderer_name: 'paneled-outlier-explorer',
+                filters: clone(filters),
+            },
+            {
+                renderer_name: 'safety-results-over-time',
+                groups: clone(filters),
+                filters: clone(filters),
+            },
+            {
+                renderer_name: 'safety-shift-plot',
+                filters: clone(filters),
+            },
+            {
+                renderer_name: 'hep-explorer',
+                group_cols: clone(filters),
+                filters: clone(filters),
+            },
+        ],
+    };
 
 /*------------------------------------------------------------------------------------------------\
   This code creates a dropdown of previous versions and open branches of safety-explorer-suite.
@@ -70,7 +193,7 @@ initSafetyExplorerSuite(dataArray);
                 return d;
             })
             .property('selected', function(d) {
-                return d === 'master';
+                return d === version;
             });
     }
     branchRequest.open(
@@ -95,6 +218,9 @@ initSafetyExplorerSuite(dataArray);
             .classed('release', true)
             .text(function(d) {
                 return d;
+            })
+            .property('selected', function(d) {
+                return d === version;
             });
     }
     releaseRequest.open(
@@ -104,45 +230,17 @@ initSafetyExplorerSuite(dataArray);
     releaseRequest.send();
 
     //Add version select functionality.
-    const baseURL = 'https://cdn.jsdelivr.net/gh/RhoInc/safety-explorer-suite';
     d3.select('.version-select__submit')
         .on('click', function() {
             const version = d3.select('.version-select__select')
                 .select('option:checked')
                 .text();
-            console.log('Selected version: ' + version);
-
-            //Load .js file.
-            const jsURL = version !== 'master'
-                ? baseURL + '@' + version + '/build/safetyExplorerSuite.js'
-                : baseURL + '/build/safetyExplorerSuite.js';
-            const js = document.createElement('script');
-            js.addEventListener('load', () => {
-                console.log('Successfully loaded ' + jsURL + '.');
-                initSafetyExplorerSuite(dataArray)
-            }, false);
-            js.addEventListener('error', () => {
-                console.log('Failed to load ' + jsURL + '.');
-            }, false);
-            js.src = jsURL;
-            document.head.appendChild(js);
-
-            //Load .css file.
-            const cssURL = version !== 'master'
-                ? baseURL + '@' + version + '/css/safetyExplorerSuite.css'
-                : baseURL + '/css/safetyExplorerSuite.css';
-            const css = document.createElement('link');
-            css.addEventListener('load', () => {
-                console.log('Successfully loaded ' + cssURL + '.');
-            }, false);
-            css.addEventListener('error', () => {
-                console.log('Failed to load ' + cssURL + '.');
-            }, false);
-            css.type = 'text/css';
-            css.rel = 'stylesheet';
-            css.href = cssURL;
-            document.head.appendChild(css);
+            loadLibrary(version);
         });
+
+/*------------------------------------------------------------------------------------------------\
+ * Other functions
+\------------------------------------------------------------------------------------------------*/
 
     function clone(obj) {
         let copy;
@@ -178,4 +276,52 @@ initSafetyExplorerSuite(dataArray);
         }
 
         throw new Error('Unable to copy [obj]! Its type is not supported.');
+    }
+
+    function loadLibrary(version) {
+        console.log('Selected version: ' + version);
+        const baseURL = 'https://cdn.jsdelivr.net/gh/RhoInc/safety-explorer-suite';
+        const versionURL = version !== 'master'
+            ? baseURL + '@' + version
+            : baseURL;
+
+        //Load branches.
+        const pkgRequest = new XMLHttpRequest();
+        pkgRequest.onload = function() {
+            const pkg = JSON.parse(this.responseText);
+
+            const main = pkg.main.replace(/^\.?\/?/, '');
+
+            //Load .js file.
+            const jsURL = versionURL + '/' + main;
+            const js = document.createElement('script');
+            js.addEventListener('load', function() {
+                console.log('Successfully loaded ' + jsURL + '.');
+                initSafetyExplorerSuite(settings, dataArray)
+            }, false);
+            js.addEventListener('error', function() {
+                console.log('Failed to load ' + jsURL + '.');
+            }, false);
+            js.src = jsURL;
+            document.head.appendChild(js);
+
+            //Load .css file.
+            const cssURL = jsURL.replace('build', 'css').replace(/\.js$/, '.css');
+            const css = document.createElement('link');
+            css.addEventListener('load', function() {
+                console.log('Successfully loaded ' + cssURL + '.');
+            }, false);
+            css.addEventListener('error', function() {
+                console.log('Failed to load ' + cssURL + '.');
+            }, false);
+            css.type = 'text/css';
+            css.rel = 'stylesheet';
+            css.href = cssURL;
+            document.head.appendChild(css);
+        }
+        pkgRequest.open(
+            'get',
+            versionURL + '/package.json'
+        );
+        pkgRequest.send();
     }
