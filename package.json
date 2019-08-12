@@ -1,6 +1,6 @@
 {
   "name": "safety-explorer-suite",
-  "version": "0.8.2",
+  "version": "0.8.3",
   "description": "The Safety Explorer Suite provides a framework for rendering a set of charts related to Clinical Trial Safety Monitoring.",
   "module": "./src/index.js",
   "main": "./safetyExplorerSuite.js",
@@ -12,11 +12,11 @@
     "d3": "~3",
     "hep-explorer": "^1.0.0",
     "paneled-outlier-explorer": "^1.1.2",
-    "safety-histogram": "^2.3.0",
+    "safety-histogram": "^2.4.0",
     "safety-outlier-explorer": "^2.5.4",
     "safety-results-over-time": "^2.3.1",
     "safety-shift-plot": "^2.1.2",
-    "webcharts": "^1.11.5",
+    "webcharts": "^1.11.6",
     "webcodebook": "^1.6.1"
   },
   "scripts": {
@@ -32,7 +32,7 @@
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-preset-env": "^1.7.0",
     "babel-register": "^6.26.0",
-    "prettier": "^1.17.1",
+    "prettier": "^1.18.2",
     "rollup": "^0.66.6",
     "rollup-plugin-babel": "^3.0.7"
   }
