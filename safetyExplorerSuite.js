@@ -1052,26 +1052,31 @@
             renderer.render = function() {
                 if (renderer.sub) {
                     //var subFunction = cat.controls.subFunction.node().value;
-                    var myChart = window[renderer.main][renderer.sub](
+                    explorer.currentChart = window[renderer.main][renderer.sub](
                         explorer.element + ' .chartWrap',
                         renderer.settings
                     );
                 } else {
-                    var myChart = window[renderer.main](
+                    explorer.currentChart = window[renderer.main](
                         explorer.element + ' .chartWrap',
                         renderer.settings
                     );
                 }
+                explorer.currentChart.key = renderer.name;
+                explorer.currentChart.renderer = renderer;
 
                 if (renderer.dataFile) {
-                    myChart.init(
+                    explorer.currentChart.init(
                         renderer.dataFile.raw.map(function(d) {
                             return Object.assign({}, d);
                         })
                     );
                 } else {
-                    myChart.init();
+                    explorer.currentChart.init();
                 }
+
+                //call the chartinit callback
+                explorer.events.onChartinit.call(explorer);
             };
 
             //add destroy method
@@ -1403,16 +1408,19 @@
             settingsLibrary: settingsLibrary,
             events: {
                 onDatatransform: function onDatatransform() {},
-                onChartconfig: function onChartconfig() {}
+                onChartconfig: function onChartconfig() {},
+                onChartinit: function onChartinit() {}
             },
             on: function on(event, callback) {
-                var possible_events = ['datatransform', 'chartconfig'];
+                console.log('making event: ' + event);
+                var possible_events = ['datatransform', 'chartconfig', 'chartinit'];
 
                 if (possible_events.indexOf(event) < 0) return;
 
                 if (callback) {
+                    console.log('saving the event ... ');
                     explorer.events[
-                        'on ' + (event.charAt(0).toUpperCase() + event.slice(1))
+                        'on' + (event.charAt(0).toUpperCase() + event.slice(1))
                     ] = callback;
                 }
             }
