@@ -17,19 +17,19 @@ function initSafetyExplorerSuite(settings, dataArray) {
 const dataArray = [
     {
         type: 'DM', // demographics
-        path: 'https://raw.githubusercontent.com/RhoInc/data-library/master/data/clinical-trials/sdtm/dm.csv',
+        path: 'https://raw.githubusercontent.com/RhoInc/data-library/master/data/clinical-trials/sdtm/cdisc-pilot-01/dm.csv',
     },
     {
         type: 'AE', // adverse events
-        path: 'https://raw.githubusercontent.com/RhoInc/data-library/master/data/clinical-trials/sdtm/ae.csv',
+        path: 'https://raw.githubusercontent.com/RhoInc/data-library/master/data/clinical-trials/sdtm/cdisc-pilot-01/ae.csv'
     },
     {
         type: 'BDS', // basic data structure: labs
-        path: 'https://raw.githubusercontent.com/RhoInc/data-library/master/data/clinical-trials/sdtm/lb.csv',
+        path: 'https://raw.githubusercontent.com/RhoInc/data-library/master/data/clinical-trials/sdtm/cdisc-pilot-01/lb.csv',
     },
     {
         type: 'BDS', // basic data structure: vital signs
-        path: 'https://raw.githubusercontent.com/RhoInc/data-library/master/data/clinical-trials/sdtm/vs.csv',
+        path: 'https://raw.githubusercontent.com/RhoInc/data-library/master/data/clinical-trials/sdtm/cdisc-pilot-01/vs.csv',
     },
 ];
 
@@ -158,6 +158,12 @@ const waitForSettings = setInterval(
                 renderer_name: 'hep-explorer',
                 group_cols: clone(filters),
                 filters: clone(filters),
+                measure_values:{
+                    'ALT':'Alanine Aminotransferase',
+                    'AST':'Aspartate Aminotransferase',
+                    'TB':'Bilirubin',
+                    'ALP':'Alkaline Phosphatase'
+                },
             },
         ],
     };
