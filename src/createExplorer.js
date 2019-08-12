@@ -25,13 +25,11 @@ export function createExplorer(element = 'body', config) {
             onChartinit() {}
         },
         on: (event, callback) => {
-            console.log('making event: ' + event);
             const possible_events = ['datatransform', 'chartconfig', 'chartinit'];
 
             if (possible_events.indexOf(event) < 0) return;
 
             if (callback) {
-                console.log('saving the event ... ');
                 explorer.events[`on${event.charAt(0).toUpperCase() + event.slice(1)}`] = callback;
             }
         }
