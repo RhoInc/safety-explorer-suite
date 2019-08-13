@@ -336,27 +336,25 @@
             </div>
           </div>
           <h2  class="anchor" id="usage">Usage</h2>
-          <p> There are 4 primary ways to use the Safety Explorer Suite: </p>
-
-          <h4>1. Create a series of stand-alone web pages, and link them together.</h4>
-          <p>
-            The Safety Explorer Suite charts can be used in modern web browers (IE9+, Chrome, Firefox, etc.), either by including the needed requirements in the global namespace or by using one of the workflows described <a target = '_blank' href="https://github.com/RhoInc/Webcharts/wiki#how-to-use">here</a>.
-            See the examples for the individual <a href = "#libraries">libraries</a> for more details.
-          </p>
-
-          <h4>2. Create a single webpage for mutiple charts using the safety-explorer-suite.</h4>
-          <p>
-            The safety-explorer-suite repository provides a simple framework for rendering multiple charts on a single page.
-            See <a target = '_blank' href="../test-page/">this example</a> and the <a target = '_blank' href="https://github.com/RhoInc/safety-explorer-suite/wiki">repository's wiki</a> for details.
-          </p>
-
-          <h4>3. Use the safetyGraphics library to initiative a Shiny application with multiple charts.</h4>
-          <p>
-            Each chart has a stand-alone wrapper function in the safetyexploreR package that allows for simple creation of standalone charts in R.
-            See the <a target = '_blank' href="https://github.com/SafetyGraphics/safetyGraphics/wiki/Vignette:-Shiny-User-Guide">vignette</a> for details.
-          </p>
-
-       </div
+          <p> There are several ways to use the Safety Explorer Suite: </p>
+          <ul>
+            <li>
+              <h4>Create a series of stand-alone web pages, and link them together as desired.</h4>
+              <p>The Safety Explorer Suite charts can be used in modern web browers (IE9+, Chrome, Firefox, etc.), either by including the needed requirements in the global namespace or by using one of the workflows described <a target = '_blank' href="https://github.com/RhoInc/Webcharts/wiki#how-to-use">here</a>. See the examples for the individual <a href = "#libraries">libraries</a> for more details.</p>
+            </li>
+            <li>
+              <h4>Create a single webpage for mutiple charts using the safety-explorer-suite.</h4>
+              <p>The safety-explorer-suite repository provides a simple framework for rendering multiple charts on a single page. See <a target = '_blank' href="../test-page/">this example</a> and the <a target = '_blank' href="https://github.com/RhoInc/safety-explorer-suite/wiki">repository's wiki</a> for details.</p>
+            </li>
+            <li>
+              <h4>Use the safetygraphics library to initiative a Shiny application with multiple charts.</h4>
+              <p>The safetygraphics library allows users to create charts via a simple shiny app, and export stand-alone webpages using the htmlwidgets framework. See the <a target = '_blank' href="https://github.com/SafetyGraphics/safetyGraphics/wiki/Vignette:-Shiny-User-Guide">vignette</a> for details.</p>
+            </li>
+          </ul>
+          <h3>Dependencies</h3>
+          <p> The interactive graphics in the Safety Explorer Suite are built using <a href="https://d3js.org/">d3.js</a> (version 3) and <a href="https://github.com/RhoInc/Webcharts">webcharts</a>. There are no other required dependencies. The charts work best in a recent version of a modern web browser like Chrome, Firefox or Safari and are not optimized for mobile.</p>
+          <p> The safetygraphics R package requires usage or R version 3.5 or later and works best using <a href="https://www.rstudio.com">RStudio</a>. The package has several dependencies including <a href="https://cran.r-project.org/web/packages/htmlwidgets/index.html">htmlwidgets</a>, <a href="https://cran.r-project.org/web/packages/shiny/index.html">shiny</a>, and several tidyverse pacakges. A <a href="https://cran.r-project.org/web/packages/safetyGraphics/index.html"> full list of required packages</a> is found on CRAN.
+       </div>
       </div>
     </div>
     </body>
