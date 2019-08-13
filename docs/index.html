@@ -32,7 +32,9 @@
               <li><a href="#usage">Usage</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="https://github.com/RhoInc/">Github</a></li>
+
+
+              <li> <a href="https://www.github.com/RhoInc/safety-explorer-suite" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="fa fa-github"></i></a></li>
               <li><a href="http://www.rhoworld.com">Rho</a></li>
             </ul>
           </div><!--/.nav-collapse -->
@@ -73,9 +75,15 @@
               </td>
             </tr>
             <tr>
-              <td><strong>R/Shiny Framework</strong></td>
-              <td>A single page with all 9 interactive graphics in the R/Shiny framework. Created using the runSafetyApp() function in the safetyexploreR framework. </td>
-              <td class="links"><a target = '_blank' href="https://becca-krouse.shinyapps.io/safetyGraphicsApp/"><i class="fa fa-bar-chart fa-lg"></i>Stand-alone Example</a></td>
+              <td><strong>R Packages</strong></td>
+              <td>The safetygraphics R package can be used to easily generate these interactive data sets for any data set using R.</td>
+              <td class="links"><a target = '_blank' href="https://safetygraphics.github.io/">
+                <i class="fa fa-info-circle fa-lg"></i>safetygraphics Homepage</a>
+                <br>
+                <a target = '_blank' href="https://becca-krouse.shinyapps.io/safetyGraphicsApp/"><i class="fa fa-bar-chart fa-lg"></i>safetygraphics Example</a>
+                <br>
+                <a target = '_blank' href="https://github.com/rhoinc/safetyexplorer"><i class="fa fa-github fa-lg"></i>safetyexploreR </a>(Archived)
+            </td>
             </tr>
             <!--tr>
               <td><strong>Custom Configuration</strong></td>
@@ -242,7 +250,7 @@
 
             <!-- safety-eDISH -->
             <div class="media-block">
-              <img src="./img/safety-eDISH.png" width="200" height="150" alt="AE Explorer">
+              <img src="./img/safety-eDISH.PNG" width="200" height="150" alt="AE Explorer">
               <div class="text-wrap">
                 <p>
                   <span class="media-title">Safety eDISH</span>
@@ -264,7 +272,7 @@
 
             <!-- web-codebook -->
             <div class="media-block">
-              <img src="./img/web-codebook.png" width="200" height="150" alt="AE Explorer">
+              <img src="./img/web-codebook.PNG" width="200" height="150" alt="AE Explorer">
               <div class="text-wrap">
                 <p>
                   <span class="media-title">Web Codebook</span>
@@ -299,11 +307,11 @@
                   <a class="doc-link info-circle" target = '_blank' href="https://www.npmjs.com/package/safety-explorer-suite"><i class="fa fa-file-o fa-lg"></i>npm</a>
 
                 </p>
-                <!--p>
+                <p>
                   <span class="italic">Examples: </span>
                   <a class="doc-link bar-ch" target = '_blank' href="../test-page"><i class="fa fa-bar-chart fa-lg"></i>Default Settings</a>
                   <a class="doc-link bar-ch" target = '_blank' href="../test-page/queries"><i class="fa fa-bar-chart fa-lg"></i>Custom Settings</a>
-                </p-->
+                </p>
               </div>
             </div>
 
@@ -312,19 +320,18 @@
               <img src="./img/safetyexploreR.png" width="200" height="150" alt="AE Explorer">
               <div class="text-wrap">
                 <p>
-                  <span class="media-title">safetyexploreR - R package</span>
+                  <span class="media-title">safetygraphics - R package</span>
                 </p>
                 <p>R implementation of the interactive safety explorer graphics using htmlwidgets and shiny</p>
                 <p>
                   <span class="italic">Code: </span>
                   <a class="doc-link github" target = '_blank' href="https://github.com/SafetyGraphics/safetyGraphics"><i class="fa fa-github fa-lg"></i>Repository</a>
-                  <a class="doc-link info-circle" target = '_blank' href="https://github.com/SafetyGraphics/safetyGraphics/wiki"><i class="fa fa-info-circle fa-lg"></i>Documentation</a>
+                  <a class="doc-link info-circle" target = '_blank' href="https://safetygraphics.github.io"><i class="fa fa-info-circle fa-lg"></i>Documentation</a>
                 </p>
-                <!--p>
-                  <span class="italic">Examples: </span>
-                  <a class="doc-link bar-ch" target = '_blank' href="https://becca-krouse.shinyapps.io/aetableapp/"><i class="fa fa-bar-chart fa-lg"></i>AE Table (Shiny)</a>
-                  <a class="doc-link bar-ch" target = '_blank' href="https://becca-krouse.shinyapps.io/safetyapp/"><i class="fa fa-bar-chart fa-lg"></i>Safety Explorer Suite (Shiny)</a>
-                </p-->
+                <p>
+                  <span class="italic">Example:</span>
+                  <a class="doc-link bar-ch" target = '_blank' href="https://becca-krouse.shinyapps.io/safetyGraphicsApp/"><i class="fa fa-bar-chart fa-lg"></i>Shiny App</a>
+                </p>
               </div>
             </div>
           </div>
@@ -345,7 +352,7 @@
 
           <h4>3. Use the safetyGraphics library to initiative a Shiny application with multiple charts.</h4>
           <p>
-            Each chart has a stand-alone wrapper function in the safetyexploreR package that allows for simple creation of standalone charts in R. 
+            Each chart has a stand-alone wrapper function in the safetyexploreR package that allows for simple creation of standalone charts in R.
             See the <a target = '_blank' href="https://github.com/SafetyGraphics/safetyGraphics/wiki/Vignette:-Shiny-User-Guide">vignette</a> for details.
           </p>
 
