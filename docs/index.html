@@ -43,12 +43,12 @@
       <div class="container">
         <div class="main">
           <h2 class="anchor" id="overview">Overview</h2>
-          <p>The Safety Explorer Suite consists 9 custom interactive graphics and 2 helper libraries. The 9 graphics libraries improve upon traditional static reports by adding simple user interface elements, including filters, dynamic searches, toggles for display options, and linked charts and listings. This page includes links to <a href="#examples">examples</a>, the <a href="#libraries">9 libraries</a> and detailed <a href="#usage"> usage instructions</a> providing an overview of how to get started with the tools.</p>
+          <p>The Safety Explorer Suite consists 9 custom interactive graphics designed to help users evalutate safety signals in clinical trials. The 9 graphics libraries improve upon traditional static reports by adding simple user interface elements, including filters, dynamic searches, toggles for display options, and linked charts and listings. This page includes links to <a href="#examples">examples</a>, the <a href="#libraries">9 libraries</a>, <a href="#publications">publications</a> and detailed <a href="#usage"> usage instructions</a> providing an overview of how to get started with the tools.</p>
 
           <h2 class="anchor" id="examples">Examples</h2>
           <p>The typical implementation of the Safety Explorer Suite looks like this:</p>
-          <img src="./img/safety-explorer-suite-screencast.gif">
-          <p> Links to four examples showing all 9 interactive graphics are provided in the table below. Links to individual graphics are also provided in the <a href="#libraries">libraries</a> section below.</p>
+          <img style='border:3px solid black; padding:.5em; margin-bottom:1em;' src="./img/safety-explorer-suite-screencast.gif">
+          <p> Links to examples showing the 9 interactive graphics are provided in the table below. Links to individual graphics are provided <a href="#libraries">below</a>.</p>
           <table class="examples">
             <!--tr>
               <th>Examples</th>
@@ -92,7 +92,9 @@
             </tr-->
 
           </table>
+
           <h2  class="anchor" id="libraries">Libraries</h2>
+          <p>The safety explorer suite is built using a flexible modular framework. Each chart is maintained in a separate repository, as are the supporting R and javascript frameworks.  All repositories are versioned independently. Links to code and examples for all relevant repositories are listed below. </p>
           <!-- Adverse Event Explorer -->
           <div class="media-list">
             <div class="media-block">
@@ -253,13 +255,13 @@
               <img src="./img/safety-eDISH.PNG" width="200" height="150" alt="AE Explorer">
               <div class="text-wrap">
                 <p>
-                  <span class="media-title">Safety eDISH</span>
+                  <span class="media-title">Hepatotoxicity Explorer</span>
                 </p>
-                <p>Interactive graphic for Evaluation of Drug-Induced Serious Hepatotoxicity (eDISH)</p>
+                <p>Interactive graphic inspired by the Evaluation of Drug-Induced Serious Hepatotoxicity (eDISH) framework</p>
                 <p>
                   <span class="italic">Code: </span>
-                  <a class="doc-link github" target = '_blank' href="https://github.com/ASA-DIA-InteractiveSafetyGraphics/safety-eDISH"><i class="fa fa-github fa-lg"></i>Repository</a>
-                  <a class="doc-link info-circle" target = '_blank' href="https://github.com/ASA-DIA-InteractiveSafetyGraphics/safety-eDISH/wiki"><i class="fa fa-info-circle fa-lg"></i>Documentation</a>
+                  <a class="doc-link github" target = '_blank' href="https://github.com/safetyGraphics/hep-explorer"><i class="fa fa-github fa-lg"></i>Repository</a>
+                  <a class="doc-link info-circle" target = '_blank' href="https://github.com/safetyGraphics/hep-explorer/wiki"><i class="fa fa-info-circle fa-lg"></i>Documentation</a>
                   <a class="doc-link info-circle" target = '_blank' href="https://www.npmjs.com/package/safety-edish"><i class="fa fa-file-o fa-lg"></i>npm</a>
                 </p>
                 <p>
@@ -335,6 +337,7 @@
               </div>
             </div>
           </div>
+
           <h2  class="anchor" id="usage">Usage</h2>
           <p> There are several ways to use the Safety Explorer Suite: </p>
           <ul>
@@ -354,6 +357,39 @@
           <h3>Dependencies</h3>
           <p> The interactive graphics in the Safety Explorer Suite are built using <a href="https://d3js.org/">d3.js</a> (version 3) and <a href="https://github.com/RhoInc/Webcharts">webcharts</a>. There are no other required dependencies. The charts work best in a recent version of a modern web browser like Chrome, Firefox or Safari and are not optimized for mobile.</p>
           <p> The safetygraphics R package requires usage or R version 3.5 or later and works best using <a href="https://www.rstudio.com">RStudio</a>. The package has several dependencies including <a href="https://cran.r-project.org/web/packages/htmlwidgets/index.html">htmlwidgets</a>, <a href="https://cran.r-project.org/web/packages/shiny/index.html">shiny</a>, and several tidyverse pacakges. A <a href="https://cran.r-project.org/web/packages/safetyGraphics/index.html"> full list of required packages</a> is found on CRAN.
+
+            <h2  class="anchor" id="publications">Publications</h2>
+            <p>We've written and talked about the Safety Explorer Suite quite a bit. A list of papers and presentations is below. </p>
+            <ul class="pubs">
+              <li class="pub"><img src="https://rhoinc.github.io/publication-library/img/TIRS2018_Wildfire.png"><div class="pub-wrap"><p class="title">The Safety Explorer Suite: Interactive Safety Monitoring for Clinical Trials</p><p class="reference">Therapeutic Innovation &amp; Regulatory Science. Published 2018</p><p class="author">Jeremy Wildfire, Ryan Bailey, et al.</p><ul class="tags"><li><a href="https://journals.sagepub.com/doi/abs/10.1177/2168479018754846" class="paper">Paper</a></li><li><a href="https://github.com/RhoInc/safety-explorer-suite" class="github">github</a></li></ul></div></li>
+
+              <li class="pub"><img src="https://rhoinc.github.io/publication-library/img/RStudioConf2019_Wildfire.png"><div class="pub-wrap"><p class="title">Modernizing the Clinical Trial Analysis Pipeline with R and JavaScript</p><p class="reference">RStudio::Conf. January 2019 in Austin, Tx</p><p class="author">Jeremy Wildfire, Rebecca Krouse, et al.</p><ul class="tags"><li><a href="https://github.com/RhoInc/RStudioConf2019-ePoster/blob/master/RstudioPoster_presented.pptx" class="slides">Slides</a></li><li><a href="https://github.com/RhoInc/RStudioConf2019-ePoster" class="github">github</a></li></ul></div></li>
+
+            <li class="pub">
+              <img src="https://rhoinc.github.io/publication-library/img/RStudioConf2019_Wildfire.png">
+              <div class="pub-wrap">
+                <p class="title">Interactive Monitoring of Hepatotoxicity</p>
+                <p class="reference">PhUSE Connect. February 2019 in Baltimore, Md</p>
+                <p class="author">Susan Duke, Jeremy Wildfire, Jim Buchanan</p>
+                <ul class="tags">
+                  <li>
+                    <a href="https://rhoinc.github.io/publication-library/pubs/PhUSE2019_Duke.pdf" class="paper">Paper</a>
+                  </li>
+                  <li>
+                    <a href="https://rhoinc.github.io/publication-library/pubs/PhUSE2019_Duke_slides.pdf" class="slides">Slides</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/safetygraphics/safetygraphics" class="github">github</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="pub"><img src="https://rhoinc.github.io/publication-library/img/PhUSE2018_Wildfire.png"><div class="pub-wrap"><p class="title">Web Codebooks - Interactive Data Summaries for Clinical Trial Data</p><p class="reference">PhUSE Connect. June 2018 in Raleigh NC</p><p class="author">Jeremy Wildfire, Ryan Bailey, Spencer Childress, Rebecca Krouse</p><ul class="tags"><li><a href="https://rhoinc.github.io/publication-library/pubs/PhUSE2018_Wildfire.pdf" class="paper">Paper</a></li><li><a href="https://rhoinc.github.io/publication-library/pubs/PhUSE2018_Wildfire_slides.pdf" class="slides">Slides</a></li><li><a href="https://github.com/RhoInc/web-codebook" class="github">github</a></li></ul></div></li>
+            <li class="pub"><img src="https://rhoinc.github.io/publication-library/img/BITW2015_Bailey.png"><div class="pub-wrap"><p class="title">Monitoring Adverse Events using an Interactive Web-Based Tool</p><p class="reference">Bio-IT World Conference. April 2015 in Boston, MA</p><p class="author">Ryan Bailey, Jeremy Wildfire, Nathan Bryant, Shane Rosanbalm</p><ul class="tags"><li><a href="https://rhoinc.github.io/publication-library/pubs/BioIT2015_AE_Explorer_Bailey.pdf" class="poster">Poster</a></li><li><a href="https://github.com/RhoInc/aeexplorer" class="github">github</a></li></ul></div></li>
+            <li class="pub"><img src="https://rhoinc.github.io/publication-library/img/SCT2014_Bailey.png"><div class="pub-wrap"><p class="title">Monitoring Adverse Events using an Interactive Web-Based Tool</p><p class="reference">Society for Clinical Trials Annual Meeting. May 2014 in Philadelphia, PA</p><p class="author">Ryan Bailey, Jeremy Wildfire, Emily Wilson, Nathan Bryant, Brandy Lind, James Rochon</p><ul class="tags"><li><a href="https://rhoinc.github.io/publication-library/pubs/SCT2014_Bailey.pptx" class="slides">Slides</a></li><li><a href="https://rhoinc.github.io/publication-library/pubs/SCT2014_Bailey.pdf" class="abstract">Abstract</a></li><li><a href="https://github.com/RhoInc/aeexplorer" class="github">github</a></li></ul></div></li>
+  <li class="pub"><img src="https://rhoinc.github.io/publication-library//img/JORS2016_Bryant.png"><div class="pub-wrap"><p class="title">Webcharts – A Web-based Charting Library for Custom Interactive Data Visualization</p><p class="reference">Journal of Open Research Software, 2016</p><p class="author">Nathan Bryant, Jeremy Wildfire</p><ul class="tags"><li><a href="http://openresearchsoftware.metajnl.com/articles/10.5334/jors.127/" class="paper">Paper</a></li><li><a href="https://github.com/RhoInc/webcharts" class="github">github</a></li></ul></div></li>
+          </ul>
+
        </div>
       </div>
     </div>
