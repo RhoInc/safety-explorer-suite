@@ -96,7 +96,8 @@ const dataArray = [
           explorer.participantSelected = d3.event.data
           d3.select("#pt").html("Participant ID "+ d3.event.data+" currently selected. <span id='clear' style='color:blue; cursor:pointer'>Clear</span>")
           d3.select("span#clear").on("click",function(){
-            d3.select("#pt").text("Select a participant to see thier details when you change charts.")
+            d3.select("#pt").text("Select a participant to see their details when you change charts.")
+            explorer.participantSelected = null
           })
         }
       })
@@ -120,7 +121,7 @@ const dataArray = [
             return d.key == explorer.participantSelected
           })
         }
-        
+
         ptMark.node().dispatchEvent(new Event('click'))
       }
     })
