@@ -21,15 +21,16 @@ export function createExplorer(element = 'body', config) {
         settingsLibrary,
         events: {
             onDatatransform() {},
-            onChartconfig() {}
+            onChartconfig() {},
+            onChartinit() {}
         },
         on: (event, callback) => {
-            const possible_events = ['datatransform', 'chartconfig'];
+            const possible_events = ['datatransform', 'chartconfig', 'chartinit'];
 
             if (possible_events.indexOf(event) < 0) return;
 
             if (callback) {
-                explorer.events[`on ${event.charAt(0).toUpperCase() + event.slice(1)}`] = callback;
+                explorer.events[`on${event.charAt(0).toUpperCase() + event.slice(1)}`] = callback;
             }
         }
     };

@@ -24,22 +24,27 @@ export function init(explorer) {
         renderer.render = function() {
             if (renderer.sub) {
                 //var subFunction = cat.controls.subFunction.node().value;
-                var myChart = window[renderer.main][renderer.sub](
+                explorer.currentChart = window[renderer.main][renderer.sub](
                     explorer.element + ' .chartWrap',
                     renderer.settings
                 );
             } else {
-                var myChart = window[renderer.main](
+                explorer.currentChart = window[renderer.main](
                     explorer.element + ' .chartWrap',
                     renderer.settings
                 );
             }
+            explorer.currentChart.key = renderer.name;
+            explorer.currentChart.renderer = renderer;
 
             if (renderer.dataFile) {
-                myChart.init(renderer.dataFile.raw.map(d => Object.assign({}, d)));
+                explorer.currentChart.init(renderer.dataFile.raw.map(d => Object.assign({}, d)));
             } else {
-                myChart.init();
+                explorer.currentChart.init();
             }
+
+            //call the chartinit callback
+            explorer.events.onChartinit.call(explorer);
         };
 
         //add destroy method
