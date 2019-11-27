@@ -457,6 +457,31 @@ const settings = {
             ]
         },
         {
+            "renderer_name": "safety-delta-delta",
+            "filters": [
+                {
+                    "value_col": "ARM",
+                    "label": "Arm"
+                },
+                {
+                    "value_col": "SITEID",
+                    "label": "Site ID"
+                },
+                {
+                    "value_col": "SEX",
+                    "label": "Sex"
+                },
+                {
+                    "value_col": "RACE",
+                    "label": "Race"
+                },
+                {
+                    "value_col": "QUERYFL",
+                    "label": "Open Query?"
+                }
+            ]
+        },
+        {
             "renderer_name": "hep-explorer",
             "filters": [
                 {

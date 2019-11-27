@@ -63,6 +63,15 @@ const renderers = [
         settings: {}
     },
     {
+        name: 'safety-delta-delta',
+        label: 'Delta-Delta',
+        main: 'safetyDeltaDelta',
+        sub: null,
+        css: null,
+        data: 'Labs',
+        settings: {}
+    },
+    {
         name: 'hep-explorer',
         label: 'Hepatotoxicity Explorer',
         main: 'hepexplorer',
