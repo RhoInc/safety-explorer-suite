@@ -976,6 +976,15 @@
             settings: {}
         },
         {
+            name: 'safety-delta-delta',
+            label: 'Delta-Delta',
+            main: 'safetyDeltaDelta',
+            sub: null,
+            css: null,
+            data: 'Labs',
+            settings: {}
+        },
+        {
             name: 'hep-explorer',
             label: 'Hepatotoxicity Explorer',
             main: 'hepexplorer',
@@ -1412,13 +1421,11 @@
                 onChartinit: function onChartinit() {}
             },
             on: function on(event, callback) {
-                console.log('making event: ' + event);
                 var possible_events = ['datatransform', 'chartconfig', 'chartinit'];
 
                 if (possible_events.indexOf(event) < 0) return;
 
                 if (callback) {
-                    console.log('saving the event ... ');
                     explorer.events[
                         'on' + (event.charAt(0).toUpperCase() + event.slice(1))
                     ] = callback;
