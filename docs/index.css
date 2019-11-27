@@ -19,6 +19,9 @@ i{
 td.links, th.links{
   width:200px
 }
+table.examples{
+  margin-bottom:1em;
+}
 
 table.examples td, table.examples th{
   border:1px solid #ccc;
@@ -126,4 +129,83 @@ section.media-tiles{
 }
 .media-tile:hover .text-wrap p+p{
 	display: block;
+}
+
+/* Publication list */
+ul.pubs{
+	display: block;
+	padding:0;
+}
+
+ul.pubs li.pub{
+	display:block;
+	list-style: none;
+	min-height:133px;
+}
+
+ul.pubs li.pub img{
+	height:100px;
+	width:133px;
+	float:left;
+	vertical-align:top;
+	padding:0.5em;
+	margin-right:7px;
+
+}
+
+ul.pubs li.pub .pub-wrap{
+  padding:0.5em;
+  margin-left:140px;
+}
+
+ul.pubs li.pub .pub-wrap p{
+ padding-bottom:0.5em;
+ margin:0;
+}
+
+ul.pubs li.pub .pub-wrap p.title{
+ font-weight: bold;
+}
+
+ul.pubs li.pub .pub-wrap ul.tags{
+	list-style: none;
+  padding:0;
+}
+
+ul.pubs li.pub .pub-wrap ul.tags li{
+	display:inline-block;
+	margin-right:1.5em;
+}
+
+ul.pubs li.pub .pub-wrap ul.tags li a{
+	text-decoration: none;
+}
+
+ul.pubs li.pub .pub-wrap ul.tags li a::before{
+	font-family: Fontawesome;
+	padding-right: .5em;
+}
+
+ul.pubs li.pub .pub-wrap ul.tags li a.slides::before{
+	content: "\f108";
+}
+
+ul.pubs li.pub .pub-wrap ul.tags li a.poster::before{
+	content: "\f022";
+}
+
+ul.pubs li.pub .pub-wrap ul.tags li a.related.tool::before{
+	content: "\f0a4";
+}
+
+ul.pubs li.pub .pub-wrap ul.tags li a.paper::before{
+	content: "\f0f6";
+}
+
+ul.pubs li.pub .pub-wrap ul.tags li a.abstract::before{
+	content: "\f016";
+}
+
+ul.pubs li.pub .pub-wrap ul.tags li a.github::before{
+	content: "\f09b";
 }
