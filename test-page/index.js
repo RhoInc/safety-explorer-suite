@@ -155,6 +155,11 @@ const waitForSettings = setInterval(
                 filters: clone(filters),
             },
             {
+                renderer_name: 'safety-delta-delta',
+                filters: clone(filters),
+                visits:{comparison:["WEEK 26"],baseline:[]}
+            },
+            {
                 renderer_name: 'hep-explorer',
                 group_cols: clone(filters),
                 filters: clone(filters),
