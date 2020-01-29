@@ -4,12 +4,12 @@ import { loadSettings } from './loadSettings';
 import mergeData from './mergeData';
 
 export function init(data, loadcsv = false, sdtm = false) {
-    if (loadcsv) loadFiles(this, data, sdtm);
-    // load the csvs if requested
+    // Load the .csv files if requested.
+    if (loadcsv)
+        loadFiles(this, data, sdtm);
+    // Otherwise initialize the renderer.
     else {
-        //otherwise initialize the charts
         this.data = data;
-
         checkDataSpecification.call(this);
 
         //Merge SDTM data.
