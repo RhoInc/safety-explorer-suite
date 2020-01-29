@@ -5,7 +5,7 @@ const renderers = [
         main: 'aeTable',
         sub: 'createChart',
         css: 'css/aeTable.css',
-        data: 'AEs',
+        spec: 'adverse-events',
         settings: {}
     },
     {
@@ -14,7 +14,7 @@ const renderers = [
         main: 'aeTimelines',
         sub: null,
         css: null,
-        data: 'AEs',
+        spec: 'adverse-events',
         settings: {}
     },
     {
@@ -23,7 +23,7 @@ const renderers = [
         main: 'safetyHistogram',
         sub: null,
         css: null,
-        data: 'Labs',
+        spec: 'medical-signs',
         settings: {}
     },
     {
@@ -32,7 +32,7 @@ const renderers = [
         main: 'safetyOutlierExplorer',
         sub: null,
         css: null,
-        data: 'Labs',
+        spec: 'medical-signs',
         settings: {}
     },
     {
@@ -41,7 +41,7 @@ const renderers = [
         main: 'paneledOutlierExplorer',
         sub: null,
         css: null,
-        data: 'Labs',
+        spec: 'medical-signs',
         settings: {}
     },
     {
@@ -50,7 +50,7 @@ const renderers = [
         main: 'safetyResultsOverTime',
         sub: null,
         css: null,
-        data: 'Labs',
+        spec: 'medical-signs',
         settings: {}
     },
     {
@@ -59,7 +59,7 @@ const renderers = [
         main: 'safetyShiftPlot',
         sub: null,
         css: null,
-        data: 'Labs',
+        spec: 'medical-signs',
         settings: {}
     },
     {
@@ -68,7 +68,7 @@ const renderers = [
         main: 'safetyDeltaDelta',
         sub: null,
         css: null,
-        data: 'Labs',
+        spec: 'medical-signs',
         settings: {}
     },
     {
@@ -77,7 +77,7 @@ const renderers = [
         main: 'hepexplorer',
         sub: null,
         css: null,
-        data: 'Labs',
+        spec: 'medical-signs',
         settings: {}
     },
     {
@@ -86,7 +86,7 @@ const renderers = [
         main: 'webcodebook',
         sub: 'createExplorer',
         css: 'css/webcodebook.css',
-        data: null,
+        spec: null,
         settings: {
             labelColumn: 'type',
             ignoredColumns: ['raw', 'fileFound', 'key', 'domain'],

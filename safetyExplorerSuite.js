@@ -140,6 +140,16 @@
                       : typeof obj;
               };
 
+    var toConsumableArray = function(arr) {
+        if (Array.isArray(arr)) {
+            for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
+
+            return arr2;
+        } else {
+            return Array.from(arr);
+        }
+    };
+
     function clone(obj) {
         var copy = void 0;
 
@@ -178,8 +188,8 @@
     //Simple convienence function to load multiple files in parallel.
     // input files is an array of objects structured as follows:
     // [
-    // {path:'myAEs.csv', type:"AE"},
-    // {path:'myLabs.csv', type:"Labs"}
+    // {path:'myAEs.csv', spec:"AE"},
+    // {path:'myLabs.csv', spec:"BDS"}
     //]
     //
 
@@ -192,6 +202,866 @@
                     explorer.init(dataFiles, false, sdtm);
                 }
             });
+        });
+    }
+
+    var ae = {
+        spec: 'ae',
+        variables: [
+            {
+                name: 'AEACN',
+                label: 'Action Taken with Study Treatment',
+                type: 'string'
+            },
+            {
+                name: 'AEACNOTH',
+                label: 'Other Action Taken',
+                type: 'string'
+            },
+            {
+                name: 'AEBODSYS',
+                label: 'Body System or Organ Class',
+                type: 'string'
+            },
+            {
+                name: 'AECAT',
+                label: 'Category for Adverse Event',
+                type: 'string'
+            },
+            {
+                name: 'AECONTRT',
+                label: 'Concomitant or Additional Trtmnt Given',
+                type: 'string'
+            },
+            {
+                name: 'AEDECOD',
+                label: 'Dictionary-Derived Term',
+                type: 'string'
+            },
+            {
+                name: 'AEDUR',
+                label: 'Duration of Adverse Event ',
+                type: 'string'
+            },
+            {
+                name: 'AEENDTC ',
+                label: 'End Date/Time of Adverse Event',
+                type: 'string'
+            },
+            {
+                name: 'AEENDY',
+                label: 'Study Day of End of Adverse Event',
+                type: 'number'
+            },
+            {
+                name: 'AEENRF',
+                label: 'End Relative to Reference Period',
+                type: 'string'
+            },
+            {
+                name: 'AEGRPID',
+                label: 'Group ID',
+                type: 'string'
+            },
+            {
+                name: 'AELOC',
+                label: 'Location of the Reaction',
+                type: 'string'
+            },
+            {
+                name: 'AEMODIFY',
+                label: 'Modified Reported Term',
+                type: 'string'
+            },
+            {
+                name: 'AEOCCUR',
+                label: 'Adverse Event Occurrence',
+                type: 'string'
+            },
+            {
+                name: 'AEOUT',
+                label: 'Outcome of Adverse Event',
+                type: 'string'
+            },
+            {
+                name: 'AEPATT',
+                label: 'Pattern of Adverse Event',
+                type: 'string'
+            },
+            {
+                name: 'AEREFID',
+                label: 'Reference ID',
+                type: 'string'
+            },
+            {
+                name: 'AEREL',
+                label: 'Causality',
+                type: 'string'
+            },
+            {
+                name: 'AERELNST',
+                label: 'Relationship to Non-Study Treatment',
+                type: 'string'
+            },
+            {
+                name: 'AESCAN',
+                label: 'Involves Cancer',
+                type: 'string'
+            },
+            {
+                name: 'AESCAT',
+                label: 'Subcategory for Adverse Event',
+                type: 'string'
+            },
+            {
+                name: 'AESCONG',
+                label: 'Congenital Anomaly or Birth Defect',
+                type: 'string'
+            },
+            {
+                name: 'AESDISAB',
+                label: 'Persist or Signif Disability/Incapacity',
+                type: 'string'
+            },
+            {
+                name: 'AESDTH',
+                label: 'Results in Death',
+                type: 'string'
+            },
+            {
+                name: 'AESEQ',
+                label: 'Sequence Number',
+                type: 'number'
+            },
+            {
+                name: 'AESER',
+                label: 'Serious Event',
+                type: 'string'
+            },
+            {
+                name: 'AESEV',
+                label: 'Severity/Intensity',
+                type: 'string'
+            },
+            {
+                name: 'AESHOSP',
+                label: 'Requires or Prolongs Hospitalization',
+                type: 'string'
+            },
+            {
+                name: 'AESLIFE',
+                label: 'Is Life Threatening',
+                type: 'string'
+            },
+            {
+                name: 'AESMIE',
+                label: 'Other Medically Important Serious Event',
+                type: 'string'
+            },
+            {
+                name: 'AESOD',
+                label: 'Occurred with Overdose',
+                type: 'string'
+            },
+            {
+                name: 'AESPID',
+                label: 'Sponsor-Defined Identifier',
+                type: 'string'
+            },
+            {
+                name: 'AESTDTC',
+                label: 'Start Date/Time of Adverse Event',
+                type: 'string'
+            },
+            {
+                name: 'AESTDY',
+                label: 'Study Day of Start of Adverse Event',
+                type: 'number'
+            },
+            {
+                name: 'AETERM',
+                label: 'Reported Term for the Adverse Event',
+                type: 'string'
+            },
+            {
+                name: 'AETOXGR',
+                label: 'Standard Toxicity Grade',
+                type: 'string'
+            },
+            {
+                name: 'DOMAIN',
+                label: 'Domain Abbreviation',
+                type: 'string'
+            },
+            {
+                name: 'STUDYID',
+                label: 'Study Identifier',
+                type: 'string'
+            },
+            {
+                name: 'USUBJID',
+                label: 'Unique Subject Identifier',
+                type: 'string'
+            }
+        ]
+    };
+
+    var bds = {
+        spec: 'bds',
+        variables: [
+            {
+                name: 'BLFL',
+                type: 'string',
+                label: 'Baseline Flag'
+            },
+            {
+                name: 'CAT',
+                type: 'string',
+                label: 'Category'
+            },
+            {
+                name: 'DOMAIN',
+                type: 'string',
+                label: 'Domain Abbreviation'
+            },
+            {
+                name: 'DRVFL',
+                type: 'string',
+                label: 'Derived Flag'
+            },
+            {
+                name: 'DTC',
+                type: 'string',
+                label: 'Date/Time'
+            },
+            {
+                name: 'DY',
+                type: 'number',
+                label: 'Study Day'
+            },
+            {
+                name: 'ELTM',
+                type: 'string',
+                label: 'Elapsed Time from Reference Point'
+            },
+            {
+                name: 'GRPID',
+                type: 'string',
+                label: 'Group ID'
+            },
+            {
+                name: 'LOINC',
+                type: 'string',
+                label: 'LOINC Code'
+            },
+            {
+                name: 'ORRES',
+                type: 'string',
+                label: 'Result or Finding in Original Units'
+            },
+            {
+                name: 'ORRESU',
+                type: 'string',
+                label: 'Original Units'
+            },
+            {
+                name: 'REASND',
+                type: 'string',
+                label: 'Reason Not Done'
+            },
+            {
+                name: 'SCAT',
+                type: 'string',
+                label: 'Subcategory'
+            },
+            {
+                name: 'SEQ',
+                type: 'number',
+                label: 'Sequence Number'
+            },
+            {
+                name: 'SPID',
+                type: 'string',
+                label: 'Sponsor-Defined Identifier'
+            },
+            {
+                name: 'STAT',
+                type: 'string',
+                label: 'Status'
+            },
+            {
+                name: 'STRESC',
+                type: 'string',
+                label: 'Character Result/Finding in Std Format'
+            },
+            {
+                name: 'STRESN',
+                type: 'number',
+                label: 'Numeric Result/Finding in Standard Units'
+            },
+            {
+                name: 'STRESU',
+                type: 'string',
+                label: 'Standard Units'
+            },
+            {
+                name: 'STUDYID',
+                type: 'string',
+                label: 'Study Identifier'
+            },
+            {
+                name: 'TEST',
+                type: 'string',
+                label: 'Test Name'
+            },
+            {
+                name: 'TESTCD',
+                type: 'string',
+                label: 'Test Short Name'
+            },
+            {
+                name: 'TPT',
+                type: 'string',
+                label: 'Planned Time Point Name'
+            },
+            {
+                name: 'TPTNUM',
+                type: 'number',
+                label: 'Planned Time Point Number'
+            },
+            {
+                name: 'TPTREF',
+                type: 'string',
+                label: 'Time Point Reference'
+            },
+            {
+                name: 'USUBJID',
+                type: 'string',
+                label: 'Unique Subject Identifier'
+            },
+            {
+                name: 'VISIT',
+                type: 'string',
+                label: 'Visit Name'
+            },
+            {
+                name: 'VISITDY',
+                type: 'number',
+                label: 'Planned Study Day of Visit'
+            },
+            {
+                name: 'VISITNUM',
+                type: 'number',
+                label: 'Visit Number'
+            }
+        ]
+    };
+
+    var dm = {
+        spec: 'dm',
+        variables: [
+            {
+                name: 'AGE',
+                label: 'Age in AGEU at RFSTDTC ',
+                type: 'number'
+            },
+            {
+                name: 'AGEU',
+                label: 'Age Units',
+                type: 'string'
+            },
+            {
+                name: 'ARM',
+                label: 'Description of Planned Arm',
+                type: 'string'
+            },
+            {
+                name: 'ARMCD',
+                label: 'Planned Arm Code',
+                type: 'string'
+            },
+            {
+                name: 'BRTHDTC',
+                label: 'Date/Time of Birth',
+                type: 'string'
+            },
+            {
+                name: 'COUNTRY',
+                label: 'Country',
+                type: 'string'
+            },
+            {
+                name: 'DMDTC',
+                label: 'Date/Time of Collection',
+                type: 'string'
+            },
+            {
+                name: 'DMDY',
+                label: 'Study Day of Collection',
+                type: 'number'
+            },
+            {
+                name: 'DOMAIN',
+                label: 'Domain Abbreviation',
+                type: 'string'
+            },
+            {
+                name: 'ETHNIC',
+                label: 'Ethnicity',
+                type: 'string'
+            },
+            {
+                name: 'INVID',
+                label: 'Investigator Identifier',
+                type: 'string'
+            },
+            {
+                name: 'INVNAM',
+                label: 'Investigator Name',
+                type: 'string'
+            },
+            {
+                name: 'RACE',
+                label: 'Race',
+                type: 'string'
+            },
+            {
+                name: 'RFENDTC',
+                label: 'Subject Reference End Date/Time',
+                type: 'string'
+            },
+            {
+                name: 'RFSTDTC',
+                label: 'Subject Reference Start Date/Time',
+                type: 'string'
+            },
+            {
+                name: 'SEX',
+                label: 'Sex',
+                type: 'string'
+            },
+            {
+                name: 'SITEID',
+                label: 'Study Site Identifier',
+                type: 'string'
+            },
+            {
+                name: 'STUDYID',
+                label: 'Study Identifier',
+                type: 'string'
+            },
+            {
+                name: 'SUBJID',
+                label: 'Subject Identifier for the Study',
+                type: 'string'
+            },
+            {
+                name: 'USUBJID',
+                label: 'Unique Subject Identifier',
+                type: 'string'
+            }
+        ]
+    };
+
+    var schema = {
+        spec: 'adverse-events',
+        variables: [
+            {
+                name: 'USUBJID',
+                type: 'string',
+                label: 'Unique Subject Identifier',
+                sdtm: {
+                    spec: 'dm',
+                    name: 'USUBJID'
+                },
+                adam: 'USUBJID'
+            },
+            {
+                name: 'SITEID',
+                type: 'string',
+                label: 'Study Site Identifier',
+                sdtm: {
+                    spec: 'dm',
+                    name: 'SITEID'
+                },
+                adam: 'SITEID'
+            },
+            {
+                name: 'AGE',
+                type: 'number',
+                label: 'Age',
+                sdtm: {
+                    spec: 'dm',
+                    name: 'AGE'
+                },
+                adam: 'AGE'
+            },
+            {
+                name: 'SEX',
+                type: 'string',
+                label: 'Sex',
+                sdtm: {
+                    spec: 'dm',
+                    name: 'SEX'
+                },
+                adam: 'SEX'
+            },
+            {
+                name: 'RACE',
+                type: 'string',
+                label: 'Race',
+                sdtm: {
+                    spec: 'dm',
+                    name: 'RACE'
+                },
+                adam: 'RACE'
+            },
+            {
+                name: 'ASTDT',
+                type: 'string',
+                label: 'Analysis Start Date',
+                sdtm: {
+                    spec: 'ae',
+                    name: 'AESTDTC'
+                },
+                adam: 'ASTDT'
+            },
+            {
+                name: 'ASTDY',
+                type: 'number',
+                label: 'Analysis Start Relative Day',
+                sdtm: {
+                    spec: 'ae',
+                    name: 'AESTDY'
+                },
+                adam: 'ASTDY'
+            },
+            {
+                name: 'AENDT',
+                type: 'string',
+                label: 'Analysis End Date',
+                sdtm: {
+                    spec: 'ae',
+                    name: 'AEENDTC'
+                },
+                adam: 'AENDT'
+            },
+            {
+                name: 'AENDY',
+                type: 'number',
+                label: 'Analysis End Relative Day',
+                sdtm: {
+                    spec: 'ae',
+                    name: 'AEENDY'
+                },
+                adam: 'AENDY'
+            },
+            {
+                name: 'AESEQ',
+                type: 'number',
+                label: 'Sequence Number',
+                sdtm: {
+                    spec: 'ae',
+                    name: 'AESEQ'
+                },
+                adam: 'AESEQ'
+            },
+            {
+                name: 'AETERM',
+                type: 'string',
+                label: 'Reported Term for the Adverse Event',
+                sdtm: {
+                    spec: 'ae',
+                    name: 'AETERM'
+                },
+                adam: 'AETERM'
+            },
+            {
+                name: 'AEDECOD',
+                type: 'string',
+                label: 'Dictionary-Derived Term',
+                sdtm: {
+                    spec: 'ae',
+                    name: 'AEDECOD'
+                },
+                adam: 'AEDECOD'
+            },
+            {
+                name: 'AEBODSYS',
+                type: 'string',
+                label: 'Body System or Organ Class',
+                sdtm: {
+                    spec: 'ae',
+                    name: 'AEBODSYS'
+                },
+                adam: 'AEBODSYS'
+            },
+            {
+                name: 'AESER',
+                type: 'string',
+                label: 'Serious Event',
+                sdtm: {
+                    spec: 'ae',
+                    name: 'AESER'
+                },
+                adam: 'AESER'
+            },
+            {
+                name: 'AESEV',
+                type: 'string',
+                label: 'Severity/Intensity',
+                sdtm: {
+                    spec: 'ae',
+                    name: 'AESEV'
+                },
+                adam: 'AESEV'
+            },
+            {
+                name: 'AEREL',
+                type: 'string',
+                label: 'Causality',
+                sdtm: {
+                    spec: 'ae',
+                    name: 'AEREL'
+                },
+                adam: 'AEREL'
+            },
+            {
+                name: 'AEOUT',
+                type: 'string',
+                label: 'Outcome',
+                sdtm: {
+                    spec: 'ae',
+                    name: 'AEOUT'
+                },
+                adam: 'AEOUT'
+            }
+        ]
+    };
+
+    var schema$1 = {
+        spec: 'medical-signs',
+        variables: [
+            {
+                name: 'USUBJID',
+                type: 'string',
+                label: 'Unique Subject Identifier',
+                sdtm: {
+                    spec: 'dm',
+                    name: 'USUBJID'
+                },
+                adam: 'USUBJID'
+            },
+            {
+                name: 'SITEID',
+                type: 'string',
+                label: 'Study Site Identifier',
+                sdtm: {
+                    spec: 'dm',
+                    name: 'SITEID'
+                },
+                adam: 'SITEID'
+            },
+            {
+                name: 'AGE',
+                type: 'number',
+                label: 'Age',
+                sdtm: {
+                    spec: 'dm',
+                    name: 'AGE'
+                },
+                adam: 'AGE'
+            },
+            {
+                name: 'SEX',
+                type: 'string',
+                label: 'Sex',
+                sdtm: {
+                    spec: 'dm',
+                    name: 'SEX'
+                },
+                adam: 'SEX'
+            },
+            {
+                name: 'RACE',
+                type: 'string',
+                label: 'Race',
+                sdtm: {
+                    spec: 'dm',
+                    name: 'RACE'
+                },
+                adam: 'RACE'
+            },
+            {
+                name: 'VISIT',
+                type: 'string',
+                label: 'Analysis Visit',
+                sdtm: {
+                    spec: 'bds',
+                    name: 'VISIT'
+                },
+                adam: 'AVISIT'
+            },
+            {
+                name: 'VISITNUM',
+                type: 'number',
+                label: 'Analysis Visit (N)',
+                sdtm: {
+                    spec: 'bds',
+                    name: 'VISITNUM'
+                },
+                adam: 'AVISITN'
+            },
+            {
+                name: 'DT',
+                type: 'number',
+                label: 'Analysis Date',
+                sdtm: {
+                    spec: 'bds',
+                    name: '__DTC'
+                },
+                adam: 'ADT'
+            },
+            {
+                name: 'DY',
+                type: 'number',
+                label: 'Analysis Relative Day',
+                sdtm: {
+                    spec: 'bds',
+                    name: '__DY'
+                },
+                adam: 'ADY'
+            },
+            {
+                name: 'CAT',
+                type: 'string',
+                label: 'Parameter Category',
+                sdtm: {
+                    spec: 'bds',
+                    name: '__CAT'
+                },
+                adam: 'PARCAT'
+            },
+            {
+                name: 'TEST',
+                type: 'string',
+                label: 'Parameter',
+                sdtm: {
+                    spec: 'bds',
+                    name: '__TEST'
+                },
+                adam: 'PARAM'
+            },
+            {
+                name: 'STRESU',
+                type: 'string',
+                label: 'Units',
+                sdtm: {
+                    spec: 'bds',
+                    name: '__STRESU'
+                },
+                adam: null
+            },
+            {
+                name: 'STRESN',
+                type: 'number',
+                label: 'Analysis Value',
+                sdtm: {
+                    spec: 'bds',
+                    name: '__STRESN'
+                },
+                adam: 'AVAL'
+            },
+            {
+                name: 'STNRLO',
+                type: 'number',
+                label: 'Analysis Normal Range Upper Limit',
+                sdtm: {
+                    spec: 'bds',
+                    name: '__STNRLO'
+                },
+                adam: 'ANRLO'
+            },
+            {
+                name: 'STNRHI',
+                type: 'number',
+                label: 'Analysis Normal Range Upper Limit',
+                sdtm: {
+                    spec: 'bds',
+                    name: '__STNRHI'
+                },
+                adam: 'ANRHI'
+            }
+        ]
+    };
+
+    var schemata = {
+        ae: ae,
+        bds: bds,
+        dm: dm,
+        adverseEvents: schema,
+        medicalSigns: schema$1
+    };
+
+    /*
+        spec            string  specification name
+        data            array   observations
+        variables       array   variable names
+        schema          object  dataset schema
+    */
+
+    function checkDataSpecification() {
+        this.data.forEach(function(dataset) {
+            dataset.spec = (dataset.spec || dataset.type)
+                .toLowerCase()
+                .replace(/AEs/i, 'adverse-events')
+                .replace(/Labs/i, 'medical-signs'); // backwards compatibility
+            dataset.data = dataset.data || dataset.raw; // backwards compatibility
+            dataset.variables = Object.keys(dataset.data[0]);
+
+            if (dataset.spec === undefined) {
+                var matches = [];
+                var variables_std = Object.keys(dataset.data[0]).map(function(key) {
+                    return key.replace(/^(LB|VS|EG|QS)/i, '');
+                }); // remove BDS variable prefixes
+
+                // Count the number of variables in the dataset that match variables in the schema.
+
+                var _loop = function _loop(schema) {
+                    var match = {
+                        schema: schemata[schema]
+                    };
+                    match.variables = match.schema.variables.map(function(variable) {
+                        return variable.name;
+                    });
+                    match.n = dataset.variables_std.filter(function(variable) {
+                        return match.variables.includes(variable);
+                    }).length;
+                    matches.push(match);
+                };
+
+                for (var schema in schemata) {
+                    _loop(schema);
+                }
+
+                // Choose the schema that with the greatest number of matching variables.
+                dataset.schema = matches.find(function(match) {
+                    return (
+                        match.n ===
+                        Math.max.apply(
+                            Math,
+                            toConsumableArray(
+                                matches.map(function(match) {
+                                    return match.n;
+                                })
+                            )
+                        )
+                    );
+                });
+                dataset.spec = dataset.schema.spec;
+            } else {
+                dataset.schema = schemata[dataset.spec.toLowerCase()];
+            }
         });
     }
 
@@ -225,190 +1095,13 @@
         }
     }
 
-    var schema = {
-        standard: 'adverse events',
-        variables: [
-            {
-                name: 'USUBJID',
-                type: 'string',
-                label: 'Unique Subject Identifier',
-                sdtm: {
-                    domain: 'DM',
-                    name: 'USUBJID'
-                },
-                adam: 'USUBJID'
-            },
-            {
-                name: 'SITEID',
-                type: 'string',
-                label: 'Study Site Identifier',
-                sdtm: {
-                    domain: 'DM',
-                    name: 'SITEID'
-                },
-                adam: 'SITEID'
-            },
-            {
-                name: 'AGE',
-                type: 'number',
-                label: 'Age',
-                sdtm: {
-                    domain: 'DM',
-                    name: 'AGE'
-                },
-                adam: 'AGE'
-            },
-            {
-                name: 'SEX',
-                type: 'string',
-                label: 'Sex',
-                sdtm: {
-                    domain: 'DM',
-                    name: 'SEX'
-                },
-                adam: 'SEX'
-            },
-            {
-                name: 'RACE',
-                type: 'string',
-                label: 'Race',
-                sdtm: {
-                    domain: 'DM',
-                    name: 'RACE'
-                },
-                adam: 'RACE'
-            },
-            {
-                name: 'ASTDT',
-                type: 'string',
-                label: 'Analysis Start Date',
-                sdtm: {
-                    domain: 'AE',
-                    name: 'AESTDTC'
-                },
-                adam: 'ASTDT'
-            },
-            {
-                name: 'ASTDY',
-                type: 'number',
-                label: 'Analysis Start Relative Day',
-                sdtm: {
-                    domain: 'AE',
-                    name: 'AESTDY'
-                },
-                adam: 'ASTDY'
-            },
-            {
-                name: 'AENDT',
-                type: 'string',
-                label: 'Analysis End Date',
-                sdtm: {
-                    domain: 'AE',
-                    name: 'AEENDTC'
-                },
-                adam: 'AENDT'
-            },
-            {
-                name: 'AENDY',
-                type: 'number',
-                label: 'Analysis End Relative Day',
-                sdtm: {
-                    domain: 'AE',
-                    name: 'AEENDY'
-                },
-                adam: 'AENDY'
-            },
-            {
-                name: 'AESEQ',
-                type: 'number',
-                label: 'Sequence Number',
-                sdtm: {
-                    domain: 'AE',
-                    name: 'AESEQ'
-                },
-                adam: 'AESEQ'
-            },
-            {
-                name: 'AETERM',
-                type: 'string',
-                label: 'Reported Term for the Adverse Event',
-                sdtm: {
-                    domain: 'AE',
-                    name: 'AETERM'
-                },
-                adam: 'AETERM'
-            },
-            {
-                name: 'AEDECOD',
-                type: 'string',
-                label: 'Dictionary-Derived Term',
-                sdtm: {
-                    domain: 'AE',
-                    name: 'AEDECOD'
-                },
-                adam: 'AEDECOD'
-            },
-            {
-                name: 'AEBODSYS',
-                type: 'string',
-                label: 'Body System or Organ Class',
-                sdtm: {
-                    domain: 'AE',
-                    name: 'AEBODSYS'
-                },
-                adam: 'AEBODSYS'
-            },
-            {
-                name: 'AESER',
-                type: 'string',
-                label: 'Serious Event',
-                sdtm: {
-                    domain: 'AE',
-                    name: 'AESER'
-                },
-                adam: 'AESER'
-            },
-            {
-                name: 'AESEV',
-                type: 'string',
-                label: 'Severity/Intensity',
-                sdtm: {
-                    domain: 'AE',
-                    name: 'AESEV'
-                },
-                adam: 'AESEV'
-            },
-            {
-                name: 'AEREL',
-                type: 'string',
-                label: 'Causality',
-                sdtm: {
-                    domain: 'AE',
-                    name: 'AEREL'
-                },
-                adam: 'AEREL'
-            },
-            {
-                name: 'AEOUT',
-                type: 'string',
-                label: 'Outcome',
-                sdtm: {
-                    domain: 'AE',
-                    name: 'AEOUT'
-                },
-                adam: 'AEOUT'
-            }
-        ]
-    };
-
     function adverseEvents(dm, ae) {
         var _this = this;
 
         //DM variables
-        var dmVariables = Object.keys(dm.raw[0]);
         var dmVariableMapping = schema.variables
             .filter(function(variable) {
-                return variable.sdtm.domain === 'DM' && variable.name !== variable.sdtm.name;
+                return variable.sdtm.spec === 'dm' && variable.name !== variable.sdtm.name;
             })
             .map(function(variable) {
                 return {
@@ -418,12 +1111,9 @@
             });
 
         //AE variables
-        var aeVariables = Object.keys(ae.raw[0]).filter(function(key) {
-            return dmVariables.indexOf(key) < 0;
-        });
         var aeVariableMapping = schema.variables
             .filter(function(variable) {
-                return variable.sdtm.domain === 'AE' && variable.name !== variable.sdtm.name;
+                return variable.sdtm.spec === 'ae' && variable.name !== variable.sdtm.name;
             })
             .map(function(variable) {
                 return {
@@ -438,20 +1128,20 @@
         //Create shell records for participants without adverse events.
         var withAEs = d3
             .set(
-                ae.raw.map(function(d) {
+                ae.data.map(function(d) {
                     return d.USUBJID;
                 })
             )
             .values();
         var adae = this.clone(
-            dm.raw.filter(function(d) {
+            dm.data.filter(function(d) {
                 return withAEs.indexOf(d.USUBJID) < 0;
             })
         );
 
         //Create shell adverse event variables for participants without adverse events.
         adae.forEach(function(d) {
-            aeVariables.forEach(function(aeVariable) {
+            ae.variables.forEach(function(aeVariable) {
                 var variable =
                     sdtmRenames.indexOf(aeVariable) > -1
                         ? aeVariableMapping.find(function(mapping) {
@@ -463,7 +1153,7 @@
         });
 
         //Merge demographics variables onto adverse events data.
-        ae.raw.forEach(function(d) {
+        ae.data.forEach(function(d) {
             var datum = {};
 
             var _loop = function _loop(aeVariable) {
@@ -480,7 +1170,7 @@
                 _loop(aeVariable);
             }
             var dmDatum = _this.clone(
-                dm.raw.find(function(di) {
+                dm.data.find(function(di) {
                     return di.USUBJID === d.USUBJID;
                 })
             );
@@ -493,170 +1183,13 @@
         return adae;
     }
 
-    var schema$1 = {
-        standard: 'medical signs',
-        variables: [
-            {
-                name: 'USUBJID',
-                type: 'string',
-                label: 'Unique Subject Identifier',
-                sdtm: {
-                    domain: 'DM',
-                    name: 'USUBJID'
-                },
-                adam: 'USUBJID'
-            },
-            {
-                name: 'SITEID',
-                type: 'string',
-                label: 'Study Site Identifier',
-                sdtm: {
-                    domain: 'DM',
-                    name: 'SITEID'
-                },
-                adam: 'SITEID'
-            },
-            {
-                name: 'AGE',
-                type: 'number',
-                label: 'Age',
-                sdtm: {
-                    domain: 'DM',
-                    name: 'AGE'
-                },
-                adam: 'AGE'
-            },
-            {
-                name: 'SEX',
-                type: 'string',
-                label: 'Sex',
-                sdtm: {
-                    domain: 'DM',
-                    name: 'SEX'
-                },
-                adam: 'SEX'
-            },
-            {
-                name: 'RACE',
-                type: 'string',
-                label: 'Race',
-                sdtm: {
-                    domain: 'DM',
-                    name: 'RACE'
-                },
-                adam: 'RACE'
-            },
-            {
-                name: 'VISIT',
-                type: 'string',
-                label: 'Analysis Visit',
-                sdtm: {
-                    domain: 'BDS',
-                    name: 'VISIT'
-                },
-                adam: 'AVISIT'
-            },
-            {
-                name: 'VISITNUM',
-                type: 'number',
-                label: 'Analysis Visit (N)',
-                sdtm: {
-                    domain: 'BDS',
-                    name: 'VISITNUM'
-                },
-                adam: 'AVISITN'
-            },
-            {
-                name: 'DT',
-                type: 'number',
-                label: 'Analysis Date',
-                sdtm: {
-                    domain: 'BDS',
-                    name: '__DTC'
-                },
-                adam: 'ADT'
-            },
-            {
-                name: 'DY',
-                type: 'number',
-                label: 'Analysis Relative Day',
-                sdtm: {
-                    domain: 'BDS',
-                    name: '__DY'
-                },
-                adam: 'ADY'
-            },
-            {
-                name: 'CAT',
-                type: 'string',
-                label: 'Parameter Category',
-                sdtm: {
-                    domain: 'BDS',
-                    name: '__CAT'
-                },
-                adam: 'PARCAT'
-            },
-            {
-                name: 'TEST',
-                type: 'string',
-                label: 'Parameter',
-                sdtm: {
-                    domain: 'BDS',
-                    name: '__TEST'
-                },
-                adam: 'PARAM'
-            },
-            {
-                name: 'STRESU',
-                type: 'string',
-                label: 'Units',
-                sdtm: {
-                    domain: 'BDS',
-                    name: '__STRESU'
-                },
-                adam: null
-            },
-            {
-                name: 'STRESN',
-                type: 'number',
-                label: 'Analysis Value',
-                sdtm: {
-                    domain: 'BDS',
-                    name: '__STRESN'
-                },
-                adam: 'AVAL'
-            },
-            {
-                name: 'STNRLO',
-                type: 'number',
-                label: 'Analysis Normal Range Upper Limit',
-                sdtm: {
-                    domain: 'BDS',
-                    name: '__STNRLO'
-                },
-                adam: 'ANRLO'
-            },
-            {
-                name: 'STNRHI',
-                type: 'number',
-                label: 'Analysis Normal Range Upper Limit',
-                sdtm: {
-                    domain: 'BDS',
-                    name: '__STNRHI'
-                },
-                adam: 'ANRHI'
-            }
-        ]
-    };
-
     function medicalSigns(dm, bds) {
         var _this = this;
 
         //DM variables
-        var dmVariables = Object.keys(dm.raw[0]);
         var dmVariableMapping = schema$1.variables
             .filter(function(variable) {
-                return variable.sdtm.domain === 'DM' && variable.name !== variable.sdtm.name;
+                return variable.sdtm.spec === 'dm' && variable.name !== variable.sdtm.name;
             })
             .map(function(variable) {
                 return {
@@ -670,8 +1203,8 @@
             .set(
                 d3
                     .merge(
-                        bds.map(function(data) {
-                            return data.raw;
+                        bds.map(function(dataset) {
+                            return dataset.data;
                         })
                     )
                     .map(function(d) {
@@ -680,7 +1213,7 @@
             )
             .values();
         var adbds = this.clone(
-            dm.raw.filter(function(d) {
+            dm.data.filter(function(d) {
                 return withResults.indexOf(d.USUBJID) < 0;
             })
         );
@@ -688,7 +1221,7 @@
         //Create shell medical sign variables for participants without medical sign results.
         var schemaVariables = schema$1.variables
             .filter(function(variable) {
-                return variable.sdtm.domain === 'BDS';
+                return variable.sdtm.spec === 'bds';
             })
             .map(function(variable) {
                 return variable.name;
@@ -700,40 +1233,38 @@
         });
 
         //Iterate over BDS data arrays.
-        bds.forEach(function(data) {
+        bds.forEach(function(dataset) {
             //ADBDS variables
-            var bdsVariables = Object.keys(data.raw[0]).filter(function(key) {
-                return dmVariables.indexOf(key) < 0;
+            var bdsVariables = dataset.variables.filter(function(key) {
+                return dm.variables.indexOf(key) < 0;
             });
 
             //If domain is not defined find most common two-character variable prefix, as the SDTM data standard prefixes variables with the two-character domain code.
-            data.domain =
-                data.domain ||
-                d3
-                    .nest()
-                    .key(function(d) {
-                        return d;
+            var domain = d3
+                .nest()
+                .key(function(d) {
+                    return d;
+                })
+                .rollup(function(d) {
+                    return d.length;
+                })
+                .entries(
+                    bdsVariables.map(function(variable) {
+                        return variable.substring(0, 2);
                     })
-                    .rollup(function(d) {
-                        return d.length;
-                    })
-                    .entries(
-                        bdsVariables.map(function(variable) {
-                            return variable.substring(0, 2);
-                        })
-                    )
-                    .sort(function(a, b) {
-                        return b.values - a.values;
-                    })[0].key;
+                )
+                .sort(function(a, b) {
+                    return b.values - a.values;
+                })[0].key;
 
             //Capture variable mappings from schema with which to rename domain-specific variables.
             var bdsVariableMapping = schema$1.variables
                 .filter(function(variable) {
-                    return variable.sdtm.domain === 'BDS' && variable.name !== variable.sdtm.name;
+                    return variable.sdtm.spec === 'bds' && variable.name !== variable.sdtm.name;
                 })
                 .map(function(variable) {
                     return {
-                        sdtm: variable.sdtm.name.replace('__', data.domain),
+                        sdtm: variable.sdtm.name.replace('__', domain),
                         name: variable.name
                     };
                 });
@@ -742,8 +1273,8 @@
             });
 
             //Merge demographics variables onto medical signs data.
-            var domainRegex = new RegExp('^' + data.domain);
-            data.raw.forEach(function(d, i) {
+            var domainRegex = new RegExp('^' + dataset.spec);
+            dataset.data.forEach(function(d, i) {
                 var datum = {};
 
                 var _loop = function _loop(bdsVariable) {
@@ -762,7 +1293,7 @@
                 Object.assign(
                     datum,
                     _this.clone(
-                        dm.raw.find(function(di) {
+                        dm.data.find(function(di) {
                             return di.USUBJID === d.USUBJID;
                         })
                     )
@@ -775,57 +1306,71 @@
     }
 
     function mergeData() {
+        // Define analysis adverse events dataset.
         if (
-            this.dataArray.some(function(data) {
-                return data.type === 'AE';
+            this.data.some(function(dataset) {
+                return dataset.spec === 'ae';
             })
-        )
-            this.dataArray.push({
-                type: 'AEs',
-                'Data Standard': 'Analysis',
-                raw: adverseEvents.call(
+        ) {
+            var adverseEvents$$1 = {
+                spec: 'adverse-events',
+                data: adverseEvents.call(
                     this,
-                    this.dataArray.find(function(data) {
-                        return data.type === 'DM';
+                    this.data.find(function(dataset) {
+                        return dataset.spec === 'dm';
                     }),
-                    this.dataArray.find(function(data) {
-                        return data.type === 'AE';
+                    this.data.find(function(dataset) {
+                        return dataset.spec === 'ae';
                     })
-                )
-            });
+                ),
+                'Data Standard': 'Analysis'
+            };
+            adverseEvents$$1.variables = Object.keys(adverseEvents$$1.data[0]);
+            adverseEvents$$1.schema = schema;
+            this.data.push(adverseEvents$$1);
+        }
+
+        // Define analysis medical signs dataset.
         if (
-            this.dataArray.some(function(data) {
-                return data.type === 'BDS';
+            this.data.some(function(dataset) {
+                return dataset.spec === 'bds';
             })
-        )
-            this.dataArray.push({
-                type: 'Labs',
-                'Data Standard': 'Analysis',
-                raw: medicalSigns.call(
+        ) {
+            var medicalSigns$$1 = {
+                spec: 'medical-signs',
+                data: medicalSigns.call(
                     this,
-                    this.dataArray.find(function(data) {
-                        return data.type === 'DM';
+                    this.data.find(function(dataset) {
+                        return dataset.spec === 'dm';
                     }),
-                    this.dataArray.filter(function(data) {
-                        return data.type === 'BDS';
+                    this.data.filter(function(dataset) {
+                        return dataset.spec === 'bds';
                     })
-                )
-            });
+                ),
+                'Data Standard': 'Analysis'
+            };
+
+            medicalSigns$$1.variables = Object.keys(medicalSigns$$1.data[0]);
+            medicalSigns$$1.schema = schema$1;
+
+            this.data.push(medicalSigns$$1);
+        }
     }
 
-    function init(dataArray) {
+    function init(data) {
         var loadcsv = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
         var sdtm = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
-        if (loadcsv) loadFiles(this, dataArray, sdtm);
+        if (loadcsv) loadFiles(this, data, sdtm);
         // load the csvs if requested
         else {
             //otherwise initialize the charts
-            this.dataArray = dataArray;
+            this.data = data;
+
+            checkDataSpecification.call(this);
 
             //Merge SDTM data.
             if (sdtm) mergeData.call(this);
-            this.data = this.dataArray;
 
             //Initialize data customizations callback
             this.events.onDatatransform.call(this);
@@ -918,7 +1463,7 @@
             main: 'aeTable',
             sub: 'createChart',
             css: 'css/aeTable.css',
-            data: 'AEs',
+            spec: 'adverse-events',
             settings: {}
         },
         {
@@ -927,7 +1472,7 @@
             main: 'aeTimelines',
             sub: null,
             css: null,
-            data: 'AEs',
+            spec: 'adverse-events',
             settings: {}
         },
         {
@@ -936,7 +1481,7 @@
             main: 'safetyHistogram',
             sub: null,
             css: null,
-            data: 'Labs',
+            spec: 'medical-signs',
             settings: {}
         },
         {
@@ -945,7 +1490,7 @@
             main: 'safetyOutlierExplorer',
             sub: null,
             css: null,
-            data: 'Labs',
+            spec: 'medical-signs',
             settings: {}
         },
         {
@@ -954,7 +1499,7 @@
             main: 'paneledOutlierExplorer',
             sub: null,
             css: null,
-            data: 'Labs',
+            spec: 'medical-signs',
             settings: {}
         },
         {
@@ -963,7 +1508,7 @@
             main: 'safetyResultsOverTime',
             sub: null,
             css: null,
-            data: 'Labs',
+            spec: 'medical-signs',
             settings: {}
         },
         {
@@ -972,7 +1517,7 @@
             main: 'safetyShiftPlot',
             sub: null,
             css: null,
-            data: 'Labs',
+            spec: 'medical-signs',
             settings: {}
         },
         {
@@ -981,7 +1526,7 @@
             main: 'safetyDeltaDelta',
             sub: null,
             css: null,
-            data: 'Labs',
+            spec: 'medical-signs',
             settings: {}
         },
         {
@@ -990,7 +1535,7 @@
             main: 'hepexplorer',
             sub: null,
             css: null,
-            data: 'Labs',
+            spec: 'medical-signs',
             settings: {}
         },
         {
@@ -999,7 +1544,7 @@
             main: 'webcodebook',
             sub: 'createExplorer',
             css: 'css/webcodebook.css',
-            data: null,
+            spec: null,
             settings: {
                 labelColumn: 'type',
                 ignoredColumns: ['raw', 'fileFound', 'key', 'domain'],
@@ -1042,18 +1587,19 @@
         explorer.charts.renderers.forEach(function(renderer) {
             //link the data
             if (renderer.name == 'web-codebook') {
-                renderer.settings.files = explorer.data.map(function(d) {
-                    d['Data'] = d.type;
-                    d.Rows = d.raw.length;
-                    d.Columns = Object.keys(d.raw[0]).length;
-                    d.json = d.raw;
-                    return d;
+                renderer.settings.files = explorer.data.map(function(dataset) {
+                    return {
+                        Data: dataset.spec,
+                        Rows: dataset.data.length,
+                        Columns: dataset.variables.length,
+                        json: dataset.data
+                    };
                 });
                 renderer.dataFile = null;
             } else {
-                renderer.dataFile = explorer.data.filter(function(d) {
-                    return d.type == renderer.data;
-                })[0];
+                renderer.dataFile = explorer.data.find(function(dataset) {
+                    return dataset.spec === renderer.spec;
+                });
             }
 
             //add render method
@@ -1076,7 +1622,7 @@
 
                 if (renderer.dataFile) {
                     explorer.currentChart.init(
-                        renderer.dataFile.raw.map(function(d) {
+                        renderer.dataFile.data.map(function(d) {
                             return Object.assign({}, d);
                         })
                     );

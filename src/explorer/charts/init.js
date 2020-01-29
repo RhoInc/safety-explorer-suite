@@ -5,18 +5,17 @@ export function init(explorer) {
     explorer.charts.renderers.forEach(function(renderer) {
         //link the data
         if (renderer.name == 'web-codebook') {
-            renderer.settings.files = explorer.data.map(function(d) {
-                d['Data'] = d.type;
-                d.Rows = d.raw.length;
-                d.Columns = Object.keys(d.raw[0]).length;
-                d.json = d.raw;
-                return d;
+            renderer.settings.files = explorer.data.map(dataset => {
+                return {
+                    Data: dataset.spec,
+                    Rows: dataset.data.length,
+                    Columns: dataset.variables.length,
+                    json: dataset.data
+                };
             });
             renderer.dataFile = null;
         } else {
-            renderer.dataFile = explorer.data.filter(function(d) {
-                return d.type == renderer.data;
-            })[0];
+            renderer.dataFile = explorer.data.find(dataset => dataset.spec === renderer.spec);
         }
 
         //add render method
@@ -38,7 +37,7 @@ export function init(explorer) {
             explorer.currentChart.renderer = renderer;
 
             if (renderer.dataFile) {
-                explorer.currentChart.init(renderer.dataFile.raw.map(d => Object.assign({}, d)));
+                explorer.currentChart.init(renderer.dataFile.data.map(d => Object.assign({}, d)));
             } else {
                 explorer.currentChart.init();
             }

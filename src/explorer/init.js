@@ -1,17 +1,19 @@
 import { loadFiles } from './loadFiles';
+import checkDataSpecification from './checkDataSpecification';
 import { loadSettings } from './loadSettings';
 import mergeData from './mergeData';
 
-export function init(dataArray, loadcsv = false, sdtm = false) {
-    if (loadcsv) loadFiles(this, dataArray, sdtm);
+export function init(data, loadcsv = false, sdtm = false) {
+    if (loadcsv) loadFiles(this, data, sdtm);
     // load the csvs if requested
     else {
         //otherwise initialize the charts
-        this.dataArray = dataArray;
+        this.data = data;
+
+        checkDataSpecification.call(this);
 
         //Merge SDTM data.
         if (sdtm) mergeData.call(this);
-        this.data = this.dataArray;
 
         //Initialize data customizations callback
         this.events.onDatatransform.call(this);
