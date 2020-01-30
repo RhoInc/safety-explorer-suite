@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Safety Explorer Suite: Test Page</title>
+        <title>Safety Explorer Suite: Linked Participants</title>
         <meta http-equiv = 'Content-Type' content = 'text/html; charset = utf-8'>
 
-        <script type = 'text/javascript' src = 'https://d3js.org/d3.v3.min.js'></script>
-        <script type = 'text/javascript' src = 'https://cdn.jsdelivr.net/gh/RhoInc/Webcharts/build/webcharts.min.js'></script>
+        <script type = 'text/javascript' src = '../loadScriptSync.js'></script>
+        <script type = 'text/javascript' src = '../libraries.js'></script>
         <script type = 'text/javascript' src = '../../safetyExplorerSuite.js'></script>
-            <script type = 'text/javascript' src = 'https://cdn.jsdelivr.net/gh/RhoInc/ae-timelines/aeTimelines.js'></script>
-            <script type = 'text/javascript' src = 'https://cdn.jsdelivr.net/gh/RhoInc/safety-outlier-explorer/safetyOutlierExplorer.js'></script>
-            <script type = 'text/javascript' src = 'https://cdn.jsdelivr.net/gh/SafetyGraphics/hep-explorer@7f5d97fd4396da3ca5d0b4daf4950a691b5dd80b/hepexplorer.js'></script>
 
         <link type = 'text/css' rel = 'stylesheet' href = 'https://cdn.jsdelivr.net/gh/RhoInc/Webcharts/css/webcharts.min.css'>
         <link type = 'text/css' rel = 'stylesheet' href = '../../safetyExplorerSuite.css'>
@@ -18,9 +15,21 @@
 
     <body>
         <div id = 'title'>Safety Explorer Suite</div>
-        <div id = 'subtitle'>Linked Participants. <span id="pt"> Select a participant to see their details when you change charts. </span></div>
+        <div id = 'subtitle'>
+            Linked Participants<br>
+            <strong class = 'instruction'>Select a participant to see their details when you change charts.</strong>
+        </div>
         <div id = 'container'></div>
     </body>
 
-    <script type = 'text/javascript' src = './index.js'></script>
+    <script type = 'text/javascript'>
+        function waitForDependencies() {
+            if (typeof d3 !== 'undefined' && typeof webCharts !== 'undefined') {
+                loadScriptSync('./index.js');
+            } else {
+                setTimeout(waitForDependencies, 1);
+            }
+        }
+        waitForDependencies();
+    </script>
 </html>

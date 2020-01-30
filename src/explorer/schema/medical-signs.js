@@ -1,12 +1,12 @@
 export default {
-    standard: 'medical signs',
+    spec: 'medical-signs',
     variables: [
         {
             name: 'USUBJID',
             type: 'string',
             label: 'Unique Subject Identifier',
             sdtm: {
-                domain: 'DM',
+                spec: 'dm',
                 name: 'USUBJID'
             },
             adam: 'USUBJID'
@@ -16,7 +16,7 @@ export default {
             type: 'string',
             label: 'Study Site Identifier',
             sdtm: {
-                domain: 'DM',
+                spec: 'dm',
                 name: 'SITEID'
             },
             adam: 'SITEID'
@@ -26,7 +26,7 @@ export default {
             type: 'number',
             label: 'Age',
             sdtm: {
-                domain: 'DM',
+                spec: 'dm',
                 name: 'AGE'
             },
             adam: 'AGE'
@@ -36,7 +36,7 @@ export default {
             type: 'string',
             label: 'Sex',
             sdtm: {
-                domain: 'DM',
+                spec: 'dm',
                 name: 'SEX'
             },
             adam: 'SEX'
@@ -46,7 +46,7 @@ export default {
             type: 'string',
             label: 'Race',
             sdtm: {
-                domain: 'DM',
+                spec: 'dm',
                 name: 'RACE'
             },
             adam: 'RACE'
@@ -56,7 +56,7 @@ export default {
             type: 'string',
             label: 'Analysis Visit',
             sdtm: {
-                domain: 'BDS',
+                spec: 'bds',
                 name: 'VISIT'
             },
             adam: 'AVISIT'
@@ -66,7 +66,7 @@ export default {
             type: 'number',
             label: 'Analysis Visit (N)',
             sdtm: {
-                domain: 'BDS',
+                spec: 'bds',
                 name: 'VISITNUM'
             },
             adam: 'AVISITN'
@@ -76,7 +76,7 @@ export default {
             type: 'number',
             label: 'Analysis Date',
             sdtm: {
-                domain: 'BDS',
+                spec: 'bds',
                 name: '__DTC'
             },
             adam: 'ADT'
@@ -86,7 +86,7 @@ export default {
             type: 'number',
             label: 'Analysis Relative Day',
             sdtm: {
-                domain: 'BDS',
+                spec: 'bds',
                 name: '__DY'
             },
             adam: 'ADY'
@@ -96,7 +96,7 @@ export default {
             type: 'string',
             label: 'Parameter Category',
             sdtm: {
-                domain: 'BDS',
+                spec: 'bds',
                 name: '__CAT'
             },
             adam: 'PARCAT'
@@ -106,7 +106,7 @@ export default {
             type: 'string',
             label: 'Parameter',
             sdtm: {
-                domain: 'BDS',
+                spec: 'bds',
                 name: '__TEST'
             },
             adam: 'PARAM'
@@ -116,7 +116,7 @@ export default {
             type: 'string',
             label: 'Units',
             sdtm: {
-                domain: 'BDS',
+                spec: 'bds',
                 name: '__STRESU'
             },
             adam: null
@@ -126,7 +126,7 @@ export default {
             type: 'number',
             label: 'Analysis Value',
             sdtm: {
-                domain: 'BDS',
+                spec: 'bds',
                 name: '__STRESN'
             },
             adam: 'AVAL'
@@ -136,7 +136,7 @@ export default {
             type: 'number',
             label: 'Analysis Normal Range Upper Limit',
             sdtm: {
-                domain: 'BDS',
+                spec: 'bds',
                 name: '__STNRLO'
             },
             adam: 'ANRLO'
@@ -146,7 +146,7 @@ export default {
             type: 'number',
             label: 'Analysis Normal Range Upper Limit',
             sdtm: {
-                domain: 'BDS',
+                spec: 'bds',
                 name: '__STNRHI'
             },
             adam: 'ANRHI'

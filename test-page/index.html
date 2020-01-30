@@ -4,25 +4,11 @@
         <title>Safety Explorer Suite: Test Page</title>
         <meta http-equiv = 'Content-Type' content = 'text/html; charset = utf-8'>
 
-        <script type = 'text/javascript' src = 'https://d3js.org/d3.v3.min.js'></script>
-        <script type = 'text/javascript' src = 'https://cdn.jsdelivr.net/gh/RhoInc/Webcharts/build/webcharts.min.js'></script>
+        <script type = 'text/javascript' src = './loadScriptSync.js'></script>
+        <script type = 'text/javascript' src = './libraries.js'></script>
         <script type = 'text/javascript' src = '../safetyExplorerSuite.js'></script>
-        <script type = 'text/javascript' src = 'https://cdn.jsdelivr.net/gh/RhoInc/aeexplorer/build/aeTable.js'></script>
-        <script type = 'text/javascript' src = 'https://cdn.jsdelivr.net/gh/RhoInc/ae-timelines/aeTimelines.js'></script>
-        <script type = 'text/javascript' src = 'https://cdn.jsdelivr.net/gh/RhoInc/safety-histogram/safetyHistogram.js'></script>
-        <script type = 'text/javascript' src = 'https://cdn.jsdelivr.net/gh/RhoInc/safety-outlier-explorer/safetyOutlierExplorer.js'></script>
-        <script type = 'text/javascript' src = 'https://cdn.jsdelivr.net/gh/RhoInc/paneled-outlier-explorer/build/paneledOutlierExplorer.js'></script>
-        <script type = 'text/javascript' src = 'https://cdn.jsdelivr.net/gh/RhoInc/safety-results-over-time/safetyResultsOverTime.js'></script>
-        <script type = 'text/javascript' src = 'https://cdn.jsdelivr.net/gh/RhoInc/safety-shift-plot/build/safetyShiftPlot.js'></script>
-        <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/RhoInc/safety-delta-delta/safetyDeltaDelta.js'></script>
 
-        <script type = 'text/javascript' src = 'https://cdn.jsdelivr.net/gh/RhoInc/web-codebook/build/webcodebook.js'></script>
-        <script type = 'text/javascript' src = 'https://cdn.jsdelivr.net/gh/SafetyGraphics/hep-explorer/hepexplorer.js'></script>
-
-        <link type = 'text/css' rel = 'stylesheet' href = 'https://cdn.jsdelivr.net/gh/RhoInc/Webcharts/css/webcharts.min.css'>
         <link type = 'text/css' rel = 'stylesheet' href = '../safetyExplorerSuite.css'>
-        <link type = 'text/css' rel = 'stylesheet' href = 'https://cdn.jsdelivr.net/gh/RhoInc/aeexplorer/css/aeTable.css'>
-        <link type = 'text/css' rel = 'stylesheet' href = 'https://cdn.jsdelivr.net/gh/RhoInc/web-codebook/css/webcodebook.css'>
         <link type = 'text/css' rel = 'stylesheet' href = './index.css'>
     </head>
 
@@ -39,5 +25,14 @@
         <div id = 'container'></div>
     </body>
 
-    <script type = 'text/javascript' src = './index.js'></script>
+    <script type = 'text/javascript'>
+        function waitForDependencies() {
+            if (typeof d3 !== 'undefined' && typeof webCharts !== 'undefined') {
+                loadScriptSync('./index.js');
+            } else {
+                setTimeout(waitForDependencies, 1);
+            }
+        }
+        waitForDependencies();
+    </script>
 </html>

@@ -7,12 +7,10 @@ Promise.all([adae,adbds])
         return [
             {
                 type: 'AEs',
-                'Data Standard': 'Analysis',
                 raw: d3.csv.parse(values[0]),
             },
             {
                 type: 'Labs',
-                'Data Standard': 'Analysis',
                 raw: d3.csv.parse(values[1])
             }
         ];

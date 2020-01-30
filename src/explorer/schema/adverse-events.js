@@ -1,12 +1,12 @@
 export default {
-    standard: 'adverse events',
+    spec: 'adverse-events',
     variables: [
         {
             name: 'USUBJID',
             type: 'string',
             label: 'Unique Subject Identifier',
             sdtm: {
-                domain: 'DM',
+                spec: 'dm',
                 name: 'USUBJID'
             },
             adam: 'USUBJID'
@@ -16,7 +16,7 @@ export default {
             type: 'string',
             label: 'Study Site Identifier',
             sdtm: {
-                domain: 'DM',
+                spec: 'dm',
                 name: 'SITEID'
             },
             adam: 'SITEID'
@@ -26,7 +26,7 @@ export default {
             type: 'number',
             label: 'Age',
             sdtm: {
-                domain: 'DM',
+                spec: 'dm',
                 name: 'AGE'
             },
             adam: 'AGE'
@@ -36,7 +36,7 @@ export default {
             type: 'string',
             label: 'Sex',
             sdtm: {
-                domain: 'DM',
+                spec: 'dm',
                 name: 'SEX'
             },
             adam: 'SEX'
@@ -46,7 +46,7 @@ export default {
             type: 'string',
             label: 'Race',
             sdtm: {
-                domain: 'DM',
+                spec: 'dm',
                 name: 'RACE'
             },
             adam: 'RACE'
@@ -56,7 +56,7 @@ export default {
             type: 'string',
             label: 'Analysis Start Date',
             sdtm: {
-                domain: 'AE',
+                spec: 'ae',
                 name: 'AESTDTC'
             },
             adam: 'ASTDT'
@@ -66,7 +66,7 @@ export default {
             type: 'number',
             label: 'Analysis Start Relative Day',
             sdtm: {
-                domain: 'AE',
+                spec: 'ae',
                 name: 'AESTDY'
             },
             adam: 'ASTDY'
@@ -76,7 +76,7 @@ export default {
             type: 'string',
             label: 'Analysis End Date',
             sdtm: {
-                domain: 'AE',
+                spec: 'ae',
                 name: 'AEENDTC'
             },
             adam: 'AENDT'
@@ -86,7 +86,7 @@ export default {
             type: 'number',
             label: 'Analysis End Relative Day',
             sdtm: {
-                domain: 'AE',
+                spec: 'ae',
                 name: 'AEENDY'
             },
             adam: 'AENDY'
@@ -96,7 +96,7 @@ export default {
             type: 'number',
             label: 'Sequence Number',
             sdtm: {
-                domain: 'AE',
+                spec: 'ae',
                 name: 'AESEQ'
             },
             adam: 'AESEQ'
@@ -106,7 +106,7 @@ export default {
             type: 'string',
             label: 'Reported Term for the Adverse Event',
             sdtm: {
-                domain: 'AE',
+                spec: 'ae',
                 name: 'AETERM'
             },
             adam: 'AETERM'
@@ -116,7 +116,7 @@ export default {
             type: 'string',
             label: 'Dictionary-Derived Term',
             sdtm: {
-                domain: 'AE',
+                spec: 'ae',
                 name: 'AEDECOD'
             },
             adam: 'AEDECOD'
@@ -126,7 +126,7 @@ export default {
             type: 'string',
             label: 'Body System or Organ Class',
             sdtm: {
-                domain: 'AE',
+                spec: 'ae',
                 name: 'AEBODSYS'
             },
             adam: 'AEBODSYS'
@@ -136,7 +136,7 @@ export default {
             type: 'string',
             label: 'Serious Event',
             sdtm: {
-                domain: 'AE',
+                spec: 'ae',
                 name: 'AESER'
             },
             adam: 'AESER'
@@ -146,7 +146,7 @@ export default {
             type: 'string',
             label: 'Severity/Intensity',
             sdtm: {
-                domain: 'AE',
+                spec: 'ae',
                 name: 'AESEV'
             },
             adam: 'AESEV'
@@ -156,7 +156,7 @@ export default {
             type: 'string',
             label: 'Causality',
             sdtm: {
-                domain: 'AE',
+                spec: 'ae',
                 name: 'AEREL'
             },
             adam: 'AEREL'
@@ -166,7 +166,7 @@ export default {
             type: 'string',
             label: 'Outcome',
             sdtm: {
-                domain: 'AE',
+                spec: 'ae',
                 name: 'AEOUT'
             },
             adam: 'AEOUT'
